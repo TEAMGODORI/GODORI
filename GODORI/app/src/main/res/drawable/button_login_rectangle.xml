@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="23dp"/> <!-- 모서리 기울기 -->
+    <gradient
+        android:startColor="#ffdf61"
+        android:endColor="#ffdf61"
+        android:angle="270"/>
+    <!-- angle 0 으로 맞추면 가로 90 은 세로-->
+</shape>

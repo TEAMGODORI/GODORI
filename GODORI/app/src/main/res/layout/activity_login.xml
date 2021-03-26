@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LoginActivity"
+    android:background="@drawable/lg_background">
+
+<!--    <EditText-->
+<!--        android:id="@+id/editTextid"-->
+<!--        android:layout_width="328dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="이메일 주소"-->
+<!--        android:textSize="14dp"-->
+<!--        android:textColorHint="#e6e4e6"-->
+<!--        android:layout_marginTop="300dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:inputType="text"-->
+<!--        android:drawablePadding="5dp"-->
+
+<!--        android:privateImeOptions="defaultInputmode=english"-->
+<!--        android:drawableLeft="@drawable/lg_img_mdi_mail_size"/>-->
+    <!--기본 키보드 영문-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/editTextTextPassword"-->
+<!--        android:layout_width="328dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="비밀번호"-->
+<!--        android:textSize="14dp"-->
+<!--        android:textColorHint="#e6e4e6"-->
+<!--        android:layout_below="@+id/editTextid"-->
+<!--        android:drawablePadding="5dp"-->
+<!--        android:layout_marginTop="17dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:drawableLeft="@drawable/lg_img_mdi_lock_size"-->
+<!--        android:background="@drawable/login_rectangle" />-->
+
+    <Button
+        android:id="@+id/kakaologinBtn"
+        android:layout_width="284dp"
+        android:layout_height="46dp"
+        android:gravity="center"
+        android:text="카카오톡 로그인"
+        android:textSize="16dp"
+        android:textColor="#381f1f"
+        android:background="@drawable/button_login_rectangle"
+        android:layout_marginTop="575dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/googleloginBtn"
+        android:layout_width="284dp"
+        android:layout_height="46dp"
+        android:gravity="center"
+        android:text="카카오톡 로그인"
+        android:textSize="16dp"
+        android:textColor="#381f1f"
+        android:drawableLeft="@drawable/lg_btn_login_kakao"
+        android:background="@drawable/button_login_rectangle"
+        android:layout_below="@+id/kakaologinBtn"
+        android:layout_marginTop="12dp"
+        android:layout_centerHorizontal="true"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/idFind"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="아이디 찾기"-->
+<!--        android:textSize="13dp"-->
+<!--        android:textColor="#c6c3c7"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:layout_marginLeft="61dp"-->
+<!--        android:layout_below="@+id/loginBtn"-->
+<!--        android:includeFontPadding="false"/>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/passwordFind"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="비밀번호 찾기"-->
+<!--        android:textSize="13dp"-->
+<!--        android:textColor="#c6c3c7"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:layout_toRightOf="@+id/idFind"-->
+<!--        android:layout_marginLeft="36dp"-->
+<!--        android:layout_below="@+id/loginBtn"-->
+<!--        android:includeFontPadding="false"/>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/signUp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="회원가입"-->
+<!--        android:textSize="13dp"-->
+<!--        android:textColor="#c6c3c7"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:layout_toRightOf="@+id/passwordFind"-->
+<!--        android:layout_marginLeft="36dp"-->
+<!--        android:layout_below="@+id/loginBtn"-->
+<!--        android:includeFontPadding="false"/>-->
+
+<!--    <ImageButton-->
+<!--        android:id="@id/kakaoLg"-->
+<!--        android:layout_width="48dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_below="@+id/idFind"-->
+<!--        android:layout_marginTop="140dp"-->
+<!--        android:layout_marginLeft="140dp"-->
+<!--        android:background="@drawable/lg_btn_login_kakao"/>-->
+<!--    <ImageButton-->
+<!--        android:id="@+id/googleLg"-->
+<!--        android:layout_width="48dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_below="@+id/idFind"-->
+<!--        android:layout_toRightOf="@+id/kakaoLg"-->
+<!--        android:layout_marginTop="140dp"-->
+<!--        android:layout_marginLeft="50dp"-->
+<!--        android:background="@drawable/lg_btn_login_google"/>-->
+
+</RelativeLayout>

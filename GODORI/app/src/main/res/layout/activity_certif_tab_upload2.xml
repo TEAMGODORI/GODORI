@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".activity.CertifTabUpload2Activity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar1"
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+
+        <ImageView
+            android:id="@+id/backBtn2"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ct_btn_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="오늘의 운동 남기기"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eff0f0" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/exerciseText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginLeft="32dp"
+            android:includeFontPadding="false"
+            android:text="얼마나 운동 했어요?"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="18dp" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/timeSpinner"
+            android:layout_width="348dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/exerciseText1"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/ct_spinner_time"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="32dp" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:scaleType="fitCenter"
+            android:layout_below="@+id/timeSpinner"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="14dp"
+            android:src="@drawable/ct_btn_error_outline"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:includeFontPadding="false"
+            android:layout_below="@+id/timeSpinner"
+            android:text="운동 시간 미입력 시, 정확한 칼로리 결과가 제공되지 않을 수 있\n습니다."
+            android:textSize="12dp"
+            android:layout_marginLeft="52dp"/>
+
+        <Button
+            android:id="@+id/next2Btn"
+            android:layout_width="376dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="642dp"
+            android:layout_marginLeft="18dp"
+            android:background="@drawable/gr_ly_btn_next"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:text="다음"/>
+    </RelativeLayout>
+</LinearLayout>

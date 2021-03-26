@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.GroupRecruitingActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".GroupRecruitingFragment"
+        android:background="#F7F7F7">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="278dp"
+            android:background="@drawable/gr_ly_gradation"
+            android:paddingHorizontal="28dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:id="@+id/tvGroupRecruitingTitle"
+                android:layout_marginTop="75dp"
+                android:text="도리 님의 운동 취향"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/tvGroupRecruitingSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:layout_marginTop="24dp"
+                android:text="운동 취향을 선택하고\n나에게 맞는 그룹을 찾아보세요"
+                android:textSize="12dp"
+                android:layout_below="@+id/tvGroupRecruitingTitle"
+                android:textColor="@color/white"/>
+            <ImageButton
+                android:id="@+id/gr_btn_recruiting_modify"
+                android:layout_width="165dp"
+                android:layout_height="46dp"
+                android:layout_below="@+id/tvGroupRecruitingSubtitle"
+                android:layout_marginTop="27dp"
+                android:adjustViewBounds="true"
+                android:background="@color/transparent"
+                android:scaleType="fitStart"
+                android:src="@drawable/gr_img_recruiting_modify" />
+            <ImageView
+                android:layout_marginTop="77dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="156dp"
+                android:layout_height="143dp"
+                android:src="@drawable/gr_img_recruiting_runner"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/white"
+            android:paddingLeft="18dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/gr_rcv_recruiting_taste"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingVertical="18dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:orientation="horizontal"
+            android:background="#f5f5f5">
+
+            <TextView
+                android:id="@+id/gr_tv_recruiting_groupNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingLeft="18dp"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:includeFontPadding="false"
+                android:textColor="#2c2c2d"
+                android:text="42"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textSize="14sp"
+                android:layout_toRightOf="@+id/gr_tv_recruiting_groupNum"
+                android:includeFontPadding="false"
+                android:textColor="#2c2c2d"
+                tools:text="건"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/gr_rcv_recruiting_info"
+                android:layout_gravity="center_vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

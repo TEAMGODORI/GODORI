@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GroupCreationCompleteActivity"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="200dp"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_width="350dp"
+            android:layout_height="267dp"
+            android:src="@drawable/img_ballet"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:layout_marginTop="30dp"
+            android:text="그룹 가입 완료"
+            android:textColor="#3C3C3C"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="고도리"
+            android:textColor="@color/main"
+            android:textSize="26dp"
+            android:includeFontPadding="false"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="그룹원들과 운동한 내용을 공유하면서\n건강한 삶을 위해 화이팅 하세요!"
+            android:textAlignment="center"
+            android:textColor="#4D4D4D"
+            android:textSize="12dp"
+            android:gravity="center_horizontal" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/next2Btn"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:background="@drawable/button_rectangle"
+        android:gravity="center"
+        android:text="그룹 바로 가기"
+        android:textColor="#FFFFFF" />
+</LinearLayout>

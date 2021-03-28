@@ -98,7 +98,7 @@
                 android:layout_toRightOf="@+id/gr_tv_recruiting_groupNum"
                 android:includeFontPadding="false"
                 android:textColor="#2c2c2d"
-                tools:text="건"/>
+                android:text="건"/>
         </RelativeLayout>
 
         <LinearLayout

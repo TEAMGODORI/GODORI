@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/gr_bg_create"
+    android:orientation="vertical"
     tools:context=".activity.GroupCreation4Activity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -20,6 +22,7 @@
                 android:id="@+id/btnRecruitingBack"
                 android:layout_width="match_parent"
                 android:layout_height="54dp">
+
                 <ImageButton
                     android:id="@+id/gr_btn_creation4_back"
                     android:layout_width="20dp"
@@ -28,24 +31,28 @@
                     android:background="@drawable/gr_btn_back"
                     android:gravity="center" />
             </androidx.appcompat.widget.Toolbar>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/gr_img_group"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/gr_img_group" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:includeFontPadding="false"
                     android:layout_marginTop="14dp"
+                    android:includeFontPadding="false"
                     android:text="그룹 만들기"
                     android:textColor="#b3ffffff"
                     android:textSize="12sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -53,16 +60,17 @@
                     android:includeFontPadding="false"
                     android:text="그룹 성격을 입력해주세요"
                     android:textColor="#ffffff"
-                    android:textStyle="bold"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_marginHorizontal="32dp"
-                android:layout_marginTop="34dp">
+                android:layout_marginTop="34dp"
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,228 +80,245 @@
                     android:textColor="@color/white"
                     android:textSize="14dp"
                     android:textStyle="bold" />
+
                 <RadioGroup
                     android:id="@+id/gr_rg_creation4_cycle"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
+
                     <RadioButton
                         android:id="@+id/gr_rb_creation4_cycle1"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
-                        android:button="@null"
-                        android:includeFontPadding="false"
                         android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textColor="@color/white"
                         android:background="@drawable/gr_ly_btn_creation_cycle"
-                        android:text="1" />
+                        android:button="@null"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="1"
+                        android:textColor="@color/white" />
 
                     <RadioButton
                         android:id="@+id/gr_rb_creation4_cycle2"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
-                        android:button="@null"
-                        android:includeFontPadding="false"
-                        android:layout_marginLeft="14dp"
                         android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textColor="@color/white"
+                        android:layout_marginLeft="14dp"
                         android:background="@drawable/gr_ly_btn_creation_cycle"
-                        android:text="2" />
+                        android:button="@null"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="2"
+                        android:textColor="@color/white" />
 
                     <RadioButton
                         android:id="@+id/gr_rb_creation4_cycle3"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
-                        android:button="@null"
-                        android:includeFontPadding="false"
-                        android:layout_marginLeft="14dp"
                         android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textColor="@color/white"
+                        android:layout_marginLeft="14dp"
                         android:background="@drawable/gr_ly_btn_creation_cycle"
-                        android:text="3" />
+                        android:button="@null"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="3"
+                        android:textColor="@color/white" />
 
                     <RadioButton
                         android:id="@+id/gr_rb_creation4_cycle4"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
-                        android:button="@null"
-                        android:includeFontPadding="false"
-                        android:layout_marginLeft="14dp"
                         android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textColor="@color/white"
+                        android:layout_marginLeft="14dp"
                         android:background="@drawable/gr_ly_btn_creation_cycle"
-                        android:text="4" />
+                        android:button="@null"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="4"
+                        android:textColor="@color/white" />
 
                     <RadioButton
                         android:id="@+id/gr_rb_creation4_cycle5"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="14dp"
+                        android:background="@drawable/gr_ly_btn_creation_cycle"
                         android:button="@null"
                         android:gravity="center"
-                        android:textColor="@color/white"
                         android:includeFontPadding="false"
-                        android:layout_marginLeft="14dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/gr_ly_btn_creation_cycle"
-                        android:text="5" />
+                        android:text="5"
+                        android:textColor="@color/white" />
+
                     <RadioButton
                         android:id="@+id/gr_rb_creation4_cycle6"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="14dp"
+                        android:background="@drawable/gr_ly_btn_creation_cycle"
                         android:button="@null"
                         android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="14dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/gr_ly_btn_creation_cycle"
                         android:includeFontPadding="false"
-                        android:text="6" />
+                        android:text="6"
+                        android:textColor="@color/white" />
+
                     <RadioButton
                         android:id="@+id/gr_rb_creation4_cycle7"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="14dp"
+                        android:background="@drawable/gr_ly_btn_creation_cycle"
                         android:button="@null"
                         android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="14dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/gr_ly_btn_creation_cycle"
                         android:includeFontPadding="false"
-                        android:text="7" />
+                        android:text="7"
+                        android:textColor="@color/white" />
                 </RadioGroup>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="26dp"
                     android:includeFontPadding="false"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
                     android:text="운동을 잘하나요?"
-                    android:textSize="14dp" />
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
                     <RadioButton
                         android:id="@+id/groupCreation_intensity1"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:button="@null"
                         android:background="@drawable/gr_ly_btn_creation_level"
-                        android:text="상" />
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="상"
+                        android:textColor="@color/white" />
+
                     <RadioButton
                         android:id="@+id/groupCreation_intensity2"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="16dp"
+                        android:background="@drawable/gr_ly_btn_creation_level"
                         android:button="@null"
                         android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_gravity="center"
-                        android:background="@drawable/gr_ly_btn_creation_level"
-                        android:text="중" />
+                        android:text="중"
+                        android:textColor="@color/white" />
+
                     <RadioButton
                         android:id="@+id/groupCreation_intensity3"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:background="@drawable/gr_ly_btn_creation_level"
                         android:button="@null"
                         android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="16dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/gr_ly_btn_creation_level"
-                        android:text="하" />
+                        android:text="하"
+                        android:textColor="@color/white" />
                 </RadioGroup>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:text="어떤 운동을 선호하시나요?"
                     android:includeFontPadding="false"
+                    android:text="어떤 운동을 선호하시나요?"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-                <CheckBox
-                    android:id="@+id/gr_cb_creation4_exercise1"
-                    android:layout_width="170dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="14dp"
-                    android:background="@drawable/gr_ly_button_exercise_check"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:text="헬스"
-                    android:textColor="@drawable/gr_text_color" />
-                <CheckBox
-                    android:id="@+id/gr_cb_creation4_exercise2"
-                    android:layout_width="170dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="14dp"
-                    android:layout_toRightOf="@+id/gr_cb_creation4_exercise1"
-                    android:background="@drawable/gr_ly_button_exercise_check"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:text="러닝"
-                    android:textColor="@drawable/gr_text_color" />
-                <CheckBox
-                    android:id="@+id/gr_cb_creation4_exercise3"
-                    android:layout_width="170dp"
-                    android:layout_height="42dp"
-                    android:layout_below="@+id/gr_cb_creation4_exercise1"
-                    android:background="@drawable/gr_ly_button_exercise_check"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:text="요가"
-                    android:textColor="@drawable/gr_text_color" />
-                <CheckBox
-                    android:id="@+id/gr_cb_creation4_exercise4"
-                    android:layout_width="170dp"
-                    android:layout_height="42dp"
-                    android:layout_below="@+id/gr_cb_creation4_exercise2"
-                    android:layout_toRightOf="@+id/gr_cb_creation4_exercise3"
-                    android:background="@drawable/gr_ly_button_exercise_check"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:text="필라테스"
-                    android:textColor="@drawable/gr_text_color" />
-                <CheckBox
-                    android:id="@+id/gr_cb_creation4_exercise5"
-                    android:layout_width="170dp"
-                    android:layout_height="42dp"
-                    android:layout_below="@+id/gr_cb_creation4_exercise3"
-                    android:background="@drawable/gr_ly_button_exercise_check"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:text="자전거"
-                    android:textColor="@drawable/gr_text_color" />
-                <CheckBox
-                    android:id="@+id/gr_cb_creation4_exercise6"
-                    android:layout_width="170dp"
-                    android:layout_height="42dp"
-                    android:layout_below="@+id/gr_cb_creation4_exercise4"
-                    android:layout_toRightOf="@+id/gr_cb_creation4_exercise5"
-                    android:background="@drawable/gr_ly_button_exercise_check"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:text="수영"
-                    android:textColor="@drawable/gr_text_color" />
+
+                    <CheckBox
+                        android:id="@+id/gr_cb_creation4_exercise1"
+                        android:layout_width="170dp"
+                        android:layout_height="42dp"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/gr_ly_button_exercise_check"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="헬스"
+                        android:textColor="@drawable/gr_text_color" />
+
+                    <CheckBox
+                        android:id="@+id/gr_cb_creation4_exercise2"
+                        android:layout_width="170dp"
+                        android:layout_height="42dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_toRightOf="@+id/gr_cb_creation4_exercise1"
+                        android:background="@drawable/gr_ly_button_exercise_check"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="러닝"
+                        android:textColor="@drawable/gr_text_color" />
+
+                    <CheckBox
+                        android:id="@+id/gr_cb_creation4_exercise3"
+                        android:layout_width="170dp"
+                        android:layout_height="42dp"
+                        android:layout_below="@+id/gr_cb_creation4_exercise1"
+                        android:background="@drawable/gr_ly_button_exercise_check"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="요가"
+                        android:textColor="@drawable/gr_text_color" />
+
+                    <CheckBox
+                        android:id="@+id/gr_cb_creation4_exercise4"
+                        android:layout_width="170dp"
+                        android:layout_height="42dp"
+                        android:layout_below="@+id/gr_cb_creation4_exercise2"
+                        android:layout_toRightOf="@+id/gr_cb_creation4_exercise3"
+                        android:background="@drawable/gr_ly_button_exercise_check"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="필라테스"
+                        android:textColor="@drawable/gr_text_color" />
+
+                    <CheckBox
+                        android:id="@+id/gr_cb_creation4_exercise5"
+                        android:layout_width="170dp"
+                        android:layout_height="42dp"
+                        android:layout_below="@+id/gr_cb_creation4_exercise3"
+                        android:background="@drawable/gr_ly_button_exercise_check"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="자전거"
+                        android:textColor="@drawable/gr_text_color" />
+
+                    <CheckBox
+                        android:id="@+id/gr_cb_creation4_exercise6"
+                        android:layout_width="170dp"
+                        android:layout_height="42dp"
+                        android:layout_below="@+id/gr_cb_creation4_exercise4"
+                        android:layout_toRightOf="@+id/gr_cb_creation4_exercise5"
+                        android:background="@drawable/gr_ly_button_exercise_check"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="수영"
+                        android:textColor="@drawable/gr_text_color" />
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
@@ -303,16 +328,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp">
+
         <Button
             android:id="@+id/gr_btn_creation4_next"
-            android:layout_marginHorizontal="32dp"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:layout_marginHorizontal="32dp"
             android:background="@drawable/gr_ly_btn_next"
             android:enabled="false"
             android:gravity="center"
             android:text="완료"
-            android:textSize="14sp"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
     </LinearLayout>
 </LinearLayout>

@@ -31,9 +31,11 @@ class GroupCreation1Activity : AppCompatActivity() {
                 num.text = numS.length.toString() + "/15"
                 next.isEnabled = true
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 num.text = "0/15"
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 numS = name.text.toString()
                 num.text = numS.length.toString() + "/15"
@@ -42,7 +44,7 @@ class GroupCreation1Activity : AppCompatActivity() {
         }
         name.addTextChangedListener(textWatcher)
 
-        //다음
+        // 다음
         gr_btn_creation1_next.setOnClickListener {
             // 이름 2글자 이상 filter
 //            numS = name.text.toString()
@@ -54,9 +56,13 @@ class GroupCreation1Activity : AppCompatActivity() {
 //                myToast.view = layout//setting the view of custom toast layout
 //                myToast.show()
 //            } else {
-                val intent = Intent(this, GroupCreation2Activity::class.java)
-                startActivity(intent)
+            val intent = Intent(this, GroupCreation2Activity::class.java)
+            startActivity(intent)
 //            }
+        }
+        // 이전
+        back.setOnClickListener {
+            onBackPressed()
         }
     }
 }

@@ -3,11 +3,6 @@ package com.example.godori.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.Toast
-import com.example.godori.GroupCreationCompleteActivity
 import com.example.godori.R
 import kotlinx.android.synthetic.main.activity_group_creation4.*
 

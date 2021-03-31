@@ -17,6 +17,7 @@
             android:background="@drawable/gr_ly_gradation">
 
             <ImageButton
+                android:id="@+id/my_btn_setting"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentRight="true"
@@ -116,6 +117,7 @@
             </RelativeLayout>
 
             <ImageButton
+                android:id="@+id/my_btn_taste"
                 android:layout_width="280dp"
                 android:layout_height="46dp"
                 android:layout_below="@id/my_vw_stroke"

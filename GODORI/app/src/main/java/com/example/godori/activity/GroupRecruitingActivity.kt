@@ -9,6 +9,7 @@ import com.example.godori.R
 import com.example.godori.adapter.GroupRecruitingInfoAdapter
 import com.example.godori.adapter.GroupRecruitingTasteAdapter
 import kotlinx.android.synthetic.main.activity_group_recruiting.*
+import kotlinx.android.synthetic.main.fragment_group_tab.*
 
 class GroupRecruitingActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -41,12 +42,17 @@ class GroupRecruitingActivity : AppCompatActivity() {
             // use this setting to improve performance if you know that changes
             // in content do not change the layout size of the RecyclerView
             setHasFixedSize(true)
-
             // use a linear layout manager
             layoutManager = viewManager
 
             // specify an viewAdapter (see also next example)
             adapter = viewAdapter
+        }
+
+        // 취향 버튼
+        gr_btn_recruiting_modify.setOnClickListener {
+            val intent = Intent(this, TasteSettingActivity::class.java)
+            startActivity(intent)
         }
     }
 }

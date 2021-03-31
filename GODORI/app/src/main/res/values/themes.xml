@@ -28,9 +28,5 @@
     </style>
 
     <!--Edit Text 밑줄로 사용될 테마-->
-    <style name="EditTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorAccent">#c1c1c1</item>
-        <item name="colorControlNormal">@color/main</item>
-    </style>
 
 </resources>

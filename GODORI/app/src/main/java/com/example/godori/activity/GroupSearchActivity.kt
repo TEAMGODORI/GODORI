@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
-import com.example.godori.GroupInfoActivity
 import com.example.godori.R
 import com.example.godori.adapter.GroupSearchFileListAdapter
 import java.util.*

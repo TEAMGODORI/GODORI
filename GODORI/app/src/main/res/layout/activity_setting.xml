@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SettingActivity">
+    tools:context=".activity.SettingActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar1"
@@ -14,18 +14,19 @@
 
         <ImageView
             android:id="@+id/backBtn1"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/st_img_back_btn" />
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/gr_btn_back_black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:includeFontPadding="false"
             android:text="설정"
             android:textColor="#000000"
-            android:textSize="14dp"
+            android:textSize="18sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 

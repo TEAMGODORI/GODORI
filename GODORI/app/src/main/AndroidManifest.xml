@@ -5,6 +5,12 @@
 
     <uses-feature
         android:name="android.hardware.camera"
+        android:required="false" /> <!-- 카메라 권한 설정 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 저장 권한 설정 (이미지나 동영상을 기기의 외부 장치에 저장할경우) -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 카메라기능이 무조건적으로 필요하지 않을 경우 -->
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="false" />
 
     <application
@@ -14,20 +20,22 @@
         android:roundIcon="@mipmap/ic_ood_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GODORI">
-        <activity android:name=".activity.GroupSearchActivity"></activity>
+        <activity android:name=".activity.GroupInfoAfterActivity"></activity>
+        <activity android:name=".activity.TasteSettingActivity" />
+        <activity android:name=".activity.GroupSearchActivity" />
         <activity android:name=".activity.GroupCreation4Activity" />
         <activity android:name=".activity.GroupCreation3Activity" />
         <activity android:name=".activity.GroupCreation2Activity" />
-        <activity android:name=".SettingActivity" />
+        <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.Information2Activity" />
         <activity android:name=".activity.Information1Activity" />
         <activity android:name=".activity.GroupProdCompleActivity" />
         <activity android:name=".activity.GroupJoinCompleteActivity" />
-        <activity android:name=".GroupJoinCompleteActivity" />
-        <activity android:name=".GroupCreationCompleteActivity" />
+        <activity android:name=".activity.GroupJoinCompleteActivity" />
+        <activity android:name=".activity.GroupCreationCompleteActivity" />
         <activity android:name=".activity.GroupCreation1Activity" />
-        <activity android:name=".GroupInfoActivity" />
+        <activity android:name=".activity.GroupInfoActivity" />
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -58,17 +66,5 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
-
-    <!--    카메라 권한 설정-->
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <!--    저장 권한 설정 (이미지나 동영상을 기기의 외부 장치에 저장할경우)-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <!--    카메라기능이 무조건적으로 필요하지 않을 경우-->
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
 
 </manifest>

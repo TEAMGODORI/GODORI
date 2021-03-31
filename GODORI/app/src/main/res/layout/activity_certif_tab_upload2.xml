@@ -84,7 +84,7 @@
             android:id="@+id/next2Btn"
             android:layout_width="376dp"
             android:layout_height="55dp"
-            android:layout_marginTop="642dp"
+            android:layout_marginTop="630dp"
             android:layout_marginLeft="18dp"
             android:background="@drawable/gr_ly_btn_next"
             android:textSize="18dp"

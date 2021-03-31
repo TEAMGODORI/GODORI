@@ -47,7 +47,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="456dp"
+                android:layout_height="330dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -82,7 +82,7 @@
                         android:button="@null"
                         android:gravity="center"
                         android:includeFontPadding="false"
-                        android:text="요가"
+                        android:text="헬스"
                         android:textColor="@color/ct_text_color" />
 
                     <CheckBox
@@ -95,7 +95,7 @@
                         android:button="@null"
                         android:gravity="center"
                         android:includeFontPadding="false"
-                        android:text="러닝"
+                        android:text="필라테스/요가"
                         android:textColor="@color/ct_text_color" />
 
 
@@ -109,7 +109,7 @@
                         android:button="@null"
                         android:gravity="center"
                         android:includeFontPadding="false"
-                        android:text="축구"
+                        android:text="등산"
                         android:textColor="@color/ct_text_color" />
 
                     <CheckBox
@@ -122,7 +122,7 @@
                         android:button="@null"
                         android:gravity="center"
                         android:includeFontPadding="false"
-                        android:text="필라테스"
+                        android:text="자전거"
                         android:textColor="@color/ct_text_color" />
 
 
@@ -136,7 +136,7 @@
                         android:button="@null"
                         android:gravity="center"
                         android:includeFontPadding="false"
-                        android:text="헬스"
+                        android:text="수영"
                         android:textColor="@color/ct_text_color" />
 
                     <CheckBox
@@ -149,84 +149,84 @@
                         android:button="@null"
                         android:gravity="center"
                         android:includeFontPadding="false"
-                        android:text="자전거"
+                        android:text="런닝"
                         android:textColor="@color/ct_text_color" />
 
-                    <CheckBox
-                        android:id="@+id/exercise_Btn7"
-                        android:layout_width="164dp"
-                        android:layout_height="42dp"
-                        android:layout_below="@+id/exercise_Btn5"
-                        android:layout_marginLeft="42dp"
-                        android:background="@drawable/ct_ly_button_exercise_check"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-                        android:text="헬스"
-                        android:textColor="@color/ct_text_color" />
+<!--                    <CheckBox-->
+<!--                        android:id="@+id/exercise_Btn7"-->
+<!--                        android:layout_width="164dp"-->
+<!--                        android:layout_height="42dp"-->
+<!--                        android:layout_below="@+id/exercise_Btn5"-->
+<!--                        android:layout_marginLeft="42dp"-->
+<!--                        android:background="@drawable/ct_ly_button_exercise_check"-->
+<!--                        android:button="@null"-->
+<!--                        android:gravity="center"-->
+<!--                        android:includeFontPadding="false"-->
+<!--                        android:text="헬스"-->
+<!--                        android:textColor="@color/ct_text_color" />-->
 
-                    <CheckBox
-                        android:id="@+id/exercise_Btn8"
-                        android:layout_width="164dp"
-                        android:layout_height="42dp"
-                        android:layout_below="@+id/exercise_Btn6"
-                        android:layout_toRightOf="@+id/exercise_Btn7"
-                        android:background="@drawable/ct_ly_button_exercise_check"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-                        android:text="자전거"
-                        android:textColor="@color/ct_text_color" />
-                    <CheckBox
-                        android:id="@+id/exercise_Btn9"
-                        android:layout_width="164dp"
-                        android:layout_height="42dp"
-                        android:layout_below="@+id/exercise_Btn7"
-                        android:layout_marginLeft="42dp"
-                        android:background="@drawable/ct_ly_button_exercise_check"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-                        android:text="헬스"
-                        android:textColor="@color/ct_text_color" />
+<!--                    <CheckBox-->
+<!--                        android:id="@+id/exercise_Btn8"-->
+<!--                        android:layout_width="164dp"-->
+<!--                        android:layout_height="42dp"-->
+<!--                        android:layout_below="@+id/exercise_Btn6"-->
+<!--                        android:layout_toRightOf="@+id/exercise_Btn7"-->
+<!--                        android:background="@drawable/ct_ly_button_exercise_check"-->
+<!--                        android:button="@null"-->
+<!--                        android:gravity="center"-->
+<!--                        android:includeFontPadding="false"-->
+<!--                        android:text="자전거"-->
+<!--                        android:textColor="@color/ct_text_color" />-->
+<!--                    <CheckBox-->
+<!--                        android:id="@+id/exercise_Btn9"-->
+<!--                        android:layout_width="164dp"-->
+<!--                        android:layout_height="42dp"-->
+<!--                        android:layout_below="@+id/exercise_Btn7"-->
+<!--                        android:layout_marginLeft="42dp"-->
+<!--                        android:background="@drawable/ct_ly_button_exercise_check"-->
+<!--                        android:button="@null"-->
+<!--                        android:gravity="center"-->
+<!--                        android:includeFontPadding="false"-->
+<!--                        android:text="헬스"-->
+<!--                        android:textColor="@color/ct_text_color" />-->
 
-                    <CheckBox
-                        android:id="@+id/exercise_Btn10"
-                        android:layout_width="164dp"
-                        android:layout_height="42dp"
-                        android:layout_below="@+id/exercise_Btn8"
-                        android:layout_toRightOf="@+id/exercise_Btn9"
-                        android:background="@drawable/ct_ly_button_exercise_check"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-                        android:text="자전거"
-                        android:textColor="@color/ct_text_color" />
-                    <CheckBox
-                        android:id="@+id/exercise_Btn11"
-                        android:layout_width="164dp"
-                        android:layout_height="42dp"
-                        android:layout_below="@+id/exercise_Btn9"
-                        android:layout_marginLeft="42dp"
-                        android:background="@drawable/ct_ly_button_exercise_check"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-                        android:text="헬스"
-                        android:textColor="@color/ct_text_color" />
+<!--                    <CheckBox-->
+<!--                        android:id="@+id/exercise_Btn10"-->
+<!--                        android:layout_width="164dp"-->
+<!--                        android:layout_height="42dp"-->
+<!--                        android:layout_below="@+id/exercise_Btn8"-->
+<!--                        android:layout_toRightOf="@+id/exercise_Btn9"-->
+<!--                        android:background="@drawable/ct_ly_button_exercise_check"-->
+<!--                        android:button="@null"-->
+<!--                        android:gravity="center"-->
+<!--                        android:includeFontPadding="false"-->
+<!--                        android:text="자전거"-->
+<!--                        android:textColor="@color/ct_text_color" />-->
+<!--                    <CheckBox-->
+<!--                        android:id="@+id/exercise_Btn11"-->
+<!--                        android:layout_width="164dp"-->
+<!--                        android:layout_height="42dp"-->
+<!--                        android:layout_below="@+id/exercise_Btn9"-->
+<!--                        android:layout_marginLeft="42dp"-->
+<!--                        android:background="@drawable/ct_ly_button_exercise_check"-->
+<!--                        android:button="@null"-->
+<!--                        android:gravity="center"-->
+<!--                        android:includeFontPadding="false"-->
+<!--                        android:text="헬스"-->
+<!--                        android:textColor="@color/ct_text_color" />-->
 
-                    <CheckBox
-                        android:id="@+id/exercise_Btn12"
-                        android:layout_width="164dp"
-                        android:layout_height="42dp"
-                        android:layout_below="@+id/exercise_Btn10"
-                        android:layout_toRightOf="@+id/exercise_Btn11"
-                        android:background="@drawable/ct_ly_button_exercise_check"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-                        android:text="자전거"
-                        android:textColor="@color/ct_text_color" />
+<!--                    <CheckBox-->
+<!--                        android:id="@+id/exercise_Btn12"-->
+<!--                        android:layout_width="164dp"-->
+<!--                        android:layout_height="42dp"-->
+<!--                        android:layout_below="@+id/exercise_Btn10"-->
+<!--                        android:layout_toRightOf="@+id/exercise_Btn11"-->
+<!--                        android:background="@drawable/ct_ly_button_exercise_check"-->
+<!--                        android:button="@null"-->
+<!--                        android:gravity="center"-->
+<!--                        android:includeFontPadding="false"-->
+<!--                        android:text="자전거"-->
+<!--                        android:textColor="@color/ct_text_color" />-->
 
                 </RelativeLayout>
             </LinearLayout>

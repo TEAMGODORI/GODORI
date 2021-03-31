@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 저장 권한 설정 (이미지나 동영상을 기기의 외부 장치에 저장할경우) -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 카메라기능이 무조건적으로 필요하지 않을 경우 -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -19,6 +20,7 @@
         android:label="오늘은 운동해야지"
         android:roundIcon="@mipmap/ic_ood_round"
         android:supportsRtl="true"
+        android:userCleartextTraffic = "true"
         android:theme="@style/Theme.GODORI">
         <activity android:name=".activity.GroupInfoAfterActivity"></activity>
         <activity android:name=".activity.TasteSettingActivity" />
@@ -31,7 +33,6 @@
         <activity android:name=".activity.Information2Activity" />
         <activity android:name=".activity.Information1Activity" />
         <activity android:name=".activity.GroupProdCompleActivity" />
-        <activity android:name=".activity.GroupJoinCompleteActivity" />
         <activity android:name=".activity.GroupJoinCompleteActivity" />
         <activity android:name=".activity.GroupCreationCompleteActivity" />
         <activity android:name=".activity.GroupCreation1Activity" />

@@ -20,8 +20,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.godori.R
 import com.example.godori.activity.CertifTabDetailActivity
 import com.example.godori.activity.CertifTabUpload1Activity
+import com.example.godori.activity.TabBarActivity
 import com.prolificinteractive.materialcalendarview.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload1.*
+import kotlinx.android.synthetic.main.activity_certif_tab_upload4.*
 import kotlinx.android.synthetic.main.fragment_certif_tab.*
 import kotlinx.android.synthetic.main.fragment_certif_tab.view.*
 import java.text.SimpleDateFormat
@@ -207,17 +209,14 @@ class CertifTabFragment : Fragment() {
             val intent = Intent(getActivity(), CertifTabUpload1Activity::class.java)
             startActivity(intent)
         }
-
         val currentTime = Calendar.getInstance().time
         val weekdayFormat = SimpleDateFormat("EE", Locale.getDefault())
         val dayFormat = SimpleDateFormat("d", Locale.getDefault())
         val monthFormat = SimpleDateFormat("M", Locale.getDefault())
-        val yearFormat = SimpleDateFormat("yyyy", Locale.getDefault())
 
-        val weekDay = weekdayFormat.format(currentTime)
-        val year = yearFormat.format(currentTime)
         val month = monthFormat.format(currentTime)
         val day = dayFormat.format(currentTime)
+        val weekDay = weekdayFormat.format(currentTime)
 
         //오늘 날짜 가져오기
         calendarText.text = month + "월 " + day + "일 " + weekDay + "요일"

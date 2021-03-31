@@ -67,11 +67,17 @@ dependencies {
 // edit text material 을 위해 추가
 //    implementation 'com.google.android.material:material:1.1.0'
 
-//      사진 짜르기를 위해 추가
+//  사진 짜르기를 위해 추가
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 
 //  모서리 둥근 이미지뷰를 위해 추가
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+// 서버 연동을 위해 추가
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit-mock:2.9.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
 }

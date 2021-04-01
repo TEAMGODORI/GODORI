@@ -8,5 +8,5 @@ interface GroupCreation {
     @POST("/group")
     fun postGroupCreation(
         @Body body: RequestGroupCreationData
-    ): Call<RequestGroupCreationData>
+    ): Call<ResponseGroupCreationData>
 }

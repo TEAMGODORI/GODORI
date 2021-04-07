@@ -73,7 +73,7 @@ class GroupCreation1Activity : AppCompatActivity() {
         }
         // 이전
         back.setOnClickListener {
-//            onBackPressed()
+            onBackPressed()
         }
     }
     // 뒤로가기 함수

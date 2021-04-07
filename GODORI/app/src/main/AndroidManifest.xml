@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 카메라기능이 무조건적으로 필요하지 않을 경우 -->
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -20,9 +21,10 @@
         android:label="오늘은 운동해야지"
         android:roundIcon="@mipmap/ic_ood_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.GODORI">
-        <activity android:name=".activity.GroupInfoAfterActivity"></activity>
+        android:theme="@style/Theme.GODORI"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activity.TabBarAfterActivity"></activity>
+        <activity android:name=".activity.GroupInfoAfterActivity" />
         <activity android:name=".activity.TasteSettingActivity" />
         <activity android:name=".activity.GroupSearchActivity" />
         <activity android:name=".activity.GroupCreation4Activity" />

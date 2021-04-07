@@ -16,5 +16,5 @@ object OodServiceImpl {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    val service: GroupCreation = retrofit.create(GroupCreation::class.java)
+    val service_gr_creation: GroupCreation = retrofit.create(GroupCreation::class.java)
 }

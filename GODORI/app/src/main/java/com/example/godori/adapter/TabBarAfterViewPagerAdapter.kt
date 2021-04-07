@@ -8,7 +8,7 @@ import com.example.godori.fragment.GroupAfterTabFragment
 import com.example.godori.fragment.GroupTabFragment
 import com.example.godori.fragment.MyInfoTabFragment
 
-class TabBarViewPagerAdapter (fm : FragmentManager) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class TabBarAfterViewPagerAdapter (fm : FragmentManager) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     // 뷰페이지의 어댑터는 FragmentManager를 필요로 한다
     // ViewPagerAdapter의 역할을 하기 위해 FragmentStatePagerAdapter 상속
     // FragmentStatePagerAdapter vs FragmentPagerAdapter
@@ -16,7 +16,7 @@ class TabBarViewPagerAdapter (fm : FragmentManager) : FragmentStatePagerAdapter(
     // 후자는 프래그먼트의 인스턴스를 완전히 파괴하지 않고 onDestroyView()만 호출한다. 프래그먼트 개수가 고정적일 때 효과적
 
     override fun getItem(position: Int): Fragment = when(position){
-        0 -> GroupTabFragment()
+        0 -> GroupAfterTabFragment()
         1 -> CertifTabFragment()
         2 -> MyInfoTabFragment()
         else -> throw IllegalStateException("Unexpected position $position")

@@ -156,7 +156,7 @@
         android:layout_marginBottom="24dp">
 
         <Button
-            android:id="@+id/gr_btn_creation1_next"
+            android:id="@+id/gr_btn_creation_complete"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginHorizontal="32dp"

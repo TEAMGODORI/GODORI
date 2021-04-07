@@ -103,34 +103,34 @@ class GroupCreation4Activity : AppCompatActivity() {
             intro_comment = secondIntent.getStringExtra("intro_comment").toString()
 
             // 2. 그룹 생성하기 POST
-            val call: Call<ResponseGroupCreationData> = OodServiceImpl.service.postGroupCreation(
-                RequestGroupCreationData(
-                    group_name = group_name,
-                    recruit_num = recruit_num,
-                    is_public = is_public,
-                    intro_comment = intro_comment,
-                    ex_cycle = 3,
-                    ex_intensity = "중",
-                    group_sport = "런닝",
-                    group_maker = "김지현"
-                )
-            )
-            call.enqueue(object : Callback<ResponseGroupCreationData> {
-                override fun onFailure(call: Call<ResponseGroupCreationData>, t: Throwable) {
-                    // 통신 실패 로직
-                }
-
-                override fun onResponse(
-                    call: Call<ResponseGroupCreationData>,
-                    response: Response<ResponseGroupCreationData>
-                ) {
-                    response.takeIf { it.isSuccessful }
-                        ?.body()
-                        ?.let { it ->
-
-                        } ?: showError(response.errorBody())
-                }
-            })
+//            val call: Call<ResponseGroupCreationData> = OodServiceImpl.service_gr_creation.postGroupCreation(
+//                RequestGroupCreationData(
+//                    group_name = group_name,
+//                    recruit_num = recruit_num,
+//                    is_public = is_public,
+//                    intro_comment = intro_comment,
+//                    ex_cycle = 3,
+//                    ex_intensity = "중",
+//                    group_sport = "런닝",
+//                    group_maker = "김지현"
+//                )
+//            )
+//            call.enqueue(object : Callback<ResponseGroupCreationData> {
+//                override fun onFailure(call: Call<ResponseGroupCreationData>, t: Throwable) {
+//                    // 통신 실패 로직
+//                }
+//
+//                override fun onResponse(
+//                    call: Call<ResponseGroupCreationData>,
+//                    response: Response<ResponseGroupCreationData>
+//                ) {
+//                    response.takeIf { it.isSuccessful }
+//                        ?.body()
+//                        ?.let { it ->
+//
+//                        } ?: showError(response.errorBody())
+//                }
+//            })
 
             // 3. 데이터 전달 하기
             val intent = Intent(this, GroupCreationCompleteActivity::class.java)

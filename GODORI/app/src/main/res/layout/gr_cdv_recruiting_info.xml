@@ -102,14 +102,25 @@
                 android:textColor="#3C3C3C"
                 android:textSize="14dp" />
             <TextView
-                android:id="@+id/gr_tv_recruiting_info_count"
+                android:id="@+id/gr_tv_recruiting_info_recruited_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
                 android:includeFontPadding="false"
                 android:layout_toRightOf="@+id/gr_tv_recruiting_info_countTitle"
-                android:text="5/13"
+                android:text="5"
+                android:textStyle="bold"
+                android:textColor="@color/main"
+                android:textSize="16dp" />
+            <TextView
+                android:id="@+id/gr_tv_recruiting_info_recruit_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:includeFontPadding="false"
+                android:layout_toRightOf="@+id/gr_tv_recruiting_info_recruited_num"
+                android:text="/13"
                 android:textStyle="bold"
                 android:textColor="@color/main"
                 android:textSize="16dp" />

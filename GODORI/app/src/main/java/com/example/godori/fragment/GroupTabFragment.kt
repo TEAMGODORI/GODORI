@@ -8,14 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.godori.R
+import com.example.godori.*
 import com.example.godori.activity.GroupCreation1Activity
-import com.example.godori.activity.GroupInfoAfterActivity
 import com.example.godori.activity.GroupRecruitingActivity
 import com.example.godori.activity.GroupSearchActivity
 import com.example.godori.adapter.GroupMoreAdapter
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.activity_group_info.*
 import kotlinx.android.synthetic.main.fragment_group_tab.*
 import java.util.*
 

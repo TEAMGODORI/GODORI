@@ -55,8 +55,8 @@
                     android:id="@+id/Img_Upload1"
                     android:layout_width="274dp"
                     android:layout_height="274dp"
-                    android:background="@drawable/ct_btn_photo_radius"
-                    android:src="@drawable/ct_btn_photo"
+                    android:background="@drawable/ct_btn_photo"
+                    android:src="@drawable/ct_btn_add_photo"
                     android:scaleType="fitXY" />
 
                 <!--        <ImageView-->
@@ -88,8 +88,8 @@
                     android:id="@+id/Img_Upload2"
                     android:layout_width="274dp"
                     android:layout_height="274dp"
-                    android:background="@drawable/ct_btn_photo_radius"
-                    android:src="@drawable/ct_btn_photo"
+                    android:background="@drawable/ct_btn_photo"
+                    android:src="@drawable/ct_btn_add_photo"
                     android:scaleType="fitXY" />
 
                 <TextView

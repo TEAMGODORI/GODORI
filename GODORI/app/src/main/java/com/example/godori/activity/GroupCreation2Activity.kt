@@ -1,14 +1,17 @@
 package com.example.godori.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.example.godori.R
 
 class GroupCreation2Activity : AppCompatActivity() {
+    var recruit_num: Int = 0
+    var is_public: Boolean = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_creation2)
@@ -26,9 +29,11 @@ class GroupCreation2Activity : AppCompatActivity() {
             if (isChecked) {
                 // The switch is enabled/checked
                 swTv.text = "모집중인 그룹 목록에 표시됩니다"
+                is_public = true
             } else {
                 // The switch is disabled
                 swTv.text = "그룹 검색을 통해서만 가입할 수 있습니다"
+                is_public = false
             }
         }
 
@@ -36,6 +41,7 @@ class GroupCreation2Activity : AppCompatActivity() {
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 next.isEnabled = true
+                recruit_num = Integer.parseInt(num.text.toString())
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -58,6 +64,12 @@ class GroupCreation2Activity : AppCompatActivity() {
                 Toast.makeText(this, "그룹 인원은 2인 이상 가능합니다.", Toast.LENGTH_SHORT).show()
             } else {
                 val intent = Intent(this, GroupCreation3Activity::class.java)
+                // 데이터 전달
+                val secondIntent = getIntent()
+                intent.putExtra("group_name", secondIntent.getStringExtra("group_name"))
+                intent.putExtra("recruit_num", recruit_num)
+                intent.putExtra("is_public", is_public)
+                // 액티비티 시작
                 startActivity(intent)
             }
         }

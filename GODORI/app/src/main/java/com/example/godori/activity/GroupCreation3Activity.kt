@@ -10,6 +10,8 @@ import com.example.godori.R
 
 
 class GroupCreation3Activity : AppCompatActivity() {
+    var intro_comment: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_creation3)
@@ -25,6 +27,7 @@ class GroupCreation3Activity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 lineS = line.text.toString()
                 next.isEnabled = true
+                intro_comment = lineS
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 next.isEnabled = false
@@ -37,6 +40,13 @@ class GroupCreation3Activity : AppCompatActivity() {
 
         next.setOnClickListener {
             val intent = Intent(this, GroupCreation4Activity::class.java)
+            // 데이터 전달
+            val secondIntent = getIntent()
+            intent.putExtra("group_name", secondIntent.getStringExtra("group_name"))
+            intent.putExtra("recruit_num", secondIntent.getIntExtra("recruit_num",0))
+            intent.putExtra("is_public", secondIntent.getBooleanExtra("is_public", false))
+            intent.putExtra("intro_comment", intro_comment)
+            // 액티비티 시작
             startActivity(intent)
         }
     }

@@ -53,7 +53,5 @@ class TabBarActivity : AppCompatActivity() {
             tabbar_viewpager.currentItem = index
             true
         }
-
     }
-
 }

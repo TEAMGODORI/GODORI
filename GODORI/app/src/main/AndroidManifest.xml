@@ -21,10 +21,9 @@
         android:label="오늘은 운동해야지"
         android:roundIcon="@mipmap/ic_ood_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GODORI"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".activity.TabBarAfterActivity"></activity>
-        <activity android:name=".activity.GroupInfoAfterActivity" />
+        android:usesCleartextTraffic = "true"
+        android:theme="@style/Theme.GODORI">
+        <activity android:name=".activity.GroupInfoAfterActivity"></activity>
         <activity android:name=".activity.TasteSettingActivity" />
         <activity android:name=".activity.GroupSearchActivity" />
         <activity android:name=".activity.GroupCreation4Activity" />

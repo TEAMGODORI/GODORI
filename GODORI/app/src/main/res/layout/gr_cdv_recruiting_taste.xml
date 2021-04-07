@@ -25,8 +25,7 @@
             android:textColor="#2c2c2d"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="6.5dp"
-            android:letterSpacing="-0.02"
             android:gravity="center_horizontal"
-            android:text="주 4회" />
+            android:text="" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

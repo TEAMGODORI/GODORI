@@ -20,7 +20,7 @@
         android:label="오늘은 운동해야지"
         android:roundIcon="@mipmap/ic_ood_round"
         android:supportsRtl="true"
-        android:userCleartextTraffic = "true"
+        android:usesCleartextTraffic = "true"
         android:theme="@style/Theme.GODORI">
         <activity android:name=".activity.GroupInfoAfterActivity"></activity>
         <activity android:name=".activity.TasteSettingActivity" />

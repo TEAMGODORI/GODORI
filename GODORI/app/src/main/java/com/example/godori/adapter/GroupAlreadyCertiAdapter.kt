@@ -16,7 +16,7 @@ class GroupAlreadyCertiAdapter() :
     //    // you provide access to all the views for a data item in a view holder.
     // Each data item is just a string in this case that is shown in a TextView.
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        public var name : TextView = itemView.findViewById(R.id.gr_tv_today_name)
+        public var name : TextView = itemView.findViewById(R.id.gr_tv_already_name)
     }
 
 

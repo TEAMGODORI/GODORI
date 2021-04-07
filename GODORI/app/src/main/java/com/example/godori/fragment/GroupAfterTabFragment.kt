@@ -30,10 +30,14 @@ class GroupAfterTabFragment : Fragment() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_group_after_tab, container, false)
+        val view = inflater.inflate(R.layout.fragment_group_after_tab, container, false)
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -55,8 +59,9 @@ class GroupAfterTabFragment : Fragment() {
             // specify an viewAdapter (see also next example)
             adapter = viewAdapter
         }
-
+//
         // 곧 인증할 그룹원 - 리사이클러 뷰
+        viewManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         viewAdapter = GroupAlreadyCertiAdapter()
         recyclerView = gr_rcv_already_certi.apply {
             setHasFixedSize(true)

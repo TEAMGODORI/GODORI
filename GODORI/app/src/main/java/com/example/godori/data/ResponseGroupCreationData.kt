@@ -1,4 +1,4 @@
-package com.example.godori
+package com.example.godori.data
 
 data class ResponseGroupCreationData(
     val status: Int,

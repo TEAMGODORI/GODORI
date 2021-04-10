@@ -39,10 +39,7 @@ class GroupCreationCompleteActivity : AppCompatActivity() {
             // 이전 뷰 스택 다 지우고 TabBar 액티비티로 돌아가기
             val intent = Intent(application, TabBarActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            // 그룹탭 -> 가입후 화면으로 설정
-//            var inflater :LayoutInflater  = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-//            var view :View = inflater.inflate(R.layout.activity_tab_bar, null)
-//            var tabbar:BottomNavigationView = view.findViewById(R.id.tabbar)
+
             startActivity(intent)
         }
     }

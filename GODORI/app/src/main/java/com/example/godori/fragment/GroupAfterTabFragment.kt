@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
+import com.example.godori.activity.GroupInfoAfterActivity
 import com.example.godori.activity.GroupInfoActivity
 import com.example.godori.activity.TabBarActivity
 import com.example.godori.adapter.GroupAlreadyCertiAdapter
@@ -72,7 +73,7 @@ class GroupAfterTabFragment : Fragment() {
         loadData()
         // 그룹 정보 버튼
         gr_btn_main_group_info.setOnClickListener {
-            val intent = Intent(activity, GroupInfoActivity::class.java)
+            val intent = Intent(activity, GroupInfoAfterActivity::class.java)
             startActivity(intent)
         }
         // 오늘 날짜

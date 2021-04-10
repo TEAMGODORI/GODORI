@@ -3,11 +3,12 @@ package com.example.godori.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
-import com.example.godori.OodServiceImpl
+import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
-import com.example.godori.RequestGroupCreationData
-import com.example.godori.ResponseGroupCreationData
+import com.example.godori.data.RequestGroupCreationData
+import com.example.godori.data.ResponseGroupCreationData
 import kotlinx.android.synthetic.main.activity_group_creation4.*
 import okhttp3.ResponseBody
 import org.json.JSONObject
@@ -26,7 +27,7 @@ class GroupCreation4Activity : AppCompatActivity() {
     var ex_cycle: Int = 0
     var ex_intensity: String = ""
     var group_sport: String = ""
-    var group_maker: String = ""
+    var group_maker: String = "테스터3"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,34 +104,34 @@ class GroupCreation4Activity : AppCompatActivity() {
             intro_comment = secondIntent.getStringExtra("intro_comment").toString()
 
             // 2. 그룹 생성하기 POST
-//            val call: Call<ResponseGroupCreationData> = OodServiceImpl.service_gr_creation.postGroupCreation(
-//                RequestGroupCreationData(
-//                    group_name = group_name,
-//                    recruit_num = recruit_num,
-//                    is_public = is_public,
-//                    intro_comment = intro_comment,
-//                    ex_cycle = 3,
-//                    ex_intensity = "중",
-//                    group_sport = "런닝",
-//                    group_maker = "김지현"
-//                )
-//            )
-//            call.enqueue(object : Callback<ResponseGroupCreationData> {
-//                override fun onFailure(call: Call<ResponseGroupCreationData>, t: Throwable) {
-//                    // 통신 실패 로직
-//                }
-//
-//                override fun onResponse(
-//                    call: Call<ResponseGroupCreationData>,
-//                    response: Response<ResponseGroupCreationData>
-//                ) {
-//                    response.takeIf { it.isSuccessful }
-//                        ?.body()
-//                        ?.let { it ->
-//
-//                        } ?: showError(response.errorBody())
-//                }
-//            })
+            val call: Call<ResponseGroupCreationData> = GroupRetrofitServiceImpl.service_gr_creation.postGroupCreation(
+                RequestGroupCreationData(
+                    group_name = group_name,
+                    recruit_num = recruit_num,
+                    is_public = is_public,
+                    intro_comment = intro_comment,
+                    ex_cycle = ex_cycle,
+                    ex_intensity = ex_intensity,
+                    group_sport = group_sport,
+                    group_maker = group_maker
+                )
+            )
+            call.enqueue(object : Callback<ResponseGroupCreationData> {
+                override fun onFailure(call: Call<ResponseGroupCreationData>, t: Throwable) {
+                    // 통신 실패 로직
+                }
+
+                override fun onResponse(
+                    call: Call<ResponseGroupCreationData>,
+                    response: Response<ResponseGroupCreationData>
+                ) {
+                    response.takeIf { it.isSuccessful }
+                        ?.body()
+                        ?.let { it ->
+                            Log.v("group_creation", "성공!")
+                        } ?: showError(response.errorBody())
+                }
+            })
 
             // 3. 데이터 전달 하기
             val intent = Intent(this, GroupCreationCompleteActivity::class.java)

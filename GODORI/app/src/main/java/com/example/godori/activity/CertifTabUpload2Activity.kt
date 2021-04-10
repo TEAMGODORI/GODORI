@@ -17,6 +17,8 @@ import kotlinx.android.synthetic.main.activity_certif_tab_upload2.*
 
 
 class CertifTabUpload2Activity : AppCompatActivity() {
+    var ex_time:String = ""
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,10 @@ class CertifTabUpload2Activity : AppCompatActivity() {
 
         next2Btn.setOnClickListener {
             val intent = Intent(this, CertifTabUpload3Activity::class.java)
+            // 데이터 전달
+            val secondIntent = getIntent()
+//            intent.putExtra()
+            intent.putExtra("ex_time", ex_time)
             startActivity(intent)
         }
 
@@ -103,6 +109,7 @@ class CertifTabUpload2Activity : AppCompatActivity() {
             }
         }
     }
+
     private fun dipToPixels(dipValue: Float): Float {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,

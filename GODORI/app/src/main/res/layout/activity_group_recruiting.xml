@@ -98,6 +98,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/gr_rcv_recruiting_info"
                 android:layout_gravity="center_vertical"
+                app:stackFromEnd="true"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:layout_width="match_parent"

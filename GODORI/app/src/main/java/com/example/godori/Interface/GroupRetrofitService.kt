@@ -1,4 +1,4 @@
-package com.example.godori
+package com.example.godori.Interface
 
 import com.example.godori.data.ResponseGroupRecruit
 import retrofit2.Call

@@ -8,7 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.godori.*
+import com.example.godori.GroupRetrofitServiceImpl
+import com.example.godori.R
 import com.example.godori.adapter.GroupRecruitingInfoAdapter
 import com.example.godori.adapter.GroupRecruitingTasteAdapter
 import com.example.godori.data.ResponseGroupRecruit
@@ -88,15 +89,23 @@ class GroupRecruitingActivity : AppCompatActivity() {
                     ?.let { it ->
                         // do something
                         dataList = response.body()
+                        Log.d("GroupRecruitingActivity", dataList.toString())
                         groupList = dataList!!.data.group_list
                         Log.d("GroupRecruitingActivity", groupList.toString())
                         //adapter에 Group 데이터 넣기
                         setGroupAdapter(it.data.group_list)
 
-                        gr_tv_recruiting_groupNum.setText(it.data.group_list.size.toString()+"건")
+                        gr_tv_recruiting_groupNum.setText(it.data.group_list.size.toString() + "건")
 
                         //adapter에 User 데이터 넣기
                         setTasteAdapter(it.data.user)
+//                        var userTasteArray: MutableList<String> = ArrayList()
+//                        userTasteArray.add("주 " + it.data.user.ex_cycle + "회")
+//                        userTasteArray.add(it.data.user.ex_intensity)
+//
+//                        var addArray: MutableList<String> = ArrayList()
+//                        addArray.addAll(userTasteArray)
+
                     } ?: showError(response.errorBody())
             }
         })
@@ -106,15 +115,23 @@ class GroupRecruitingActivity : AppCompatActivity() {
         val ob = JSONObject(e.string())
         Toast.makeText(this, ob.getString("message"), Toast.LENGTH_SHORT).show()
     }
-    private fun setGroupAdapter(groupList : List<ResponseGroupRecruit.Data.Group>){
-        gr_rcv_recruiting_info.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
-        val mAdapter = GroupRecruitingInfoAdapter(groupList,this)
+    private fun setGroupAdapter(groupList: List<ResponseGroupRecruit.Data.Group>){
+        gr_rcv_recruiting_info.layoutManager = LinearLayoutManager(
+            this,
+            LinearLayoutManager.VERTICAL,
+            false
+        )
+        val mAdapter = GroupRecruitingInfoAdapter(groupList, this)
         gr_rcv_recruiting_info.adapter = mAdapter
         gr_rcv_recruiting_info.setHasFixedSize(true)
     }
-    private fun setTasteAdapter(user : ResponseGroupRecruit.Data.User){
-        gr_rcv_recruiting_taste.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        val mAdapter = GroupRecruitingTasteAdapter(user,this)
+    private fun setTasteAdapter(user: ResponseGroupRecruit.Data.User){
+        gr_rcv_recruiting_taste.layoutManager = LinearLayoutManager(
+            this,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        val mAdapter = GroupRecruitingTasteAdapter(user, this)
         gr_rcv_recruiting_taste.adapter = mAdapter
         gr_rcv_recruiting_taste.setHasFixedSize(true)
     }

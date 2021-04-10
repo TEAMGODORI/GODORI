@@ -1,5 +1,6 @@
 package com.example.godori.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,8 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.godori.R
+import com.example.godori.data.ResponseGroupAfterData
+import com.example.godori.data.ResponseGroupRecruit
 
-class GroupTodayCertiAdapter() :
+class GroupTodayCertiAdapter(val group: ResponseGroupAfterData?, val memberList: List<ResponseGroupAfterData.Data.Member>, val context: Context) :
     RecyclerView.Adapter<GroupTodayCertiAdapter.MyViewHolder>() {
     //
     //    // Provide a reference to the views for each data item
@@ -17,6 +20,8 @@ class GroupTodayCertiAdapter() :
     // Each data item is just a string in this case that is shown in a TextView.
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         public var name : TextView = itemView.findViewById(R.id.gr_tv_today_name)
+        var count : TextView = itemView.findViewById(R.id.gr_tv_count)
+        var totalCount : TextView = itemView.findViewById(R.id.gr_tv_total_count)
     }
 
 
@@ -34,11 +39,15 @@ class GroupTodayCertiAdapter() :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.name.setText("지니박")
+        if(memberList[position].today_done.equals(true)){
+            holder.name.setText(memberList[position].user_name)
+            holder.count.setText(memberList[position].week_count.toString())
+            holder.totalCount.setText("/" + group!!.data.group_cycle.toString())
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount(): Int {
-        return 5
+        return 1
     }
 }

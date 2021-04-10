@@ -38,7 +38,7 @@ class TabBarViewPagerAdapter(fm: FragmentManager, group:Int) :
         return if (group !=0) {
             Log.v("group_string", group.toString())
             when (position) {
-                0 -> GroupAfterTabFragment()
+                0 -> GroupTabFragment() //수정
                 1 -> CertifTabFragment()
                 2 -> MyInfoTabFragment()
                 else -> throw IllegalStateException("Unexpected position $position")

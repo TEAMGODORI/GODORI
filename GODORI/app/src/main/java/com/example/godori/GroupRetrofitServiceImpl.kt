@@ -1,5 +1,7 @@
 package com.example.godori
 
+import com.example.godori.Interface.GroupAfterRetrofitService
+import com.example.godori.Interface.GroupRetrofitService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -22,4 +24,7 @@ object GroupRetrofitServiceImpl {
 
     // 그룹 - 그룹 탈퇴
     val service_gr_exit: GroupExit = retrofit.create(GroupExit::class.java)
+  
+    val service_gr_recruit : GroupRetrofitService = retrofit.create(GroupRetrofitService::class.java)
+    val service_gr_after : GroupAfterRetrofitService = retrofit.create(GroupAfterRetrofitService::class.java)
 }

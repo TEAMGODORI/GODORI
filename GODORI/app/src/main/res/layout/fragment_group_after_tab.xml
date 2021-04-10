@@ -27,7 +27,7 @@
                 android:src="@drawable/gr_img_cal" />
 
             <TextView
-                android:id="@+id/gr_tv_main_day"
+                android:id="@+id/gr_tv_after_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -72,6 +72,7 @@
                 android:src="@drawable/gr_img_main_hand" />
 
             <TextView
+                android:id="@+id/group_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -104,6 +105,7 @@
             android:background="@drawable/gr_img_certi_num">
 
             <TextView
+                android:id="@+id/left_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#6280f2"

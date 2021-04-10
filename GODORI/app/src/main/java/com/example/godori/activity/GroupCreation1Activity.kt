@@ -6,18 +6,12 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.*
-import retrofit2.Call
 import com.example.godori.*
 import kotlinx.android.synthetic.main.activity_group_creation1.*
-import retrofit2.Callback
-import retrofit2.Response
-import com.example.godori.ResponseGroupCreationData
-import okhttp3.ResponseBody
-import org.json.JSONObject
 import java.lang.Boolean.TRUE
 
 class GroupCreation1Activity : AppCompatActivity() {
-    //그룹 이름
+    // 데이터 목록
     var group_name: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {

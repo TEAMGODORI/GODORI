@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.godori.activity.GroupInfoActivity
 import com.example.godori.R
+import com.example.godori.activity.GroupInfoAfterActivity
 import com.example.godori.adapter.GroupAlreadyCertiAdapter
 import com.example.godori.adapter.GroupTodayCertiAdapter
 import kotlinx.android.synthetic.main.fragment_group_after_tab.*
@@ -45,7 +46,7 @@ class GroupAfterTabFragment : Fragment() {
 
         // 그룹 정보 버튼
         gr_btn_main_group_info.setOnClickListener {
-            val intent = Intent(activity, GroupInfoActivity::class.java)
+            val intent = Intent(activity, GroupInfoAfterActivity::class.java)
             startActivity(intent)
         }
 
@@ -59,7 +60,7 @@ class GroupAfterTabFragment : Fragment() {
             // specify an viewAdapter (see also next example)
             adapter = viewAdapter
         }
-//
+
         // 곧 인증할 그룹원 - 리사이클러 뷰
         viewManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         viewAdapter = GroupAlreadyCertiAdapter()
@@ -70,5 +71,7 @@ class GroupAfterTabFragment : Fragment() {
             // specify an viewAdapter (see also next example)
             adapter = viewAdapter
         }
+
+
     }
 }

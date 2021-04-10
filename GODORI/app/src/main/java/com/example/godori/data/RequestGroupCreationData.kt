@@ -1,4 +1,4 @@
-package com.example.godori
+package com.example.godori.data
 
 data class RequestGroupCreationData(
     val group_name: String,

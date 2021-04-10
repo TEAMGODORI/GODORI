@@ -36,6 +36,9 @@ import java.util.*
 
 
 class CertifTabUpload1Activity : AppCompatActivity() {
+    // 데이터 목록
+    lateinit var images:File
+
     @SuppressLint("ClickableViewAccessibility")
     private val TAG: String = "태그명"
 

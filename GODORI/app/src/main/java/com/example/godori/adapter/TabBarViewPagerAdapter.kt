@@ -20,7 +20,7 @@ class TabBarViewPagerAdapter(fm: FragmentManager) :
     override fun getItem(position: Int): Fragment =
         if (TRUE) {
             when (position) {
-                0 -> GroupAfterTabFragment()
+                0 -> GroupTabFragment() //수정
                 1 -> CertifTabFragment()
                 2 -> MyInfoTabFragment()
                 else -> throw IllegalStateException("Unexpected position $position")

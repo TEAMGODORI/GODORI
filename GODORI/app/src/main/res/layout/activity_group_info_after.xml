@@ -41,7 +41,7 @@
             android:background="@drawable/gr_ly_rl_info1">
 
             <TextView
-                android:id="@+id/gr_tv_info_title_exercise"
+                android:id="@+id/gr_tv_info_after_title_exercise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -52,10 +52,10 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/gr_tv_info_title_name"
+                android:id="@+id/gr_tv_info_after_title_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/gr_tv_info_title_exercise"
+                android:layout_below="@id/gr_tv_info_after_title_exercise"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:includeFontPadding="false"
@@ -72,7 +72,7 @@
                 android:background="@drawable/gr_img_info_line" />
 
             <TextView
-                android:id="@+id/gr_tv_info_title_line"
+                android:id="@+id/gr_tv_info_after_title_line"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -90,7 +90,7 @@
                 android:layout_marginBottom="23dp">
 
                 <TextView
-                    android:id="@+id/gr_tv_info_title_startdate"
+                    android:id="@+id/gr_tv_info_after_title_startdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
@@ -99,7 +99,7 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/gr_tv_info_title_point"
+                    android:id="@+id/gr_tv_info_after_title_point"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -110,10 +110,11 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/gr_tv_info_after_group_maker"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:layout_toRightOf="@id/gr_tv_info_title_point"
+                    android:layout_toRightOf="@id/gr_tv_info_after_title_point"
                     android:includeFontPadding="false"
                     android:text="벅지니"
                     android:textColor="#979797"

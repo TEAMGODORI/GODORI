@@ -33,5 +33,15 @@ object GroupRetrofitServiceImpl {
     // 취향 설정
     val service_taste: TasteSetting = retrofit.create(TasteSetting::class.java)
 
+    //그룹 - 가입후 그룹
     val service_gr_after : GroupAfterRetrofitService = retrofit.create(GroupAfterRetrofitService::class.java)
+
+    //그룹 - 가입 전 상세보기
+    val service_gr__info : GroupInfoRetrofitService = retrofit.create(GroupInfoRetrofitService::class.java)
+
+    //그룹 - 가입 후 상세보기
+    val service_gr__info_after : GroupInfoAfterRetrofitService = retrofit.create(GroupInfoAfterRetrofitService::class.java)
+
+    //인증 - 메인
+    val service_ct_tab : CertifRetrofitService = retrofit.create(CertifRetrofitService::class.java)
 }

@@ -42,12 +42,7 @@ class GroupRecruitingTasteAdapter(val user: ResponseGroupRecruit.Data.User, val 
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-        var userTastelist = mutableListOf<String>("주 " + user.ex_cycle + "회", user.ex_intensity)
-
-        // 배열을 List로 변환
-        val userSportslist: ArrayList<String> = ArrayList(Arrays.asList(user.sports))
-
-        holder.tasteText.setText(userTastelist.toString())
+//        holder.tasteText.setText(list.toString())
     }
 
     // Return the size of your dataset (invoked by the layout manager)

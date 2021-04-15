@@ -1,15 +1,14 @@
-package com.example.godori
+package com.example.godori.Interface
 
 import com.example.godori.data.RequestGroupCreationData
-import com.example.godori.data.ResponseCertiUpload
 import com.example.godori.data.ResponseGroupCreationData
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface CertiUpload {
-    @POST("/certi")
+interface GroupCreation {
+    @POST("/group")
     fun postGroupCreation(
         @Body body: RequestGroupCreationData
-    ): Call<ResponseCertiUpload>
+    ): Call<ResponseGroupCreationData>
 }

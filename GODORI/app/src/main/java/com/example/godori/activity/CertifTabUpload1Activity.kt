@@ -4,6 +4,7 @@ import android.Manifest.permission.CAMERA
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -13,8 +14,12 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import java.io.IOException
+import java.nio.file.Files
+import java.util.Arrays
 import android.util.Log
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
@@ -29,8 +34,8 @@ import kotlinx.android.synthetic.main.activity_certif_tab_upload1.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload2.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload4.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload4.view.*
-import java.io.File
-import java.io.IOException
+import java.io.*
+import java.nio.file.Paths
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -38,6 +43,7 @@ import java.util.*
 class CertifTabUpload1Activity : AppCompatActivity() {
     // 데이터 목록
     lateinit var images:File
+    lateinit var imagesByte: ByteArray
 
     @SuppressLint("ClickableViewAccessibility")
     private val TAG: String = "태그명"
@@ -75,6 +81,39 @@ class CertifTabUpload1Activity : AppCompatActivity() {
         //다음 화면으로 넘어가기
         next1Btn.setOnClickListener {
             val intent = Intent(this, CertifTabUpload2Activity::class.java)
+
+            // 이미지 파일이 저장
+            var bitmap = viewToBitmap(save_img1)
+
+            try {
+                val output = FileOutputStream(
+                    Environment.getExternalStorageDirectory().toString() + "/path/to/file.png"
+                )
+                if(bitmap != null) {
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, output)
+                }
+                // 경로에 있는 사진 저장
+                images = File("/path/to/file.png", "images.png")
+
+//                // file -> byteArray
+//                val path = System.getProperty("user.dir") + "/path/to/file.png"
+//                try {
+//                    imagesByte = images.readBytes()
+//                } catch (e: IOException) {
+//
+//                }
+
+                output.close()
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
+
+//            intent.putExtra("imagesByte", imagesByte)
+
+            // 액티비티 시작
             startActivity(intent)
         }
 
@@ -101,27 +140,6 @@ class CertifTabUpload1Activity : AppCompatActivity() {
         time_RBtn1.setOnCheckedChangeListener(listener1)
         time_RBtn2.setOnCheckedChangeListener(listener2)
 
-
-//        //완료 버튼 누르면, Imgt_Upload1 사진을 png로 저장
-//        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-//        val view: View = inflater.inflate(R.layout.activity_certif_tab_upload4, null)
-//
-//        view.btn_complete.setOnClickListener {
-//            var bitmap = viewToBitmap(save_img1)
-//            try {
-//                val output = FileOutputStream(
-//                    Environment.getExternalStorageDirectory().toString() + "/path/to/file.png"
-//                )
-//                if (bitmap != null) {
-//                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, output)
-//                }
-//                output.close()
-//            } catch (e: FileNotFoundException) {
-//                e.printStackTrace()
-//            } catch (e: IOException) {
-//                e.printStackTrace()
-//            }
-//        }
     }
 
     //라디오 버튼 멀티라인

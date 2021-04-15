@@ -66,7 +66,7 @@ class GroupCreation2Activity : AppCompatActivity() {
                 val intent = Intent(this, GroupCreation3Activity::class.java)
                 // 데이터 전달
                 val secondIntent = getIntent()
-                intent.putExtra("group_name", secondIntent.getStringExtra("group_name"))
+//                intent.putExtra("imagesByte", secondIntent.getByteArrayExtra("imagesByte"))
                 intent.putExtra("recruit_num", recruit_num)
                 intent.putExtra("is_public", is_public)
                 // 액티비티 시작

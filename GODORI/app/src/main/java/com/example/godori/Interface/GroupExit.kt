@@ -1,16 +1,16 @@
-package com.example.godori
+package com.example.godori.Interface
 
 import com.example.godori.data.ResponseGroupAfterTab
-import com.example.godori.data.ResponseGroupRecruit
+import com.example.godori.data.ResponseGroupCreationData
 import retrofit2.Call
-import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
-interface GroupAfter {
+interface GroupExit {
     @Headers("Content-Type:application/json")
-    @GET("/group/member/{userName}")
+    @PUT("/group/{userName}")
     fun requestList(
         @Path("userName") userName: String
-    ) : Call<ResponseGroupAfterTab>
+    ) : Call<ResponseGroupCreationData>
 }

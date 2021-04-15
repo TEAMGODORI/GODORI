@@ -7,5 +7,6 @@ data class RequestCertiUpload (
     val ex_intensity : String,
     val ex_evalu : String,
     val ex_comment	: String,
+    val certi_sport : String,
     val images: File
 )

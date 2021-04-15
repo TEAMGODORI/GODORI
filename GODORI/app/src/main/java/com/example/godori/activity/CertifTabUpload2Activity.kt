@@ -29,12 +29,16 @@ class CertifTabUpload2Activity : AppCompatActivity() {
             onBackPressed()
         }
 
+        // 다음
         next2Btn.setOnClickListener {
             val intent = Intent(this, CertifTabUpload3Activity::class.java)
+            intent.putExtra("ex_time", ex_time)
             // 데이터 전달
             val secondIntent = getIntent()
-//            intent.putExtra()
             intent.putExtra("ex_time", ex_time)
+            intent.putExtra("images", secondIntent.getStringExtra("images"))
+
+            // 액티비티 시작
             startActivity(intent)
         }
 
@@ -92,14 +96,40 @@ class CertifTabUpload2Activity : AppCompatActivity() {
                 //아이템이 클릭 되면 맨 위부터 position 0번부터 순서대로 동작하게 됩니다.
                 when (position) {
                     0 -> {
-
+                        ex_time = "10분"
                     }
                     1 -> {
-
+                        ex_time = "20분"
                     }
-                    //...
-                    else -> {
-
+                    2 -> {
+                        ex_time = "30분"
+                    }
+                    3 -> {
+                        ex_time = "40분"
+                    }
+                    4 -> {
+                        ex_time = "50분"
+                    }
+                    5 -> {
+                        ex_time = "1시간"
+                    }
+                    6 -> {
+                        ex_time = "1시간 10분"
+                    }
+                    7 -> {
+                        ex_time = "1시간 20분"
+                    }
+                    8 -> {
+                        ex_time = "1시간 30분"
+                    }
+                    9 -> {
+                        ex_time = "1시간 40분"
+                    }
+                    10 -> {
+                        ex_time = "1시간 50분"
+                    }
+                    11 -> {
+                        ex_time = "2시간"
                     }
                 }
             }

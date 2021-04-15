@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_group_creation4.*
 class CertifTabUpload3Activity : AppCompatActivity() {
 
     // 데이터 목록
-    var group_sport: String = ""
+    var certi_sport: String = ""
     var ex_intensity: String = ""
     var ex_evalu: String = ""
 
@@ -31,32 +31,32 @@ class CertifTabUpload3Activity : AppCompatActivity() {
         // 운동 종목
         exercise_Btn1.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                group_sport = "헬스"
+                certi_sport = "헬스"
             }
         }
         exercise_Btn2.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                group_sport = "필라테스/요가"
+                certi_sport = "필라테스/요가"
             }
         }
         exercise_Btn3.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                group_sport = "등산"
+                certi_sport = "등산"
             }
         }
         exercise_Btn4.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                group_sport = "자전거"
+                certi_sport = "자전거"
             }
         }
         exercise_Btn5.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                group_sport = "수영"
+                certi_sport = "수영"
             }
         }
         exercise_Btn6.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                group_sport = "런닝"
+                certi_sport = "런닝"
             }
         }
 
@@ -114,8 +114,11 @@ class CertifTabUpload3Activity : AppCompatActivity() {
             // 데이터 전달
             val secondIntent = getIntent()
             intent.putExtra("ex_time", secondIntent.getStringExtra("ex_time"))
+//            intent.putExtra("imagesByte", secondIntent.getByteArrayExtra("imagesByte"))
             intent.putExtra("ex_intensity", ex_intensity)
             intent.putExtra("ex_evalu", ex_evalu)
+            intent.putExtra("certi_sport", certi_sport)
+
             // 액티비티 시작
             startActivity(intent)
         })

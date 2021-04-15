@@ -1,5 +1,6 @@
 package com.example.godori
 
+import com.example.godori.Interface.GroupCreation
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

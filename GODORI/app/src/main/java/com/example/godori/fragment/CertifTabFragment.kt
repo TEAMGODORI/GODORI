@@ -3,32 +3,38 @@ package com.example.godori.fragment
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
-import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
-import com.example.godori.activity.CertifTabDetailActivity
 import com.example.godori.activity.CertifTabUpload1Activity
-import com.example.godori.activity.TabBarActivity
+import com.example.godori.adapter.CertifDateAdapter
+import com.example.godori.adapter.GroupTodayCertiAdapter
+import com.example.godori.data.ResponseCertiTab
 import com.prolificinteractive.materialcalendarview.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload1.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload4.*
 import kotlinx.android.synthetic.main.fragment_certif_tab.*
 import kotlinx.android.synthetic.main.fragment_certif_tab.view.*
+import kotlinx.android.synthetic.main.fragment_group_after_tab.*
+import okhttp3.ResponseBody
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -44,8 +50,15 @@ private const val ARG_PARAM2 = "param2"
 class CertifTabFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
-
     @SuppressLint("ResourceType", "SetTextI18n")
+
+    var data: ResponseCertiTab? = null
+    var certiList: List<ResponseCertiTab.Data>? = null
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private lateinit var viewManager: RecyclerView.LayoutManager
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,6 +66,11 @@ class CertifTabFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_certif_tab, container, false)
         val materialCalendarView: MaterialCalendarView = view.findViewById(R.id.cal)
+
+//        //현재 날짜
+//        val currentTime = Calendar.getInstance().time
+//        val dateFormat = SimpleDateFormat("YYYY-MM-dd", Locale.getDefault())
+//        var serverDate = dateFormat.format(currentTime)
 
         materialCalendarView.state().edit()
             .setFirstDayOfWeek(Calendar.MONDAY)
@@ -67,12 +85,31 @@ class CertifTabFragment : Fragment() {
             OneDayDecorator(materialCalendarView)
         )
 
-        // calendarText에 클릭하면 날짜 표시
-        materialCalendarView.setOnDateChangedListener(OnDateSelectedListener { widget, date, selected ->
+        //오늘 날짜에 색칠
+        materialCalendarView.setDateSelected(Calendar.getInstance(), true)
+        materialCalendarView.isDynamicHeightEnabled = true
+
+        //날짜 선택 시
+        materialCalendarView.setOnDateChangedListener { widget, date, selected ->
             val weekdayFormat = SimpleDateFormat("EE", Locale.getDefault())
+            val dateFormat = SimpleDateFormat("YYYY-MM-dd", Locale.getDefault())
+
             val weekDay = weekdayFormat.format(date.getDate())
             calendarText.text = "${date.month + 1}월 ${date.day}일 ${weekDay}요일"
-        })
+
+            //서버에 보낼 형식
+//            serverDate = dateFormat.format(date.date)
+        }
+
+//        val changeServerDate = serverDatex
+//        loadData(changeServerDate)
+//        selectDate(changeServerDate)
+
+        // adapter 생성
+//        certifRecycler.layoutManager = GridLayoutManager(this.context, 2)
+//        val mAdapter = CertifDateAdapter(certiList, context)
+//        certifRecycler.adapter = mAdapter
+//        certifRecycler.setHasFixedSize(true)
 
         return view
     }
@@ -98,14 +135,12 @@ class CertifTabFragment : Fragment() {
             return weekDay == Calendar.SATURDAY
         }
 
-        override fun decorate(view: DayViewFacade) { //토요일일 경우, 파란색
-//            view.addSpan(ForegroundColorSpan(Color.BLUE))
+        override fun decorate(view: DayViewFacade) {
         }
     }
 
     class OneDayDecorator(context: MaterialCalendarView) : DayViewDecorator { //오늘 날짜에 표시
         private var date: CalendarDay?
-        private val calendar = Calendar.getInstance()
         val drawable: Drawable = context.resources.getDrawable(R.drawable.button_circle)
 
 
@@ -116,9 +151,8 @@ class CertifTabFragment : Fragment() {
         override fun decorate(view: DayViewFacade) {
 //            view.addSpan(StyleSpan(Typeface.BOLD))
 //            view.addSpan(RelativeSizeSpan(1.4f))
-            view.addSpan(ForegroundColorSpan(Color.BLUE))
-//            view.setBackgroundDrawable(drawable)
         }
+
         /**
          * We're changing the internals, so make sure to call [MaterialCalendarView.invalidateDecorators]
          */
@@ -131,88 +165,18 @@ class CertifTabFragment : Fragment() {
         }
     }
 
-    // 리사이클러뷰
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        // item List 준비
-        val personList = ArrayList<PersonForList>()
-        for (i in 0 until 7) { // 이후 명수 가져오기
-            personList.add(PersonForList("" + i + " 사람"))
-        }
-
-        // adapter 생성
-        val adapter = certifRecyclerViewAdapter(personList, LayoutInflater.from(this.context))
-        certifRecycler.adapter = adapter
-        certifRecycler.layoutManager = GridLayoutManager(this.context, 2)
-
-    }
-
-    // 사람별 인증 리스트
-    class PersonForList(val name: String) {
-
-    }
-
-    //인증탭 리사이클러뷰 어댑터
-    class certifRecyclerViewAdapter(
-        val itemList: ArrayList<PersonForList>,
-        val inflater: LayoutInflater
-    ) : RecyclerView.Adapter<certifRecyclerViewAdapter.ViewHolder>() {
-
-        @SuppressLint("RestrictedApi")
-        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) { //
-            var personName: TextView
-            var certifImg: ImageView
-
-            init {
-                personName = itemView.findViewById(R.id.personName)
-                certifImg = itemView.findViewById(R.id.certifImg)
-
-                // Person 아이템을 눌렀을 때
-                itemView.setOnClickListener { view ->
-//                    val posintion: Int = adapterPosition
-//                    val personName = itemList.get(posintion).name
-
-                    //CertifTabDetailActivity로 이동
-                    val intent = Intent(view.context, CertifTabDetailActivity::class.java)
-                    view.getContext().startActivity(intent)
-                }
-            }
-        }
-
-        // 아이템 하나가 들어갈 뷰를 만들고 뷰 홀더(*****)에 넣어줌
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val view = inflater.inflate(R.layout.item_certif_tab, parent, false)
-            return ViewHolder(view)
-        }
-
-        //리스트의 전체 개수
-        override fun getItemCount(): Int {
-            return itemList.size
-        }
-
-        //뷰를 그리는 부분
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.certifImg.setImageResource(R.drawable.certif_un)
-            holder.personName.setText(itemList.get(position).name)
-        }
-    }
-
     @SuppressLint("SetTextI18n")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        var date: CalendarDay
-        val calendar = Calendar.getInstance()
 
         uploadBtn1.setOnClickListener {
             val intent = Intent(getActivity(), CertifTabUpload1Activity::class.java)
             startActivity(intent)
         }
         val currentTime = Calendar.getInstance().time
-        val weekdayFormat = SimpleDateFormat("EE", Locale.getDefault())
         val dayFormat = SimpleDateFormat("d", Locale.getDefault())
         val monthFormat = SimpleDateFormat("M", Locale.getDefault())
+        val weekdayFormat = SimpleDateFormat("EE", Locale.getDefault())
 
         val month = monthFormat.format(currentTime)
         val day = dayFormat.format(currentTime)
@@ -221,7 +185,74 @@ class CertifTabFragment : Fragment() {
         //오늘 날짜 가져오기
         calendarText.text = month + "월 " + day + "일 " + weekDay + "요일"
 
+        viewManager = GridLayoutManager(this.context, 2)
+        viewAdapter = CertifDateAdapter(certiList, context)
+        recyclerView = certifRecycler.apply {
+            setHasFixedSize(true)
+            // use a linear layout manager
+            layoutManager = viewManager
+            // specify an viewAdapter (see also next example)
+            adapter = viewAdapter
+        }
 
+        loadData()
     }
 
+    private fun loadData() {
+        //현재 날짜
+        val currentTime = Calendar.getInstance().time
+        val dateFormat = SimpleDateFormat("YYYY-MM-dd", Locale.getDefault())
+        var serverDate = dateFormat.format(currentTime)
+
+        //Callback 등록하여 통신 요청
+        val call: Call<ResponseCertiTab> =
+            GroupRetrofitServiceImpl.service_ct_tab.requestList(
+                userName = "김지현",
+                date = serverDate //수정하기 처음에는 date에 오늘 날짜, 이후 누를때의 date
+            )
+        Log.d("changeServerDate", serverDate)
+        call.enqueue(object : Callback<ResponseCertiTab> {
+            override fun onFailure(call: Call<ResponseCertiTab>, t: Throwable) {
+                // 통신 실패 로직
+            }
+
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(
+                call: Call<ResponseCertiTab>,
+                response: Response<ResponseCertiTab>
+            ) {
+                response.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let { it ->
+                        // do something
+                        data = response.body()
+                        Log.d("CertifTabFragment", data.toString())
+                        certiList = data!!.data
+                        Log.d("CertifTabFragment", certiList.toString())
+
+                        //인증한 adapter에 Member 데이터 넣기
+                        setCertifAdapter(it.data)
+
+                    } ?: showError(response.errorBody())
+            }
+        })
+    }
+
+    private fun showError(error: ResponseBody?) {
+        val e = error ?: return
+        val ob = JSONObject(e.string())
+        Toast.makeText(context, ob.getString("message"), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setCertifAdapter(certiList: List<ResponseCertiTab.Data>) {
+        val mAdapter = CertifDateAdapter(certiList, context)
+        certifRecycler.adapter = mAdapter
+        mAdapter.notifyDataSetChanged()
+        certifRecycler.setHasFixedSize(true)
+    }
+//
+//    private fun selectDate(changeServerDate: String): String {
+//        var d = changeServerDate
+//        return d
+//    }
 }

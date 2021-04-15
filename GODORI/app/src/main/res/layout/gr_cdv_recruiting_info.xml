@@ -6,6 +6,7 @@
     android:id="@+id/gr_cdv_recruiting_info"
     card_view:cardBackgroundColor="@color/white"
     android:clickable="true"
+    android:background="?attr/selectableItemBackground"
     card_view:cardPreventCornerOverlap="false"
     android:focusable="true">
 

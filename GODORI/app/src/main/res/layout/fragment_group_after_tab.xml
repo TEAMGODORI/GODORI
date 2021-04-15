@@ -127,11 +127,11 @@
             android:layout_marginTop="54dp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="22dp"
             android:id="@+id/gr_rcv_today_certi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:layout_marginTop="22dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         <TextView
             android:layout_width="wrap_content"

@@ -1,7 +1,7 @@
 package com.example.godori.fragment
 
+import android.R.attr.name
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,14 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
 import com.example.godori.activity.GroupInfoAfterActivity
-import com.example.godori.activity.GroupInfoActivity
-import com.example.godori.activity.TabBarActivity
 import com.example.godori.adapter.GroupAlreadyCertiAdapter
-import com.example.godori.adapter.GroupRecruitingInfoAdapter
-import com.example.godori.adapter.GroupRecruitingTasteAdapter
 import com.example.godori.adapter.GroupTodayCertiAdapter
-import com.example.godori.data.ResponseGroupAfterData
-import com.example.godori.data.ResponseGroupRecruit
+import com.example.godori.data.ResponseGroupAfterTab
 import kotlinx.android.synthetic.main.activity_group_recruiting.*
 import kotlinx.android.synthetic.main.fragment_group_after_tab.*
 import kotlinx.android.synthetic.main.fragment_group_tab.*
@@ -32,6 +27,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,15 +44,9 @@ class GroupAfterTabFragment : Fragment() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
-    var dataList: ResponseGroupAfterData? = null
-    var memberList: List<ResponseGroupAfterData.Data.Member>? = null
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is TabBarActivity) {
-            var mContext = context
-        }
-    }
+    var dataList: ResponseGroupAfterTab? = null
+    var todayMemberList: List<ResponseGroupAfterTab.Data.TodayMember>? = null
+    var unTodayMemberList: List<ResponseGroupAfterTab.Data.NotTodayMember>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,7 +60,6 @@ class GroupAfterTabFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        loadData()
         // 그룹 정보 버튼
         gr_btn_main_group_info.setOnClickListener {
             val intent = Intent(activity, GroupInfoAfterActivity::class.java)
@@ -93,46 +82,47 @@ class GroupAfterTabFragment : Fragment() {
         }
         gr_tv_after_day.setText(month + "월 " + date + "일 " + dayOfMonth + "요일")
 
-//        // 오늘 인증한 그룹원 - 리사이클러 뷰
-//        viewManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-//        viewAdapter = GroupTodayCertiAdapter()
-//        recyclerView = gr_rcv_today_certi.apply {
-//            setHasFixedSize(true)
-//            // use a linear layout manager
-//            layoutManager = viewManager
-//            // specify an viewAdapter (see also next example)
-//            adapter = viewAdapter
-//        }
-////
-//        // 곧 인증할 그룹원 - 리사이클러 뷰
-//        viewManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-//        viewAdapter = GroupAlreadyCertiAdapter()
-//        recyclerView = gr_rcv_already_certi.apply {
-//            setHasFixedSize(true)
-//            // use a linear layout manager
-//            layoutManager = viewManager
-//            // specify an viewAdapter (see also next example)
-//            adapter = viewAdapter
-//        }
-//
-//    }
+        // 오늘 인증한 그룹원 - 리사이클러 뷰
+        viewManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        viewAdapter = GroupTodayCertiAdapter(dataList, todayMemberList, context)
+        recyclerView = gr_rcv_today_certi.apply {
+            setHasFixedSize(true)
+            // use a linear layout manager
+            layoutManager = viewManager
+            // specify an viewAdapter (see also next example)
+            adapter = viewAdapter
+        }
+
+        // 곧 인증할 그룹원 - 리사이클러 뷰
+        viewManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        viewAdapter = GroupAlreadyCertiAdapter(dataList, unTodayMemberList, context)
+        recyclerView = gr_rcv_already_certi.apply {
+            setHasFixedSize(true)
+            // use a linear layout manager
+            layoutManager = viewManager
+            // specify an viewAdapter (see also next example)
+            adapter = viewAdapter
+        }
+
+        loadData()
+
     }
 
     private fun loadData() {
         //Callback 등록하여 통신 요청
-        val call: Call<ResponseGroupAfterData> =
+        val call: Call<ResponseGroupAfterTab> =
             GroupRetrofitServiceImpl.service_gr_after.requestList(
                 userName = "김지현" //수정하기
             )
-        call.enqueue(object : Callback<ResponseGroupAfterData> {
-            override fun onFailure(call: Call<ResponseGroupAfterData>, t: Throwable) {
+        call.enqueue(object : Callback<ResponseGroupAfterTab> {
+            override fun onFailure(call: Call<ResponseGroupAfterTab>, t: Throwable) {
                 // 통신 실패 로직
             }
 
             @SuppressLint("SetTextI18n")
             override fun onResponse(
-                call: Call<ResponseGroupAfterData>,
-                response: Response<ResponseGroupAfterData>
+                call: Call<ResponseGroupAfterTab>,
+                response: Response<ResponseGroupAfterTab>
             ) {
                 response.takeIf { it.isSuccessful }
                     ?.body()
@@ -140,19 +130,21 @@ class GroupAfterTabFragment : Fragment() {
                         // do something
                         dataList = response.body()
                         Log.d("GroupAfterTabFragment", dataList.toString())
-                        memberList = dataList!!.data.member_list
-                        Log.d("GroupRecruitingActivity", memberList.toString())
+                        todayMemberList = dataList!!.data.today_member
+                        Log.d("GroupAfterTabFragment", todayMemberList.toString())
+                        unTodayMemberList = dataList!!.data.not_today_member
+                        Log.d("GroupAfterTabFragment", unTodayMemberList.toString())
+
+                        //어댑터에 데이터 넣기
+                        setGroupCertiedAdapter(todayMemberList!!)
+                        setGroupCertiAdapter(unTodayMemberList!!)
 
                         group_name.setText(it.data.group_name)
                         left_count.setText(it.data.left_count.toString())
 
-                        //adapter에 Member 데이터 넣기
-                        setGroupCertiedAdapter(it.data.member_list)
-
-                        //adapter에 Member 데이터 넣기
-                        setGroupCertiAdapter(it.data.member_list)
-//                        var userTasteArray: MutableList<String> = ArrayList()
-//                        userTasteArray.add("주 " + it.data.user.ex_cycle + "회")
+                        //다음 가입 후 그룹탭의 정보에게 데이터 넘겨주기
+                        val intent = Intent(activity, GroupAfterTabFragment::class.java)
+                        intent.putExtra("groupId", dataList!!.data.group_id)
 
                     } ?: showError(response.errorBody())
             }
@@ -165,19 +157,21 @@ class GroupAfterTabFragment : Fragment() {
         Toast.makeText(context, ob.getString("message"), Toast.LENGTH_SHORT).show()
     }
 
-    private fun setGroupCertiedAdapter(memberList: List<ResponseGroupAfterData.Data.Member>) {
+    private fun setGroupCertiedAdapter(memberList: List<ResponseGroupAfterTab.Data.TodayMember>) {
         gr_rcv_today_certi.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        val mAdapter = context?.let { GroupTodayCertiAdapter(dataList, memberList, it) }
+        val mAdapter = GroupTodayCertiAdapter(dataList, todayMemberList, context)
         gr_rcv_today_certi.adapter = mAdapter
+        mAdapter.notifyDataSetChanged()
         gr_rcv_today_certi.setHasFixedSize(true)
     }
 
-    private fun setGroupCertiAdapter(memberList: List<ResponseGroupAfterData.Data.Member>) {
+    private fun setGroupCertiAdapter(memberList: List<ResponseGroupAfterTab.Data.NotTodayMember>) {
         gr_rcv_already_certi.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        val mAdapter = context?.let { GroupAlreadyCertiAdapter(dataList, memberList, it) }
+        val mAdapter = GroupAlreadyCertiAdapter(dataList, unTodayMemberList, context)
         gr_rcv_already_certi.adapter = mAdapter
+        mAdapter.notifyDataSetChanged()
         gr_rcv_already_certi.setHasFixedSize(true)
     }
 }

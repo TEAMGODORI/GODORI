@@ -4,31 +4,33 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
-import com.example.godori.adapter.TabBarViewPagerAdapter
-import com.example.godori.data.ResponseGroupAfterTab
 import com.example.godori.data.ResponseGroupCreationData
+import com.example.godori.data.ResponseGroupInfoAfter
 import com.example.godori.fragment.GroupInfo1Flagment
 import com.example.godori.fragment.GroupInfo2Fragment
 import kotlinx.android.synthetic.main.activity_group_info_after.*
-import kotlinx.android.synthetic.main.activity_tab_bar.*
+import kotlinx.android.synthetic.main.fragment_group_info1.*
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Boolean.TRUE
 
 
 class GroupInfoAfterActivity : AppCompatActivity() {
+    var data : ResponseGroupInfoAfter? = null
+    var groupData : ResponseGroupInfoAfter.Data.GroupDetail? = null
+    var memberList: List<ResponseGroupInfoAfter.Data.GroupMember>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_info_after)
+
+        val secondIntent = intent
+        var groupId = secondIntent.extras?.getInt("groupId")
 
         // 그룹, 그룹원 정보 - FrameLayout
         supportFragmentManager.beginTransaction()
@@ -82,6 +84,62 @@ class GroupInfoAfterActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
+
+
+        //group_id로 그룹 정보 가져오기
+        val call: Call<ResponseGroupInfoAfter> =
+            GroupRetrofitServiceImpl.service_gr__info_after.requestList(
+                groupId = 29//수정하기
+            )
+        call.enqueue(object : Callback<ResponseGroupInfoAfter> {
+            override fun onFailure(call: Call<ResponseGroupInfoAfter>, t: Throwable) {
+                // 통신 실패 로직
+            }
+
+            @SuppressLint("SetTextI18n", "SimpleDateFormat")
+            override fun onResponse(
+                call: Call<ResponseGroupInfoAfter>,
+                response: Response<ResponseGroupInfoAfter>
+            ) {
+                response.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let { it ->
+                        // do something
+                        data = response.body()
+                        groupData = data!!.data.group_detail
+                        Log.d("GroupRecruitingActivity", groupData.toString())
+                        memberList = data!!.data.group_member
+                        Log.d("GroupRecruitingActivity", memberList.toString())
+
+                        gr_tv_info_after_title_exercise.setText(groupData!!.group_sport)
+                        gr_tv_info_after_title_name.setText(groupData!!.group_name)
+                        gr_tv_info_after_title_line.setText(groupData!!.intro_comment)
+//                        val dateFormat: DateFormat = SimpleDateFormat("YYYY.MM.dd")
+//                        val date = dateFormat.format(dataD!!.created_at)
+//                        //created_at
+//                        gr_tv_info_after_title_startdate.setText()
+                        gr_tv_info_after_group_maker.setText(groupData!!.group_maker)
+
+                        //GroupInfo1Fragment
+                        //recruited_num
+                        gr_tv_info_after_member_recruit_num.setText(groupData!!.recruited_num.toString() + "/")
+                        //recruit_num
+                        gr_tv_info_after_member_total_num.setText(groupData!!.recruit_num.toString())
+                        //ex_cycle
+                        gr_tv_info_after_cycle_num.setText("주" + groupData!!.ex_cycle.toString() + "회")
+                        //ex_intensity
+                        gr_tv_info_after_level_num.setText(groupData!!.ex_intensity)
+                        //achive_rate
+                        gr_tv_info_after_percent_num.setText(groupData!!.achive_rate.toString() + "%")
+                        //group_sport
+                        gr_tv_info_after_exercise_num.setText(groupData!!.group_sport)
+
+                        //GroupInfo2Fragment
+
+
+                    } ?: showError(response.errorBody())
+            }
+        })
 
     }
 

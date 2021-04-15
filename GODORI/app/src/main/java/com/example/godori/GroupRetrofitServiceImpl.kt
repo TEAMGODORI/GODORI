@@ -1,7 +1,6 @@
 package com.example.godori
 
-import com.example.godori.Interface.GroupAfterRetrofitService
-import com.example.godori.Interface.GroupRetrofitService
+import com.example.godori.Interface.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -24,7 +23,16 @@ object GroupRetrofitServiceImpl {
 
     // 그룹 - 그룹 탈퇴
     val service_gr_exit: GroupExit = retrofit.create(GroupExit::class.java)
-  
-    val service_gr_recruit : GroupRetrofitService = retrofit.create(GroupRetrofitService::class.java)
+
+    //그룹 - 가입후 그룹
     val service_gr_after : GroupAfterRetrofitService = retrofit.create(GroupAfterRetrofitService::class.java)
+
+    //그룹 - 가입 전 상세보기
+    val service_gr__info : GroupInfoRetrofitService = retrofit.create(GroupInfoRetrofitService::class.java)
+
+    //그룹 - 가입 후 상세보기
+    val service_gr__info_after : GroupInfoAfterRetrofitService = retrofit.create(GroupInfoAfterRetrofitService::class.java)
+
+    //인증 - 메인
+    val service_ct_tab : CertifRetrofitService = retrofit.create(CertifRetrofitService::class.java)
 }

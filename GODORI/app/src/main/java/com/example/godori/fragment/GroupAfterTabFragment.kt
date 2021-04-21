@@ -1,6 +1,5 @@
 package com.example.godori.fragment
 
-import android.R.attr.name
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -63,6 +62,9 @@ class GroupAfterTabFragment : Fragment() {
         // 그룹 정보 버튼
         gr_btn_main_group_info.setOnClickListener {
             val intent = Intent(activity, GroupInfoAfterActivity::class.java)
+            //다음 가입 후 그룹탭의 정보에게 데이터 넘겨주기
+            intent.putExtra("groupId", dataList!!.data.group_id)
+            Log.d("groupId", dataList!!.data.group_id.toString())
             startActivity(intent)
         }
         // 오늘 날짜
@@ -142,10 +144,6 @@ class GroupAfterTabFragment : Fragment() {
                         group_name.setText(it.data.group_name)
                         left_count.setText(it.data.left_count.toString())
 
-                        //다음 가입 후 그룹탭의 정보에게 데이터 넘겨주기
-                        val intent = Intent(activity, GroupAfterTabFragment::class.java)
-                        intent.putExtra("groupId", dataList!!.data.group_id)
-
                     } ?: showError(response.errorBody())
             }
         })
@@ -174,4 +172,9 @@ class GroupAfterTabFragment : Fragment() {
         mAdapter.notifyDataSetChanged()
         gr_rcv_already_certi.setHasFixedSize(true)
     }
+
+    interface InfoSelectedListener {
+        fun groupInfoSelected(groupId: Int)
+    }
+
 }

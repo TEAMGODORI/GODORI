@@ -3,6 +3,7 @@ package com.example.godori.fragment
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
@@ -14,25 +15,25 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
 import com.example.godori.activity.CertifTabUpload1Activity
-import com.example.godori.adapter.CertifDateAdapter
-import com.example.godori.adapter.GroupTodayCertiAdapter
 import com.example.godori.data.ResponseCertiTab
+import com.example.godori.adapter.CertifDateAdapter
 import com.prolificinteractive.materialcalendarview.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload1.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload4.*
 import kotlinx.android.synthetic.main.fragment_certif_tab.*
 import kotlinx.android.synthetic.main.fragment_certif_tab.view.*
 import kotlinx.android.synthetic.main.fragment_group_after_tab.*
+import kotlinx.android.synthetic.main.item_certif_tab.*
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -67,10 +68,10 @@ class CertifTabFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_certif_tab, container, false)
         val materialCalendarView: MaterialCalendarView = view.findViewById(R.id.cal)
 
-//        //현재 날짜
-//        val currentTime = Calendar.getInstance().time
-//        val dateFormat = SimpleDateFormat("YYYY-MM-dd", Locale.getDefault())
-//        var serverDate = dateFormat.format(currentTime)
+        //현재 날짜
+        val currentTime = Calendar.getInstance().time
+        val dateFormat = SimpleDateFormat("YYYY-MM-dd", Locale.getDefault())
+        var serverDate = dateFormat.format(currentTime)
 
         materialCalendarView.state().edit()
             .setFirstDayOfWeek(Calendar.MONDAY)
@@ -98,18 +99,12 @@ class CertifTabFragment : Fragment() {
             calendarText.text = "${date.month + 1}월 ${date.day}일 ${weekDay}요일"
 
             //서버에 보낼 형식
-//            serverDate = dateFormat.format(date.date)
+            serverDate = dateFormat.format(date.date)
+
+            load(serverDate)
         }
 
-//        val changeServerDate = serverDatex
-//        loadData(changeServerDate)
-//        selectDate(changeServerDate)
-
-        // adapter 생성
-//        certifRecycler.layoutManager = GridLayoutManager(this.context, 2)
-//        val mAdapter = CertifDateAdapter(certiList, context)
-//        certifRecycler.adapter = mAdapter
-//        certifRecycler.setHasFixedSize(true)
+        load(serverDate)
 
         return view
     }
@@ -194,21 +189,14 @@ class CertifTabFragment : Fragment() {
             // specify an viewAdapter (see also next example)
             adapter = viewAdapter
         }
-
-        loadData()
     }
 
-    private fun loadData() {
-        //현재 날짜
-        val currentTime = Calendar.getInstance().time
-        val dateFormat = SimpleDateFormat("YYYY-MM-dd", Locale.getDefault())
-        var serverDate = dateFormat.format(currentTime)
-
+    private fun load(serverDate: String){
         //Callback 등록하여 통신 요청
         val call: Call<ResponseCertiTab> =
             GroupRetrofitServiceImpl.service_ct_tab.requestList(
                 userName = "김지현",
-                date = serverDate //수정하기 처음에는 date에 오늘 날짜, 이후 누를때의 date
+                date = serverDate //처음 date에 오늘 날짜
             )
         Log.d("changeServerDate", serverDate)
         call.enqueue(object : Callback<ResponseCertiTab> {
@@ -227,8 +215,10 @@ class CertifTabFragment : Fragment() {
                         // do something
                         data = response.body()
                         Log.d("CertifTabFragment", data.toString())
-                        certiList = data!!.data
-                        Log.d("CertifTabFragment", certiList.toString())
+
+//                        Log.d("CertifTabFragment", certiList.toString())
+//                        val isT = response.body()!!.byteStream()
+//                        val bitmap = BitmapFactory.decodeStream(isT)
 
                         //인증한 adapter에 Member 데이터 넣기
                         setCertifAdapter(it.data)
@@ -236,6 +226,7 @@ class CertifTabFragment : Fragment() {
                     } ?: showError(response.errorBody())
             }
         })
+
     }
 
     private fun showError(error: ResponseBody?) {
@@ -250,9 +241,4 @@ class CertifTabFragment : Fragment() {
         mAdapter.notifyDataSetChanged()
         certifRecycler.setHasFixedSize(true)
     }
-//
-//    private fun selectDate(changeServerDate: String): String {
-//        var d = changeServerDate
-//        return d
-//    }
 }

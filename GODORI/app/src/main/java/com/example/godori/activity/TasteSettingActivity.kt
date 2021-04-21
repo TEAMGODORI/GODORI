@@ -26,6 +26,7 @@ class TasteSettingActivity : AppCompatActivity() {
     var ex_cycle: Int = 0
     var ex_intensity: String = ""
     var sports: String = ""
+    var sports_count: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +35,9 @@ class TasteSettingActivity : AppCompatActivity() {
         // 다음
         taste_btn_complete.setOnClickListener {
 
-            // 1. 그룹 생성하기 POST
             val call: Call<ResponseGroupCreationData> =
-                GroupRetrofitServiceImpl.service_taste.postTaste(
-                    // userName
+                GroupRetrofitServiceImpl.service_taste.taste(
                     "김지현",
-                    // body
                     RequestTasteSetting(
                         ex_cycle = ex_cycle,
                         ex_intensity = ex_intensity,
@@ -58,13 +56,13 @@ class TasteSettingActivity : AppCompatActivity() {
                     response.takeIf { it.isSuccessful }
                         ?.body()
                         ?.let { it ->
-                            // 2. 이전 액티비티로 돌아가기
+                            Log.d("test", response.body().toString())
+
+                            // 전 페이지로 이동
                             onBackPressed()
                         } ?: showError(response.errorBody())
                 }
             })
-
-
         }
 
 
@@ -99,37 +97,86 @@ class TasteSettingActivity : AppCompatActivity() {
         taste_btn_exercise1.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 taste_btn_complete.isEnabled = true
+                when (sports_count) {
+                    0 -> {
+                        sports = "헬스"
+                        sports_count += 1
+                    }
+                    else -> {
+                        sports = sports.plus(",헬스")
+                    }
+                }
                 sports = "헬스"
             }
         }
         taste_btn_exercise2.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 taste_btn_complete.isEnabled = true
-                sports = "필라테스"
+                when (sports_count) {
+                    0 -> {
+                        sports = "필라테스"
+                        sports_count += 1
+                    }
+                    else -> {
+                        sports = sports.plus(",필라테스")
+                    }
+                }
             }
         }
         taste_btn_exercise3.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 taste_btn_complete.isEnabled = true
-                sports = "요가"
+                when (sports_count) {
+                    0 -> {
+                        sports = "요가"
+                        sports_count += 1
+                    }
+                    else -> {
+                        sports = sports.plus(",요가")
+                    }
+                }
             }
         }
         taste_btn_exercise4.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 taste_btn_complete.isEnabled = true
-                sports = "자전거"
+                when (sports_count) {
+                    0 -> {
+                        sports = "자전거"
+                        sports_count += 1
+                    }
+                    else -> {
+                        sports = sports.plus(",자전거")
+                    }
+                }
             }
         }
         taste_btn_exercise5.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 taste_btn_complete.isEnabled = true
-                sports = "수영"
+                when (sports_count) {
+                    0 -> {
+                        sports = "수영"
+                        sports_count += 1
+                    }
+                    else -> {
+                        sports = sports.plus(",수영")
+                    }
+                }
             }
         }
         taste_btn_exercise6.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 taste_btn_complete.isEnabled = true
-                sports = "런닝"
+                when (sports_count) {
+                    0 -> {
+                        sports = "런닝"
+                        sports_count += 1
+                    }
+                    else -> {
+                        sports = sports.plus(",런닝")
+                    }
+                }
             }
         }
     }
@@ -145,6 +192,7 @@ class TasteSettingActivity : AppCompatActivity() {
     private fun showError(error: ResponseBody?) {
         val e = error ?: return
         val ob = JSONObject(e.string())
+        Log.d("test", e.string())
         Toast.makeText(this, ob.getString("message"), Toast.LENGTH_SHORT).show()
     }
 }

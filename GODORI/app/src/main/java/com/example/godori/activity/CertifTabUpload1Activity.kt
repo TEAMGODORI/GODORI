@@ -409,40 +409,40 @@ class CertifTabUpload1Activity : AppCompatActivity() {
         //버튼 누르면 글쓰기
         time_Btn1.setOnClickListener { v ->
             if (Img_Upload1!= null) {
-                TimeText1.x = 190f
-                TimeText1.y = 310f
+                TimeText1.x = 145f
+                TimeText1.y = 240f
                 TimeText1.gravity= Gravity.CENTER
                 TimeText1.setVisibility(View.VISIBLE)
             }
         }
         time_Btn2.setOnClickListener { v ->
             if (Img_Upload1 != null) {
-                TimeText1.x = 190f
-                TimeText1.y = 530f
+                TimeText1.x = 145f
+                TimeText1.y = 430f
                 TimeText1.gravity= Gravity.CENTER
                 TimeText1.setVisibility(View.VISIBLE)
             }
         }
         time_Btn3.setOnClickListener { v ->
             if (Img_Upload1 != null) {
-                TimeText1.x = 190f
-                TimeText1.y = 80f
+                TimeText1.x = 150f
+                TimeText1.y = 40f
                 TimeText1.gravity= Gravity.CENTER
                 TimeText1.setVisibility(View.VISIBLE)
             }
         }
         time_Btn4.setOnClickListener { v ->
             if (Img_Upload1 != null) {
-                TimeText1.x = 80f
-                TimeText1.y = 530f
+                TimeText1.x = 60f
+                TimeText1.y = 430f
                 TimeText1.gravity= Gravity.LEFT
                 TimeText1.setVisibility(View.VISIBLE)
             }
         }
         time_Btn5.setOnClickListener { v ->
             if (Img_Upload1 != null) {
-                TimeText1.x = 290f
-                TimeText1.y = 530f
+                TimeText1.x = 220f
+                TimeText1.y = 430f
                 TimeText1.gravity= Gravity.RIGHT
                 TimeText1.setVisibility(View.VISIBLE)
             }

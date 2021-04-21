@@ -21,16 +21,16 @@ import retrofit2.Response
 
 
 class GroupInfoAfterActivity : AppCompatActivity() {
-    var data : ResponseGroupInfoAfter? = null
-    var groupData : ResponseGroupInfoAfter.Data.GroupDetail? = null
+    var data: ResponseGroupInfoAfter? = null
+    var groupData: ResponseGroupInfoAfter.Data.GroupDetail? = null
     var memberList: List<ResponseGroupInfoAfter.Data.GroupMember>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_info_after)
 
-        val secondIntent = intent
-        var groupId = secondIntent.extras?.getInt("groupId")
+        val extras = intent.extras
+        val groupId = extras!!.getInt("groupId")
 
         // 그룹, 그룹원 정보 - FrameLayout
         supportFragmentManager.beginTransaction()
@@ -58,7 +58,7 @@ class GroupInfoAfterActivity : AppCompatActivity() {
             // 1. 그룹 탈퇴 api 호출
             val call: Call<ResponseGroupCreationData> =
                 GroupRetrofitServiceImpl.service_gr_exit.requestList(
-                    userName = "테스터3" // 수정하기
+                    userName = "김지현" // 수정하기
                 )
             call.enqueue(object : Callback<ResponseGroupCreationData> {
                 override fun onFailure(call: Call<ResponseGroupCreationData>, t: Throwable) {
@@ -86,10 +86,10 @@ class GroupInfoAfterActivity : AppCompatActivity() {
         }
 
 
-        //group_id로 그룹 정보 가져오기
+        //group_id로 그룹 정보 가져오기 GroupInfo1Fragment
         val call: Call<ResponseGroupInfoAfter> =
             GroupRetrofitServiceImpl.service_gr__info_after.requestList(
-                groupId = 29//수정하기
+                groupId = groupId//수정하기
             )
         call.enqueue(object : Callback<ResponseGroupInfoAfter> {
             override fun onFailure(call: Call<ResponseGroupInfoAfter>, t: Throwable) {
@@ -114,13 +114,9 @@ class GroupInfoAfterActivity : AppCompatActivity() {
                         gr_tv_info_after_title_exercise.setText(groupData!!.group_sport)
                         gr_tv_info_after_title_name.setText(groupData!!.group_name)
                         gr_tv_info_after_title_line.setText(groupData!!.intro_comment)
-//                        val dateFormat: DateFormat = SimpleDateFormat("YYYY.MM.dd")
-//                        val date = dateFormat.format(dataD!!.created_at)
-//                        //created_at
-//                        gr_tv_info_after_title_startdate.setText()
+                        gr_tv_info_after_title_startdate.setText(groupData!!.created_at)
                         gr_tv_info_after_group_maker.setText(groupData!!.group_maker)
 
-                        //GroupInfo1Fragment
                         //recruited_num
                         gr_tv_info_after_member_recruit_num.setText(groupData!!.recruited_num.toString() + "/")
                         //recruit_num

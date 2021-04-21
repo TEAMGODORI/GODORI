@@ -45,7 +45,7 @@ class TabBarViewPagerAdapter(fm: FragmentManager, group:Int) :
             }
         } else {
             when (position) {
-                0 -> GroupAfterTabFragment()
+                0 -> GroupTabFragment()
                 1 -> CertifTabFragment()
                 2 -> MyInfoTabFragment()
                 else -> throw IllegalStateException("Unexpected position $position")

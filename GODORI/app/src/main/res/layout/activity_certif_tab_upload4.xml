@@ -74,6 +74,7 @@
             android:layout_marginLeft="18dp"
             android:background="@drawable/gr_ly_btn_next"
             android:textSize="18dp"
+            android:enabled="false"
             android:textColor="@color/white"
             android:text="완료"/>
 

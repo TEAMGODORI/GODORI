@@ -111,8 +111,9 @@ class CertifTabUpload1Activity : AppCompatActivity() {
             }
 
 
-//            intent.putExtra("imagesByte", imagesByte)
-
+            // 데이터 전달
+            // 사진 (아직 타임스탬프 미적용)
+            intent.putExtra("images", images)
             // 액티비티 시작
             startActivity(intent)
         }
@@ -327,7 +328,9 @@ class CertifTabUpload1Activity : AppCompatActivity() {
                     if (data.data != null) {
                         try {
                             var albumFile: File? = null
+                            Log.v("사진 uri 생성", "저장")
                             albumFile = createImageFile() //이미지 파일로 저장
+                            images = albumFile
                             photoURI = data.data
                             albumURI = Uri.fromFile(albumFile)
                             Img_Upload1.setImageURI(photoURI)
@@ -480,5 +483,11 @@ class CertifTabUpload1Activity : AppCompatActivity() {
 //            }
 //        }
 //    }
+
+    // 뒤로가기 함수
+    override fun onBackPressed() {
+        startActivity(Intent(this, TabBarActivity::class.java))
+        finish()
+    }
 }
 

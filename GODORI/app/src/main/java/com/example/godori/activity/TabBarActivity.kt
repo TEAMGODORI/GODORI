@@ -31,7 +31,7 @@ class TabBarActivity : AppCompatActivity() {
 
         val call: Call<ResponseGroupAfterTab> =
             GroupRetrofitServiceImpl.service_gr_after_tab.requestList(
-                userName = "테스터3" //수정하기
+                userName = "김지현" //수정하기
             )
         call.enqueue(object : Callback<ResponseGroupAfterTab> {
             override fun onFailure(call: Call<ResponseGroupAfterTab>, t: Throwable) {

@@ -1,5 +1,7 @@
 package com.example.godori.data
 
+import java.io.File
+
 data class RequestGroupCreationData(
     val group_name: String,
     val recruit_num: Int,

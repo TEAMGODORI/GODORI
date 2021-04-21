@@ -58,7 +58,7 @@ class GroupInfoAfterActivity : AppCompatActivity() {
             // 1. 그룹 탈퇴 api 호출
             val call: Call<ResponseGroupCreationData> =
                 GroupRetrofitServiceImpl.service_gr_exit.requestList(
-                    userName = "테스터3" // 수정하기
+                    userName = "김지현" // 수정하기
                 )
             call.enqueue(object : Callback<ResponseGroupCreationData> {
                 override fun onFailure(call: Call<ResponseGroupCreationData>, t: Throwable) {

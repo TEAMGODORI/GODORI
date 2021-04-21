@@ -13,10 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="64dp">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/backBtn2"
             android:layout_width="36dp"
             android:layout_height="36dp"
+            android:background="@color/transparent"
+            android:scaleType="centerCrop"
             android:src="@drawable/ct_btn_arrow_back" />
 
         <TextView
@@ -88,6 +90,7 @@
             android:layout_marginLeft="18dp"
             android:background="@drawable/gr_ly_btn_next"
             android:textSize="18dp"
+            android:enabled="false"
             android:textColor="@color/white"
             android:text="다음"/>
     </RelativeLayout>

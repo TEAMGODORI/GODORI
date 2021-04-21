@@ -2,25 +2,36 @@ package com.example.godori.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
-import com.example.godori.activity.GroupSearchActivity
+import com.example.godori.activity.SettingActivity
 import com.example.godori.activity.TasteSettingActivity
-import com.example.godori.adapter.GroupRecruitingTasteAdapter
+import com.example.godori.adapter.GroupInfoMemberAdapter
 import com.example.godori.adapter.MyInfoPictureAdapter
-import kotlinx.android.synthetic.main.activity_group_recruiting.*
+import com.example.godori.data.ResponseGroupInfoAfter
+import com.example.godori.data.ResponseMypage
+import kotlinx.android.synthetic.main.fragment_group_info2.*
 import kotlinx.android.synthetic.main.fragment_my_info_tab.*
+import okhttp3.ResponseBody
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MyInfoTabFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
+
+    var certiList: List<ResponseMypage.Data.Certi>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,9 +46,18 @@ class MyInfoTabFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        // 마이페이지 서버 연결
+        loadData()
+
+        // 사용자 이름
+        my_iv_profile.setImageResource(R.drawable.gr_img_profile_basic)
+
+        // 사용자 프로필 사진
+        my_tv_userName.text = "김지현"
+
         // 피드 사진 recycler view
         viewManager = GridLayoutManager(activity, 3)
-        viewAdapter = MyInfoPictureAdapter()
+        viewAdapter = MyInfoPictureAdapter(certiList, context)
         recyclerView = my_rcv_picture.apply {
             // use this setting to improve performance if you know that changes
             // in content do not change the layout size of the RecyclerView
@@ -52,7 +72,7 @@ class MyInfoTabFragment : Fragment() {
 
         // 설정 버튼
         my_btn_setting.setOnClickListener {
-            val intent = Intent(activity, GroupSearchActivity::class.java)
+            val intent = Intent(activity, SettingActivity::class.java)
             startActivity(intent)
         }
 
@@ -61,5 +81,68 @@ class MyInfoTabFragment : Fragment() {
             val intent = Intent(activity, TasteSettingActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun loadData() {
+        //Callback 등록하여 통신 요청
+        val call: Call<ResponseMypage> =
+            GroupRetrofitServiceImpl.service_mypage.requestList(
+                userName = "김지현" //수정하기
+            )
+        call.enqueue(object : Callback<ResponseMypage> {
+            override fun onFailure(call: Call<ResponseMypage>, t: Throwable) {
+
+            }
+
+            override fun onResponse(
+                call: Call<ResponseMypage>,
+                response: Response<ResponseMypage>
+            ) {
+                response.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let { it ->
+                        // Response 로그
+                        var dataList = response.body()
+
+                        // message 확인
+                        var message = it.message
+                        Log.d("Mypage", message)
+
+                        when (message) {
+                            "마이페이지 정보 불러오기 성공" -> {
+                                // 달성률
+                                var percent = it.data.join.achive_rate
+                                my_tv_percent.setText("$percent%")
+
+                                // 이번주 인증 횟수
+                                var count = it.data.join.week_count.toString()
+                                my_tv_week_count.setText("${count}회")
+
+                                // 사진 어댑터에 데이터 전달
+                                setMyPageAdapter(it.data.certi_list)
+                            }
+                            else -> {
+                                my_tv_percent.setText("-%")
+                                my_tv_week_count.setText("-회")
+                            }
+                        }
+
+                    } ?: showError(response.errorBody())
+            }
+        })
+    }
+
+    private fun setMyPageAdapter(certiList: List<ResponseMypage.Data.Certi>) {
+        my_rcv_picture.layoutManager = GridLayoutManager(activity, 3)
+        val mAdapter = MyInfoPictureAdapter(certiList, context)
+        my_rcv_picture.adapter = mAdapter
+        mAdapter.notifyDataSetChanged()
+        my_rcv_picture.setHasFixedSize(true)
+    }
+
+    private fun showError(error: ResponseBody?) {
+        val e = error ?: return
+        val ob = JSONObject(e.string())
+        Toast.makeText(context, ob.getString("message"), Toast.LENGTH_SHORT).show()
     }
 }

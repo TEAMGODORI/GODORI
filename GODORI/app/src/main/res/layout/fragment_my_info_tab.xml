@@ -75,6 +75,7 @@
                     android:textColor="#99ffffff" />
 
                 <TextView
+                    android:id="@+id/my_tv_percent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/my_tv_title_percent"
@@ -104,6 +105,7 @@
                     android:textColor="#99ffffff" />
 
                 <TextView
+                    android:id="@+id/my_tv_week_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/my_tv_title_num"

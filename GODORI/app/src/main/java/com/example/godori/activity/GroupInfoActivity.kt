@@ -1,12 +1,15 @@
 package com.example.godori.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
+import com.example.godori.data.RequestGroupJoin
+import com.example.godori.data.ResponseGroupCreationData
 import com.example.godori.data.ResponseGroupInfo
 import kotlinx.android.synthetic.main.activity_group_info.*
 import okhttp3.ResponseBody
@@ -27,6 +30,36 @@ class GroupInfoActivity : AppCompatActivity() {
         var group_id : Int
         val extras = intent.extras
         group_id = extras!!.getInt("groupId")
+
+        // 참여하기 버튼
+        gr_btn_join_recruiting.setOnClickListener{
+            val call: Call<ResponseGroupCreationData> =
+                GroupRetrofitServiceImpl.service_gr_join.requestList(
+                    userName = "김지현", // 수정하기
+                    groupId = 19
+                )
+            call.enqueue(object : Callback<ResponseGroupCreationData> {
+                override fun onFailure(call: Call<ResponseGroupCreationData>, t: Throwable) {
+                    // 통신 실패 로직
+                }
+
+                @SuppressLint("SetTextI18n")
+                override fun onResponse(
+                    call: Call<ResponseGroupCreationData>,
+                    response: Response<ResponseGroupCreationData>
+                ) {
+                    response.takeIf { it.isSuccessful }
+                        ?.body()
+                        ?.let { it ->
+                            // 이전 뷰 스택 다 지우고 TabBar 액티비티로 돌아가기
+                            val intent = Intent(application, TabBarActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+                            startActivity(intent)
+                        } ?: showError(response.errorBody())
+                }
+            })
+        }
 
         //group_id로 그룹 정보 가져오기
         val call: Call<ResponseGroupInfo> =

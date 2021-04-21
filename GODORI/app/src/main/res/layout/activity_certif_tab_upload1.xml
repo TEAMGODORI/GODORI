@@ -12,10 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="64dp">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/backBtn1"
             android:layout_width="36dp"
             android:layout_height="36dp"
+            android:background="@color/transparent"
+            android:scaleType="centerCrop"
             android:src="@drawable/ct_btn_arrow_back" />
 
         <TextView

@@ -15,6 +15,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 import java.lang.Boolean
 
 class GroupCreation4Activity : AppCompatActivity() {
@@ -27,7 +28,7 @@ class GroupCreation4Activity : AppCompatActivity() {
     var ex_cycle: Int = 0
     var ex_intensity: String = ""
     var group_sport: String = ""
-    var group_maker: String = "테스터3"
+    var group_maker: String = "김지현"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +48,7 @@ class GroupCreation4Activity : AppCompatActivity() {
         }
 
         // 운동 강도
-        groupCreation_intensity.setOnCheckedChangeListener{ _, checkedId ->
+        groupCreation_intensity.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.groupCreation_intensity1 -> ex_intensity = "상"
                 R.id.groupCreation_intensity2 -> ex_intensity = "중"
@@ -103,19 +104,21 @@ class GroupCreation4Activity : AppCompatActivity() {
             is_public = secondIntent.getBooleanExtra("is_public", false)
             intro_comment = secondIntent.getStringExtra("intro_comment").toString()
 
+
             // 2. 그룹 생성하기 POST
-            val call: Call<ResponseGroupCreationData> = GroupRetrofitServiceImpl.service_gr_creation.postGroupCreation(
-                RequestGroupCreationData(
-                    group_name = group_name,
-                    recruit_num = recruit_num,
-                    is_public = is_public,
-                    intro_comment = intro_comment,
-                    ex_cycle = ex_cycle,
-                    ex_intensity = ex_intensity,
-                    group_sport = group_sport,
-                    group_maker = group_maker
+            val call: Call<ResponseGroupCreationData> =
+                GroupRetrofitServiceImpl.service_gr_creation.postGroupCreation(
+                    RequestGroupCreationData(
+                        group_name = group_name,
+                        recruit_num = recruit_num,
+                        is_public = is_public,
+                        intro_comment = intro_comment,
+                        ex_cycle = ex_cycle,
+                        ex_intensity = ex_intensity,
+                        group_sport = group_sport,
+                        group_maker = group_maker
+                    )
                 )
-            )
             call.enqueue(object : Callback<ResponseGroupCreationData> {
                 override fun onFailure(call: Call<ResponseGroupCreationData>, t: Throwable) {
                     // 통신 실패 로직

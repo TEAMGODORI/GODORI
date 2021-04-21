@@ -56,7 +56,7 @@ class GroupTabFragment : Fragment() {
         viewManager = GridLayoutManager(activity, 2)
         viewAdapter = GroupMoreAdapter()
         recyclerView = gr_rcv_main_more.apply {
-//            setHasFixedSize(true)
+            setHasFixedSize(true)
             // use a linear layout manager
             layoutManager = viewManager
             // specify an viewAdapter (see also next example)

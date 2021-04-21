@@ -64,7 +64,7 @@ class GroupInfoActivity : AppCompatActivity() {
         //group_id로 그룹 정보 가져오기
         val call: Call<ResponseGroupInfo> =
             GroupRetrofitServiceImpl.service_gr__info.requestList(
-                groupId = group_id //수정하기
+                groupId = group_id
             )
         call.enqueue(object : Callback<ResponseGroupInfo> {
             override fun onFailure(call: Call<ResponseGroupInfo>, t: Throwable) {
@@ -91,12 +91,8 @@ class GroupInfoActivity : AppCompatActivity() {
                         gr_tv_info_title_name.setText(dataD!!.group_name)
                         //group_소개
                         gr_tv_info_title_line.setText(dataD!!.intro_comment)
-
-//                        val dateFormat: DateFormat = SimpleDateFormat("YYYY.MM.dd")
-//                        val date = dateFormat.format(dataD!!.created_at)
-//                        //created_at
-//                        gr_tv_info_title_startdate.setText("$date~")
-
+                        //created_at
+                        gr_tv_info_title_startdate.setText(dataD!!.created_at)
                         //group_maker
                         gr_create_name.setText(dataD!!.group_maker)
 

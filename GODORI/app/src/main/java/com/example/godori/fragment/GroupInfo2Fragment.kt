@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
+import com.example.godori.activity.GroupInfoAfterActivity
 import com.example.godori.adapter.GroupInfoMemberAdapter
 import com.example.godori.data.ResponseGroupInfoAfter
 import kotlinx.android.synthetic.main.fragment_group_info2.*
@@ -60,7 +61,7 @@ class GroupInfo2Fragment : Fragment() {
         //group_id로 그룹 정보 가져오기
         val call: Call<ResponseGroupInfoAfter> =
             GroupRetrofitServiceImpl.service_gr__info_after.requestList(
-                groupId = 29//수정하기
+                groupId = 7//수정하기
             )
         call.enqueue(object : Callback<ResponseGroupInfoAfter> {
             override fun onFailure(call: Call<ResponseGroupInfoAfter>, t: Throwable) {

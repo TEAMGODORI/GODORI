@@ -85,11 +85,10 @@ class GroupInfoAfterActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         //group_id로 그룹 정보 가져오기 GroupInfo1Fragment
         val call: Call<ResponseGroupInfoAfter> =
             GroupRetrofitServiceImpl.service_gr__info_after.requestList(
-                groupId = groupId//수정하기
+                groupId = groupId
             )
         call.enqueue(object : Callback<ResponseGroupInfoAfter> {
             override fun onFailure(call: Call<ResponseGroupInfoAfter>, t: Throwable) {
@@ -117,31 +116,20 @@ class GroupInfoAfterActivity : AppCompatActivity() {
                         gr_tv_info_after_title_startdate.setText(groupData!!.created_at)
                         gr_tv_info_after_group_maker.setText(groupData!!.group_maker)
 
-                        //recruited_num
-                        gr_tv_info_after_member_recruit_num.setText(groupData!!.recruited_num.toString() + "/")
-                        //recruit_num
-                        gr_tv_info_after_member_total_num.setText(groupData!!.recruit_num.toString())
-                        //ex_cycle
-                        gr_tv_info_after_cycle_num.setText("주" + groupData!!.ex_cycle.toString() + "회")
-                        //ex_intensity
-                        gr_tv_info_after_level_num.setText(groupData!!.ex_intensity)
-                        //achive_rate
-                        gr_tv_info_after_percent_num.setText(groupData!!.achive_rate.toString() + "%")
-                        //group_sport
-                        gr_tv_info_after_exercise_num.setText(groupData!!.group_sport)
-
-                        //GroupInfo2Fragment
-
-
                     } ?: showError(response.errorBody())
             }
         })
 
     }
-
     // api 호출 에러 함수
     private fun showError(error: ResponseBody?) {
         val e = error ?: return
         val ob = JSONObject(e.string())
+    }
+
+    fun groupId():Int {
+        val extras = intent.extras
+        val groupId = extras!!.getInt("groupId")
+        return groupId
     }
 }

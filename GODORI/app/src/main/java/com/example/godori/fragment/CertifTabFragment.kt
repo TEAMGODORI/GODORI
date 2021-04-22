@@ -3,7 +3,6 @@ package com.example.godori.fragment
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
@@ -19,8 +18,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
 import com.example.godori.activity.CertifTabUpload1Activity
-import com.example.godori.data.ResponseCertiTab
 import com.example.godori.adapter.CertifDateAdapter
+import com.example.godori.data.ResponseCertiTab
 import com.prolificinteractive.materialcalendarview.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload1.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload4.*
@@ -33,7 +32,6 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -214,6 +212,7 @@ class CertifTabFragment : Fragment() {
                     ?.let { it ->
                         // do something
                         data = response.body()
+
                         Log.d("CertifTabFragment", data.toString())
 
 //                        Log.d("CertifTabFragment", certiList.toString())

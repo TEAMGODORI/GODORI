@@ -54,16 +54,20 @@ class CertifDateAdapter(
         if (url.length > 0) {
             Glide.with(holder.certifImg.context)
                 .load(url)
+                .placeholder(android.R.drawable.progress_indeterminate_horizontal)
+                .error(android.R.drawable.stat_notify_error)
                 .into(holder.certifImg)
 
         } else {
             Glide.with(holder.certifImg.context)
                 .load(R.drawable.certif_un)
+                .placeholder(android.R.drawable.progress_indeterminate_horizontal)
+                .error(android.R.drawable.stat_notify_error)
                 .into(holder.certifImg)
         }
 
         holder.personName.setText(certifList?.get(position)?.user_name)
-//            holder.userImg.setImageResource(certiList[position].user_img)
+        holder.userImg.setImageResource(R.drawable.gr_img_profile_basic)
     }
 
     //리스트의 전체 개수

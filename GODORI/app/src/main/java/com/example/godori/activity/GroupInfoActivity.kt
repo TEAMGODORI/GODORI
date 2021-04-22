@@ -36,7 +36,7 @@ class GroupInfoActivity : AppCompatActivity() {
             val call: Call<ResponseGroupCreationData> =
                 GroupRetrofitServiceImpl.service_gr_join.requestList(
                     userName = "김지현", // 수정하기
-                    groupId = 19
+                    groupId = group_id
                 )
             call.enqueue(object : Callback<ResponseGroupCreationData> {
                 override fun onFailure(call: Call<ResponseGroupCreationData>, t: Throwable) {

@@ -19,6 +19,7 @@
             android:layout_width="99dp"
             android:layout_height="99dp"
             android:background="@drawable/my_ly_cdv_picture"
-            android:src="@drawable/gr_img_info_title"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/certif_un"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

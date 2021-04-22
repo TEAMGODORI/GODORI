@@ -184,7 +184,9 @@ class TasteSettingActivity : AppCompatActivity() {
 
     // 뒤로가기 함수
     override fun onBackPressed() {
-        startActivity(Intent(this, TabBarActivity::class.java))
+        val intent = Intent(application, GroupRecruitingActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
         finish()
     }
 

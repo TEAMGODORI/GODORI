@@ -330,7 +330,7 @@ class CertifTabUpload1Activity : AppCompatActivity() {
                             var albumFile: File? = null
                             Log.v("사진 uri 생성", "저장")
                             albumFile = createImageFile() //이미지 파일로 저장
-                            images = albumFile
+                            images = albumFile // images를 다음 인텐트로 넘김
                             photoURI = data.data
                             albumURI = Uri.fromFile(albumFile)
                             Img_Upload1.setImageURI(photoURI)

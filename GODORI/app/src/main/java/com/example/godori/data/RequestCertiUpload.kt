@@ -1,5 +1,6 @@
 package com.example.godori.data
 
+import retrofit2.http.Multipart
 import java.io.File
 
 data class RequestCertiUpload (

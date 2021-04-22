@@ -91,7 +91,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+                android:layout_marginLeft="14dp"
                 android:layout_marginTop="136dp"
                 android:layout_toRightOf="@id/my_vw_stroke">
 
@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:includeFontPadding="false"
-                    android:text="인증"
+                    android:text="지금까지 인증"
                     android:textColor="#99ffffff" />
 
                 <TextView
@@ -111,6 +111,7 @@
                     android:layout_below="@+id/my_tv_title_num"
                     android:layout_gravity="center"
                     android:layout_marginTop="6dp"
+                    android:layout_centerInParent="true"
                     android:includeFontPadding="false"
                     android:text="21회"
                     android:textColor="@color/white"
@@ -141,7 +142,7 @@
                 android:includeFontPadding="false"
                 android:layout_marginTop="24dp"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="#161c49"
                 android:letterSpacing="-0.05"
                 android:text="인증 사진"/>

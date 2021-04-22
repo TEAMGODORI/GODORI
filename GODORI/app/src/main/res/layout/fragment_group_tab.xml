@@ -69,15 +69,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="33dp"
+            android:layout_marginTop="22dp"
             android:includeFontPadding="false"
             android:text="찾는 그룹이 있나요?"
             android:textColor="#000000"
-            android:textSize="22sp" />
+            android:textSize="18sp" />
 
         <ImageButton
             android:id="@+id/gr_btn_main_search"
-            android:layout_width="368dp"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="22dp"
             android:scaleType="fitCenter"
@@ -91,11 +91,11 @@
             android:includeFontPadding="false"
             android:text="그룹 만들래요!"
             android:textColor="#000000"
-            android:textSize="22sp" />
+            android:textSize="18sp" />
 
         <ImageButton
             android:id="@+id/gr_btn_main_creation"
-            android:layout_width="368dp"
+            android:layout_width="match_parent"
             android:layout_height="124dp"
             android:layout_marginTop="22dp"
             android:elevation="4dp"
@@ -115,7 +115,7 @@
                 android:includeFontPadding="false"
                 android:text="이런 그룹은 어때요?"
                 android:textColor="#000000"
-                android:textSize="22dp" />
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/btnMoreGroup"

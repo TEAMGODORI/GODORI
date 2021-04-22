@@ -61,7 +61,7 @@ class GroupInfo2Fragment : Fragment() {
         //group_id로 그룹 정보 가져오기
         val call: Call<ResponseGroupInfoAfter> =
             GroupRetrofitServiceImpl.service_gr__info_after.requestList(
-                groupId = 7//수정하기
+                groupId = (activity as GroupInfoAfterActivity?)!!.groupId()
             )
         call.enqueue(object : Callback<ResponseGroupInfoAfter> {
             override fun onFailure(call: Call<ResponseGroupInfoAfter>, t: Throwable) {

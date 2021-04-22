@@ -92,7 +92,7 @@
                 android:includeFontPadding="false"
                 android:layout_marginRight="24dp"
                 android:text="그룹정보"
-                android:background="#f2f2f6"
+                android:background="@drawable/gr_ly_btn_more"
                 android:textColor="#8a8a8d"
                 android:textSize="14sp" />
 

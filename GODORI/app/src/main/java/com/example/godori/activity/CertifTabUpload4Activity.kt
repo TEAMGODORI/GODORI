@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
-import com.example.godori.data.RequestCertiUpload
 import com.example.godori.data.ResponseCertiUpload
 import com.example.godori.fragment.CertifTabFragment
 import kotlinx.android.synthetic.main.activity_certif_tab_upload4.*
@@ -104,15 +103,25 @@ class CertifTabUpload4Activity : AppCompatActivity() {
                     // parameter
                     "김지현",
                     // body
-                    RequestCertiUpload(
-                        ex_time = ex_time,
-                        ex_intensity = ex_intensity,
-                        ex_evalu = ex_evalu,
-                        certi_sport = certi_sport,
-                        ex_comment = ex_comment
-                    ),
+//                    RequestCertiUpload(
+//                        ex_time = ex_time,
+//                        ex_intensity = ex_intensity,
+//                        ex_evalu = ex_evalu,
+//                        certi_sport = certi_sport,
+//                        ex_comment = ex_comment,
+//                        images =  body
+//                    )
+
+
+                    ex_time = ex_time,
+                    ex_intensity = ex_intensity,
+                    ex_evalu = ex_evalu,
+                    certi_sport = certi_sport,
+                    ex_comment = ex_comment,
 //                    requestBody,
-                    images =  body
+
+//                    images =  body
+                images = requestFile
                 )
             call.enqueue(object : Callback<ResponseCertiUpload> {
                 override fun onFailure(call: Call<ResponseCertiUpload>, t: Throwable) {
@@ -173,7 +182,7 @@ class CertifTabUpload4Activity : AppCompatActivity() {
         val e = error ?: return
         val ob = JSONObject(e.string())
 
-        Toast.makeText(this, ob.getString("message"), Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, ob.getString("message"), Toast.LENGTH_SHORT).show()
     }
 
     // 뒤로가기 함수

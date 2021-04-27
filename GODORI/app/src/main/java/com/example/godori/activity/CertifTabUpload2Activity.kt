@@ -2,6 +2,7 @@ package com.example.godori.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -36,8 +37,10 @@ class CertifTabUpload2Activity : AppCompatActivity() {
             intent.putExtra("ex_time", ex_time)
             // 데이터 전달
             val secondIntent = getIntent()
-            intent.putExtra("images", secondIntent.getSerializableExtra("images")as File)
-            var images = secondIntent.getSerializableExtra("images")as File
+            var photoUri = secondIntent.getStringExtra("imageURI")
+            Log.v("certi2", photoUri.toString())
+            intent.putExtra("imageURI", secondIntent.getStringExtra("imageURI"))
+//            var images = secondIntent.getSerializableExtra("images")as File
 
             // 액티비티 시작
             startActivity(intent)

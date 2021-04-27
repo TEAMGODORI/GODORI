@@ -2,29 +2,34 @@ package com.example.godori.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
+import com.example.godori.data.RequestCertiUpload
 import com.example.godori.data.ResponseCertiUpload
+import com.example.godori.data.ResponseGroupCreationData
 import com.example.godori.fragment.CertifTabFragment
 import kotlinx.android.synthetic.main.activity_certif_tab_upload4.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
 import java.io.File
 
 
@@ -36,6 +41,8 @@ class CertifTabUpload4Activity : AppCompatActivity() {
     var ex_evalu: String = ""
     var certi_sport: String = ""
     lateinit var images: File
+
+    var imageURI: Uri? = null
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,12 +72,7 @@ class CertifTabUpload4Activity : AppCompatActivity() {
         }
         certi_upload_comment.addTextChangedListener(textWatcher)
 
-//        // 이전
-//        backBtn4.setOnClickListener {
-//            onBackPressed()
-//        }
-
-        // 완료
+        // 완료 버튼
         btn_complete.setOnClickListener(View.OnClickListener {
             // 1. 데이터 전달 받음
             val secondIntent = getIntent()
@@ -80,54 +82,48 @@ class CertifTabUpload4Activity : AppCompatActivity() {
             certi_sport = secondIntent.getStringExtra("certi_sport").toString()
 
             // 2. 이미지 Multipart.Part로 변환
-            images = secondIntent.getSerializableExtra("images") as File
+            var imageURIString = secondIntent.getStringExtra("imageURI")
+            if (imageURIString != null) {
+                imageURI = imageURIString.toUri()
+            }
+            Log.v("certi4", imageURI.toString())
 
-            val requestFile = RequestBody.create(MediaType.parse("image/jpeg"), images)
-
-            val body: MultipartBody.Part = MultipartBody.Part.createFormData("images", images.name, requestFile)
-
-            // 3. body build
-            var requestBody = MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("ex_time", ex_time)
-                .addFormDataPart("ex_intensity",ex_intensity)
-                .addFormDataPart("ex_evalu",ex_evalu)
-                .addFormDataPart("certi_sport",certi_sport)
-                .addFormDataPart("ex_comment",ex_comment)
-                .build()
-
+            val options = BitmapFactory.Options()
+            val inputStream = imageURI?.let { it1 -> contentResolver.openInputStream(it1) }
+            val bitmap = BitmapFactory.decodeStream(inputStream, null, options)
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            if (bitmap != null) {
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream)
+            }
+            val photoBody =
+                RequestBody.create(
+                    MediaType.parse("image/jpg"),
+                    byteArrayOutputStream.toByteArray()
+                )
+            val part = MultipartBody.Part.createFormData(
+                "image",
+                File(imageURI.toString()).name,
+                photoBody
+            )
 
             // 3. 인증 업로드 POST
             val call: Call<ResponseCertiUpload> =
                 GroupRetrofitServiceImpl.service_ct_upload.postCertiUpload(
-                    // parameter
                     "김지현",
-                    // body
-//                    RequestCertiUpload(
-//                        ex_time = ex_time,
-//                        ex_intensity = ex_intensity,
-//                        ex_evalu = ex_evalu,
-//                        certi_sport = certi_sport,
-//                        ex_comment = ex_comment,
-//                        images =  body
-//                    )
-
-
-                    ex_time = ex_time,
-                    ex_intensity = ex_intensity,
-                    ex_evalu = ex_evalu,
-                    certi_sport = certi_sport,
-                    ex_comment = ex_comment,
-//                    requestBody,
-
-//                    images =  body
-                images = requestFile
+                    RequestCertiUpload(
+                        ex_time = ex_time,
+                        ex_intensity = ex_intensity,
+                        ex_evalu = ex_evalu,
+                        certi_sport = certi_sport,
+                        ex_comment = ex_comment
+                    )
                 )
             call.enqueue(object : Callback<ResponseCertiUpload> {
                 override fun onFailure(call: Call<ResponseCertiUpload>, t: Throwable) {
                     // 통신 실패 로직
                     Log.d("업로드 실패 : ", t.message.toString())
                 }
+
                 override fun onResponse(
                     call: Call<ResponseCertiUpload>,
                     response: Response<ResponseCertiUpload>
@@ -136,20 +132,43 @@ class CertifTabUpload4Activity : AppCompatActivity() {
                         ?.body()
                         ?.let { it ->
                             Log.d("업로드 성공 : ", response.body().toString())
-//                            val intent = Intent(application, TabBarActivity::class.java)
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//
-//                            // 4. 액티비티 시작
-//                            startActivity(intent)
+
+                            // 4. 업로드 성공하면 -> 이미지 업로드
+                            val call: Call<ResponseGroupCreationData> =
+                                GroupRetrofitServiceImpl.service_ct_upload_image.postCertiUpload(
+                                    it.data,
+                                    images = part
+                                )
+                            call.enqueue(object : Callback<ResponseGroupCreationData> {
+                                override fun onFailure(
+                                    call: Call<ResponseGroupCreationData>,
+                                    t: Throwable
+                                ) {
+                                    // 통신 실패 로직
+                                    Log.d("업로드 실패 : ", t.message.toString())
+                                }
+
+                                override fun onResponse(
+                                    call: Call<ResponseGroupCreationData>,
+                                    response: Response<ResponseGroupCreationData>
+                                ) {
+                                    response.takeIf { it.isSuccessful }
+                                        ?.body()
+                                        ?.let { it ->
+                                            Log.d("사진 업로드 성공 : ", response.body().toString())
+                                        } ?: showError(response.errorBody())
+                                }
+                            })
+
                         } ?: showError(response.errorBody())
                 }
 
             })
-            // 3. 이전 뷰 스택 다 지우고 TabBar 액티비티로 돌아가기
+            // 5. 이전 뷰 스택 다 지우고 TabBar 액티비티로 돌아가기
             val intent = Intent(application, TabBarActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
-            // 4. 액티비티 시작
+            // 6. 액티비티 시작
             startActivity(intent)
         })
 
@@ -180,8 +199,7 @@ class CertifTabUpload4Activity : AppCompatActivity() {
     // 서버 연동관련 에러 함수
     private fun showError(error: ResponseBody?) {
         val e = error ?: return
-        val ob = JSONObject(e.string())
-
+//        val ob = JSONObject(e.string())
 //        Toast.makeText(this, ob.getString("message"), Toast.LENGTH_SHORT).show()
     }
 

@@ -25,6 +25,7 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.godori.R
@@ -34,7 +35,11 @@ import kotlinx.android.synthetic.main.activity_certif_tab_upload1.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload2.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload4.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload4.view.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import java.io.*
+import java.net.URI
 import java.nio.file.Paths
 import java.text.SimpleDateFormat
 import java.util.*
@@ -43,6 +48,7 @@ import java.util.*
 class CertifTabUpload1Activity : AppCompatActivity() {
     // 데이터 목록
     lateinit var images:File
+    var imagesURI: Uri? = null
     lateinit var imagesByte: ByteArray
 
     @SuppressLint("ClickableViewAccessibility")
@@ -54,6 +60,8 @@ class CertifTabUpload1Activity : AppCompatActivity() {
     private var imgUri: Uri? = null
     private var photoURI: Uri? = null
     private var albumURI: Uri? = null
+
+    lateinit var part: MultipartBody.Part
 
     private val FROM_CAMERA = 1
     private val FROM_ALBUM = 2
@@ -113,7 +121,8 @@ class CertifTabUpload1Activity : AppCompatActivity() {
 
             // 데이터 전달
             // 사진 (아직 타임스탬프 미적용)
-            intent.putExtra("images", images)
+            intent.putExtra("imageURI", photoURI.toString())
+            Log.v("certi1", photoURI.toString())
             // 액티비티 시작
             startActivity(intent)
         }
@@ -318,6 +327,9 @@ class CertifTabUpload1Activity : AppCompatActivity() {
         if (resultCode != RESULT_OK) {
             return
         }
+        if (data != null) {
+//            CropImage.activity(data.data!!).setAspectRatio(4,3).start(requireContext(), this)
+        }
         when (requestCode) {
             FROM_ALBUM -> {
                 //앨범에서 가져오기
@@ -328,11 +340,31 @@ class CertifTabUpload1Activity : AppCompatActivity() {
                     if (data.data != null) {
                         try {
                             var albumFile: File? = null
-                            Log.v("사진 uri 생성", "저장")
                             albumFile = createImageFile() //이미지 파일로 저장
-                            images = albumFile // images를 다음 인텐트로 넘김
+//                            images = albumFile // images를 다음 인텐트트로 넘김
                             photoURI = data.data
                             albumURI = Uri.fromFile(albumFile)
+
+                            imagesURI = photoURI
+                            Log.v("imageURI", photoURI.toString())
+
+                            // 연주언니 코드 참고
+//                            val options = BitmapFactory.Options()
+//                                val inputStream = contentResolver.openInputStream(albumURI!!)
+//                            val bitmap = BitmapFactory.decodeStream(inputStream, null, options)
+//                            val byteArrayOutputStream =  ByteArrayOutputStream()
+//                            bitmap!!.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream)
+//                            val photoBody =
+//                                RequestBody.create(
+//                                    MediaType.parse("image/jpg"),
+//                                    byteArrayOutputStream.toByteArray()
+//                                )
+//                            part = MultipartBody.Part.createFormData(
+//                                    "image",
+//                                File(albumURI.toString()).name,
+//                                photoBody
+//                            )
+
                             Img_Upload1.setImageURI(photoURI)
                             TimeStampBtn()
                         } catch (e: Exception) {

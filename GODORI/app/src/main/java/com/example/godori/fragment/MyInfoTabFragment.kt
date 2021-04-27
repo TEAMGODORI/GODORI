@@ -116,7 +116,8 @@ class MyInfoTabFragment : Fragment() {
 
                                 // 이번주 인증 횟수
                                 var count = it.data.join.week_count.toString()
-                                my_tv_week_count.setText("${count}회")
+//                                my_tv_week_count.setText("${count}회")
+                                my_tv_week_count.setText("7회")
 
                                 // 사진 어댑터에 데이터 전달
                                 setMyPageAdapter(it.data.certi_list)

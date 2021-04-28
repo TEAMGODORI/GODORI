@@ -135,6 +135,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:background="@color/white"
             android:paddingLeft="22dp">
             <TextView
                 android:layout_width="wrap_content"
@@ -146,6 +147,7 @@
                 android:textColor="#161c49"
                 android:letterSpacing="-0.05"
                 android:text="인증 사진"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/my_rcv_picture"
                 android:layout_marginTop="16dp"

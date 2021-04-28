@@ -18,7 +18,7 @@ data class ResponseMypage(
         )
         data class Certi(
             val id: Int,
-            val image: URI
+            val image: String
         )
     }
 }

@@ -1,19 +1,18 @@
 package com.example.godori.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
-import com.example.godori.activity.SettingActivity
-import com.example.godori.activity.TasteSettingActivity
+import com.example.godori.activity.*
+import com.example.godori.adapter.CertifDateAdapter
 import com.example.godori.adapter.GroupInfoMemberAdapter
 import com.example.godori.adapter.MyInfoPictureAdapter
 import com.example.godori.data.ResponseGroupInfoAfter
@@ -40,6 +39,7 @@ class MyInfoTabFragment : Fragment() {
         // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.fragment_my_info_tab, container, false)
+
         return view
     }
 
@@ -49,26 +49,24 @@ class MyInfoTabFragment : Fragment() {
         // 마이페이지 서버 연결
         loadData()
 
-        // 사용자 이름
-        my_iv_profile.setImageResource(R.drawable.gr_img_profile_basic)
-
-        // 사용자 프로필 사진
-        my_tv_userName.text = "김지현"
-
         // 피드 사진 recycler view
-        viewManager = GridLayoutManager(activity, 3)
+        viewManager = GridLayoutManager(this.context, 3)
         viewAdapter = MyInfoPictureAdapter(certiList, context)
         recyclerView = my_rcv_picture.apply {
             // use this setting to improve performance if you know that changes
             // in content do not change the layout size of the RecyclerView
             setHasFixedSize(true)
-
             // use a linear layout manager
             layoutManager = viewManager
-
             // specify an viewAdapter (see also next example)
             adapter = viewAdapter
         }
+
+        // 사용자 이름
+        my_iv_profile.setImageResource(R.drawable.gr_img_profile_basic)
+
+        // 사용자 프로필 사진
+        my_tv_userName.text = "김지현"
 
         // 설정 버튼
         my_btn_setting.setOnClickListener {
@@ -103,6 +101,7 @@ class MyInfoTabFragment : Fragment() {
                     ?.let { it ->
                         // Response 로그
                         var dataList = response.body()
+                        Log.d("MyInfoTabFragment", dataList.toString())
 
                         // message 확인
                         var message = it.message
@@ -132,17 +131,24 @@ class MyInfoTabFragment : Fragment() {
         })
     }
 
-    private fun setMyPageAdapter(certiList: List<ResponseMypage.Data.Certi>) {
-        my_rcv_picture.layoutManager = GridLayoutManager(activity, 3)
-        val mAdapter = MyInfoPictureAdapter(certiList, context)
-        my_rcv_picture.adapter = mAdapter
-        mAdapter.notifyDataSetChanged()
-        my_rcv_picture.setHasFixedSize(true)
-    }
-
     private fun showError(error: ResponseBody?) {
         val e = error ?: return
         val ob = JSONObject(e.string())
         Toast.makeText(context, ob.getString("message"), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setMyPageAdapter(certiList: List<ResponseMypage.Data.Certi>) {
+        val mAdapter = MyInfoPictureAdapter(certiList, context)
+        my_rcv_picture.adapter = mAdapter
+        mAdapter.itemClick = object: MyInfoPictureAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                val intent = Intent(activity, CertifTabDetailActivity::class.java)
+                //인증탭의 인증 이미지의 id 넘겨주기
+                intent.putExtra("certiImgId", certiList[position].id)
+                startActivity(intent)
+            }
+        }
+        mAdapter.notifyDataSetChanged()
+        my_rcv_picture.setHasFixedSize(true)
     }
 }

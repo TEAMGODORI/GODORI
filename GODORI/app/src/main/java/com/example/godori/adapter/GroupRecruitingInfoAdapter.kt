@@ -26,26 +26,23 @@ class GroupRecruitingInfoAdapter(
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder.
     // Each data item is just a string in this case that is shown in a TextView.
-
+    interface ItemClick
+    {
+        fun onClick(view: View, position: Int)
+    }
+    var itemClick: ItemClick? = null
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            var group_sport: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_categories)
-            var created_at: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_time)
-            var group_name: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_groupName)
-            var intro_comment: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_line)
-            var ex_cycle: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_cycle)
-            var ex_intensity: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_level)
-            var recruited_num: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_recruited_num)
-            var recruit_num: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_recruit_num)
-
-            var recruit: ImageButton = itemView.findViewById(R.id.gr_ib_recruiting_info_countTitle)
-
-        init {
-            itemView.setOnClickListener {
-
-            }
-        }
-        }
+        var group_sport: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_categories)
+        var created_at: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_time)
+        var group_name: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_groupName)
+        var intro_comment: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_line)
+        var ex_cycle: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_cycle)
+        var ex_intensity: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_level)
+        var recruited_num: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_recruited_num)
+        var recruit_num: TextView = itemView.findViewById(R.id.gr_tv_recruiting_info_recruit_num)
+        var recruit: ImageButton = itemView.findViewById(R.id.gr_ib_recruiting_info_countTitle)
+    }
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(
@@ -62,9 +59,6 @@ class GroupRecruitingInfoAdapter(
     // Replace the contents of a view (invoked by the layout manager)
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onBindViewHolder(holder: GroupRecruitingInfoAdapter.MyViewHolder, position: Int) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-
         holder.group_sport.setText(groupList!![position].group_sport)
         holder.created_at.setText(groupList[position].parse_date)
         holder.group_name.setText(groupList[position].group_name)
@@ -74,12 +68,12 @@ class GroupRecruitingInfoAdapter(
         holder.recruited_num.setText(groupList[position].recruited_num.toString())
         holder.recruit_num.setText("/" + groupList[position].recruit_num.toString())
 
-//        //Here it is simply write onItemClick listener here
-//        holder.recruit.setOnClickListener(View.OnClickListener { v ->
-//            val intent = Intent(holder.itemView?.context, GroupInfoActivity::class.java)
-//            ContextCompat.startActivity(holder.itemView.context, intent, null)
-//            intent.putExtra("groupId", groupList[position].id)
-//        })
+        if(itemClick != null)
+        {
+            holder.recruit.setOnClickListener { v ->
+                itemClick?.onClick(v, position)
+            }
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)

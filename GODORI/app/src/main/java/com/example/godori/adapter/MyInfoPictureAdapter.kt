@@ -30,7 +30,7 @@ class MyInfoPictureAdapter(
     var itemClick: ItemClick? = null
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        public var myPicture : ImageButton = itemView.findViewById(R.id.my_ib_picture)
+        var myPicture : ImageButton = itemView.findViewById(R.id.my_ib_picture)
     }
 
 
@@ -40,10 +40,28 @@ class MyInfoPictureAdapter(
         viewType: Int
     ): MyInfoPictureAdapter.MyViewHolder {
         // create a new view
-        val cardView = LayoutInflater.from(parent.context)
+        val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.my_cdv_picture, parent, false)
 
-        return MyViewHolder(cardView)
+        return MyViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val myimgUrl: String = certiList?.get(position)!!.image
+
+        if(itemClick != null)
+        {
+            holder?.myPicture?.setOnClickListener { v ->
+                itemClick?.onClick(v, position)
+            }
+        }
+
+        if (myimgUrl.isNotEmpty()) {
+            Glide.with(holder.myPicture.context)
+                .load(myimgUrl)
+                .error(android.R.drawable.stat_notify_error)
+                .into(holder.myPicture)
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -53,23 +71,5 @@ class MyInfoPictureAdapter(
             size = certiList!!.size
         }
         return size
-    }
-
-    @RequiresApi(Build.VERSION_CODES.Q)
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val myimgUrl: String = certiList?.get(position)!!.image
-
-        if (myimgUrl.isNotEmpty()) {
-            Glide.with(holder.myPicture.context)
-                .load(myimgUrl)
-                .error(android.R.drawable.stat_notify_error)
-                .into(holder.myPicture)
-        }
-        if(itemClick != null)
-        {
-            holder.itemView.setOnClickListener { v ->
-                itemClick?.onClick(v, position)
-            }
-        }
     }
 }

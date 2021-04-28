@@ -221,7 +221,6 @@ class CertifTabFragment : Fragment() {
                     } ?: showError(response.errorBody())
             }
         })
-
     }
 
     private fun showError(error: ResponseBody?) {

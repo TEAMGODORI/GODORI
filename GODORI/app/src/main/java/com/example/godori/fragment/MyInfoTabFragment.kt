@@ -40,14 +40,14 @@ class MyInfoTabFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_my_info_tab, container, false)
 
+        // 마이페이지 서버 연결
+        loadData()
+
         return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        // 마이페이지 서버 연결
-        loadData()
 
         // 피드 사진 recycler view
         viewManager = GridLayoutManager(this.context, 3)
@@ -114,12 +114,12 @@ class MyInfoTabFragment : Fragment() {
                                 my_tv_percent.setText("$percent%")
 
                                 // 이번주 인증 횟수
-                                var count = it.data.join.week_count.toString()
-//                                my_tv_week_count.setText("${count}회")
-                                my_tv_week_count.setText("7회")
+                                var count = it.data.certi_list.size
+                                my_tv_week_count.setText("${count}회")
 
                                 // 사진 어댑터에 데이터 전달
                                 setMyPageAdapter(it.data.certi_list)
+
                             }
                             else -> {
                                 my_tv_percent.setText("-%")
@@ -141,6 +141,7 @@ class MyInfoTabFragment : Fragment() {
     private fun setMyPageAdapter(certiList: List<ResponseMypage.Data.Certi>) {
         val mAdapter = MyInfoPictureAdapter(certiList, context)
         my_rcv_picture.adapter = mAdapter
+        mAdapter.notifyDataSetChanged()
         mAdapter.itemClick = object: MyInfoPictureAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
                 val intent = Intent(activity, CertifTabDetailActivity::class.java)
@@ -149,7 +150,6 @@ class MyInfoTabFragment : Fragment() {
                 startActivity(intent)
             }
         }
-        mAdapter.notifyDataSetChanged()
         my_rcv_picture.setHasFixedSize(true)
     }
 }

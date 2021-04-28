@@ -45,6 +45,9 @@ object GroupRetrofitServiceImpl {
     //인증 - 메인
     val service_ct_tab : CertifRetrofitService = retrofit.create(CertifRetrofitService::class.java)
 
+    //인증 - 상세보기
+    val service_ct_detail : CertifDetail = retrofit.create(CertifDetail::class.java)
+
     // 마이페이지
     val service_mypage : MyPage = retrofit.create(MyPage::class.java)
 }

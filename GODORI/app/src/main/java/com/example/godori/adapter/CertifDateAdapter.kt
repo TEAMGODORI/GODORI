@@ -1,7 +1,9 @@
 package com.example.godori.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.godori.R
+import com.example.godori.activity.CertifTabDetailActivity
 import com.example.godori.data.ResponseCertiTab
 import java.net.URL
 import java.util.*
@@ -20,6 +23,12 @@ class CertifDateAdapter(
     val context: Context?
 ) :
     RecyclerView.Adapter<CertifDateAdapter.ViewHolder>() {
+    interface ItemClick
+    {
+        fun onClick(view: View, position: Int)
+    }
+    var itemClick: ItemClick? = null
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) { //
         var personName: TextView = itemView.findViewById(R.id.personName)
         var certifImg: ImageView = itemView.findViewById(R.id.certifImg)
@@ -38,36 +47,43 @@ class CertifDateAdapter(
 
     //뷰를 그리는 부분
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-//        val bitmap = BitmapFactory.decodeStream(URL(certifList?.get(position)?.image).getContent() as InputStream?)
-//        if(bitmap == null)
-//            holder.certifImg.setImageResource(R.drawable.certif_un)
-//        else
-//            holder.certifImg.setImageBitmap(bitmap)
-//        if (context != null) {
-//            Glide.with(context).load(certifList!![position].image).into(certifImg)
-//        }
-
         val item: ResponseCertiTab.Data = certifList!!.get(position)
-        val url: String = certifList.get(position).image
+        val imgUrl: String = certifList[position].image
+        val userImgUrl: String = certifList[position].user_img
 
-        if (url.length > 0) {
+        if (imgUrl.length > 0) {
             Glide.with(holder.certifImg.context)
-                .load(url)
-                .placeholder(android.R.drawable.progress_indeterminate_horizontal)
+                .load(imgUrl)
                 .error(android.R.drawable.stat_notify_error)
                 .into(holder.certifImg)
 
         } else {
             Glide.with(holder.certifImg.context)
                 .load(R.drawable.certif_un)
-                .placeholder(android.R.drawable.progress_indeterminate_horizontal)
                 .error(android.R.drawable.stat_notify_error)
                 .into(holder.certifImg)
         }
-
         holder.personName.setText(certifList?.get(position)?.user_name)
-        holder.userImg.setImageResource(R.drawable.gr_img_profile_basic)
+
+        if (userImgUrl.length > 0) {
+            Glide.with(holder.userImg.context)
+                .load(userImgUrl)
+                .error(android.R.drawable.stat_notify_error)
+                .into(holder.userImg)
+
+        } else {
+            Glide.with(holder.userImg.context)
+                .load(R.drawable.gr_img_profile_basic)
+                .error(android.R.drawable.stat_notify_error)
+                .into(holder.userImg)
+        }
+
+        if(itemClick != null)
+        {
+            holder?.itemView?.setOnClickListener { v ->
+                itemClick?.onClick(v, position)
+            }
+        }
     }
 
     //리스트의 전체 개수

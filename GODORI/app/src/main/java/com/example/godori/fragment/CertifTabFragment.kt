@@ -2,14 +2,13 @@ package com.example.godori.fragment
 
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -17,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
+import com.example.godori.activity.CertifTabDetailActivity
 import com.example.godori.activity.CertifTabUpload1Activity
 import com.example.godori.adapter.CertifDateAdapter
 import com.example.godori.data.ResponseCertiTab
@@ -163,7 +163,7 @@ class CertifTabFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         uploadBtn1.setOnClickListener {
-            val intent = Intent(getActivity(), CertifTabUpload1Activity::class.java)
+            val intent = Intent(activity, CertifTabUpload1Activity::class.java)
             startActivity(intent)
         }
         val currentTime = Calendar.getInstance().time
@@ -215,10 +215,6 @@ class CertifTabFragment : Fragment() {
 
                         Log.d("CertifTabFragment", data.toString())
 
-//                        Log.d("CertifTabFragment", certiList.toString())
-//                        val isT = response.body()!!.byteStream()
-//                        val bitmap = BitmapFactory.decodeStream(isT)
-
                         //인증한 adapter에 Member 데이터 넣기
                         setCertifAdapter(it.data)
 
@@ -237,6 +233,14 @@ class CertifTabFragment : Fragment() {
     private fun setCertifAdapter(certiList: List<ResponseCertiTab.Data>) {
         val mAdapter = CertifDateAdapter(certiList, context)
         certifRecycler.adapter = mAdapter
+        mAdapter.itemClick = object: CertifDateAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                val intent = Intent(activity, CertifTabDetailActivity::class.java)
+                //인증탭의 인증 이미지의 id 넘겨주기
+                intent.putExtra("certiImgId", certiList[position].id)
+                startActivity(intent)
+            }
+        }
         mAdapter.notifyDataSetChanged()
         certifRecycler.setHasFixedSize(true)
     }

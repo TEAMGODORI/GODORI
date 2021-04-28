@@ -1,6 +1,7 @@
 package com.example.godori
 
 import com.example.godori.Interface.*
+import com.example.godori.data.CertiUploadImage
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -29,6 +30,9 @@ object GroupRetrofitServiceImpl {
 
     // 인증 - 업로드
     val service_ct_upload: CertiUpload = retrofit.create(CertiUpload::class.java)
+
+    // 인증 - 업로드 사진
+    val service_ct_upload_image: CertiUploadImage = retrofit.create(CertiUploadImage::class.java)
 
     // 취향 설정
     val service_taste: TasteSetting = retrofit.create(TasteSetting::class.java)

@@ -2,6 +2,7 @@ package com.example.godori.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
@@ -181,7 +182,7 @@ class CertifTabUpload3Activity : AppCompatActivity() {
 
             val secondIntent = getIntent()
             intent.putExtra("ex_time", secondIntent.getStringExtra("ex_time"))
-            intent.putExtra("images", secondIntent.getSerializableExtra("images")as File)
+            intent.putExtra("imageURI", secondIntent.getStringExtra("imageURI"))
             intent.putExtra("ex_intensity", ex_intensity)
             intent.putExtra("ex_evalu", ex_evalu)
             intent.putExtra("certi_sport", certi_sport)

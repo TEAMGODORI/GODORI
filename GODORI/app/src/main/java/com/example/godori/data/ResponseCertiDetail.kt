@@ -15,6 +15,8 @@ data class ResponseCertiDetail(
         val sports: String,
         val user_id: Int,
         val user_image: String,
-        val user_name: String
+        val user_name: String,
+        val like_count: Int,
+        val is_liked: Boolean
     )
 }

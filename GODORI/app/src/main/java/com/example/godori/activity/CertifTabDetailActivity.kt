@@ -1,18 +1,18 @@
 package com.example.godori.activity
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
 import com.example.godori.data.ResponseCertiDetail
-import com.example.godori.data.ResponseGroupInfo
+import com.example.godori.data.ResponseGroupCreationData
 import kotlinx.android.synthetic.main.activity_certif_tab_detail.*
 import kotlinx.android.synthetic.main.activity_group_info.*
 import kotlinx.android.synthetic.main.activity_group_recruiting.*
@@ -21,10 +21,9 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.net.URI
 
 class CertifTabDetailActivity : AppCompatActivity() {
-    var data : ResponseCertiDetail.Data? = null
+    var data: ResponseCertiDetail.Data? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +37,47 @@ class CertifTabDetailActivity : AppCompatActivity() {
         val certiImgId = intent.extras!!.getInt("certiImgId")
         Log.d("certiImgId", certiImgId.toString())
         loadData(certiImgId)
+
+        // 좋아요 버튼
+        btn_heart.setOnClickListener {
+            // 1. 텍스트 컬러, 좋아요 수 변경
+            if (btn_heart.isChecked) {
+                text_heart_num.setTextColor(Color.parseColor("#61cbf1"))
+                text_heart_num.text =
+                    ((Integer.parseInt((text_heart_num.text).toString()) + 1).toString())
+            } else {
+                text_heart_num.setTextColor(Color.parseColor("#494949"))
+                text_heart_num.text =
+                    ((Integer.parseInt((text_heart_num.text).toString()) - 1).toString())
+            }
+
+            // 2. 서버 연동
+            val call: Call<ResponseGroupCreationData> =
+                GroupRetrofitServiceImpl.service_ct_like.requestList(
+                    userName = "김지현",
+                    certiId = certiImgId
+                )
+            call.enqueue(object : Callback<ResponseGroupCreationData> {
+                override fun onFailure(call: Call<ResponseGroupCreationData>, t: Throwable) {
+                    // 통신 실패 로직
+                }
+
+                @SuppressLint("SetTextI18n")
+                override fun onResponse(
+                    call: Call<ResponseGroupCreationData>,
+                    response: Response<ResponseGroupCreationData>
+                ) {
+                    response.takeIf { it.isSuccessful }
+                        ?.body()
+                        ?.let { it ->
+
+                            Log.v("좋아요", it.message.toString())
+
+                        } ?: showError(response.errorBody())
+                }
+            })
+
+        }
     }
 
     private fun loadData(certiImgId: Int) {
@@ -64,8 +104,20 @@ class CertifTabDetailActivity : AppCompatActivity() {
                         data = response.body()?.data
                         Log.d("GroupRecruitingActivity", data.toString())
 
-                        my_tv_userName.setText(data?.user_name)
+                        my_tv_userName.text = data?.user_name
 //                        my_iv_profile.setImageURI(data?.user_image?.toUri())
+
+                        // 좋아요 갯수
+                        text_heart_num.text = data?.like_count.toString()
+
+                        // 좋아요 눌린 상태면 채운 하트
+                        when (data?.is_liked) {
+                            true -> {
+                                btn_heart.isChecked = true
+                                text_heart_num.setTextColor(Color.parseColor("#61cbf1"))
+                            }
+                            else -> btn_heart.isChecked = false
+                        }
 
                         val certiImgUrl: String = data!!.certi_images
 
@@ -98,13 +150,14 @@ class CertifTabDetailActivity : AppCompatActivity() {
                             textArray[i].setText(sportList[i])
                         }
 
-                        intensity.setText(data?.ex_intensity)
-                        reviews.setText(data?.ex_evalu)
-                        comment.setText(data?.ex_comment)
+                        intensity.text = data?.ex_intensity
+                        reviews.text = data?.ex_evalu
+                        comment.text = data?.ex_comment
                     } ?: showError(response.errorBody())
             }
         })
     }
+
     private fun showError(error: ResponseBody?) {
         val e = error ?: return
         val ob = JSONObject(e.string())

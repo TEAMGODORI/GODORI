@@ -52,6 +52,9 @@ object GroupRetrofitServiceImpl {
     //인증 - 상세보기
     val service_ct_detail : CertifDetail = retrofit.create(CertifDetail::class.java)
 
+    //인증 - 좋아요, 좋아요 취소
+    val service_ct_like : CertiLike = retrofit.create(CertiLike::class.java)
+
     // 마이페이지
     val service_mypage : MyPage = retrofit.create(MyPage::class.java)
 }

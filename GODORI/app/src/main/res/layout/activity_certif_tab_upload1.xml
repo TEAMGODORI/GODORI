@@ -58,7 +58,7 @@
                     android:layout_width="274dp"
                     android:layout_height="274dp"
                     android:background="@drawable/ct_btn_photo"
-                    android:src="@drawable/ct_btn_add_photo"
+                    android:src="@drawable/ct_img_add_photo"
                     android:scaleType="fitXY" />
 
                 <!--        <ImageView-->
@@ -91,7 +91,7 @@
                     android:layout_width="274dp"
                     android:layout_height="274dp"
                     android:background="@drawable/ct_btn_photo"
-                    android:src="@drawable/ct_btn_add_photo"
+                    android:src="@drawable/ct_btn_add_upload"
                     android:scaleType="fitXY" />
 
                 <TextView

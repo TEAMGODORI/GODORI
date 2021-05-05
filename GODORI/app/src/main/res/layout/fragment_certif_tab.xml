@@ -34,14 +34,13 @@
             android:textColor="#ffffff"
             android:textSize="12dp" />
 
-        <ImageButton
+        <Button
             android:id="@+id/uploadBtn1"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_marginLeft="280dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/button_plus"
-            android:textSize="30dp" />
+            android:background="@drawable/ct_btn_add_upload"/>
     </RelativeLayout>
 
 
@@ -55,16 +54,6 @@
             android:layout_height="match_parent"
             android:background="@color/white"
             android:orientation="vertical">
-
-<!--            <FrameLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content">-->
-
-                <!--            <ImageButton-->
-                <!--                android:layout_width="30dp"-->
-                <!--                android:layout_height="30dp"-->
-                <!--                android:layout_marginLeft="140dp"-->
-                <!--                android:layout_marginTop="14dp" />-->
 
                 <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                     android:id="@+id/cal"
@@ -81,9 +70,6 @@
                     app:mcv_tileSize="54dp"
                     app:mcv_weekDayTextAppearance="@style/customTextViewFontStyle"
                     tools:ignore="MissingConstraints" />
-
-<!--            </FrameLayout>-->
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -93,7 +79,7 @@
                 android:id="@+id/calendarText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
+                android:paddingLeft="22dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:includeFontPadding="false"
@@ -104,9 +90,9 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/certifRecycler"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="22dp"
                 android:background="@color/white"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
         </LinearLayout>

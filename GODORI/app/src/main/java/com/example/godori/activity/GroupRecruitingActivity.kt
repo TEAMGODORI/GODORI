@@ -18,8 +18,10 @@ import androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
 import com.example.godori.adapter.GroupRecruitingInfoAdapter
+import com.example.godori.adapter.MyInfoPictureAdapter
 import com.example.godori.data.ResponseGroupRecruit
 import kotlinx.android.synthetic.main.activity_group_recruiting.*
+import kotlinx.android.synthetic.main.fragment_my_info_tab.*
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -61,66 +63,6 @@ class GroupRecruitingActivity : AppCompatActivity() {
         }
 
         loadData()
-
-        recyclerView.addOnItemTouchListener(
-            RecyclerTouchListener(
-                applicationContext,
-                recyclerView,
-                object : ClickListener {
-                    override fun onClick(view: View?, position: Int) {
-                        val groupId = groupList!!.get(position).id
-
-                        val intent = Intent(baseContext, GroupInfoActivity::class.java)
-                        intent.putExtra("groupId", groupId)
-                        startActivity(intent)
-                    }
-
-                    override fun onLongClick(view: View?, position: Int) {}
-                })
-        )
-
-    }
-
-    interface ClickListener {
-        fun onClick(view: View?, position: Int)
-        fun onLongClick(view: View?, position: Int)
-    }
-
-    class RecyclerTouchListener(
-        context: Context?,
-        recyclerView: RecyclerView,
-        private val clickListener: ClickListener?
-    ) :
-        OnItemTouchListener {
-        private val gestureDetector: GestureDetector
-        override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-            val child = rv.findChildViewUnder(e.x, e.y)
-            if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
-                clickListener.onClick(child, rv.getChildAdapterPosition(child))
-            }
-            return false
-        }
-
-        override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {}
-        override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
-
-        init {
-            gestureDetector = GestureDetector(context, object : SimpleOnGestureListener() {
-                override fun onSingleTapUp(e: MotionEvent): Boolean {
-                    return true
-                }
-
-                override fun onLongPress(e: MotionEvent) {
-                    val child = recyclerView.findChildViewUnder(e.x, e.y)
-                    if (child != null && clickListener != null) {
-                        clickListener.onLongClick(
-                            child,
-                            recyclerView.getChildAdapterPosition(child)
-                        )
-                    }
-                }
-            })
-        }
     }
 
     private fun loadData() {
@@ -150,14 +92,21 @@ class GroupRecruitingActivity : AppCompatActivity() {
 
                         //recyclerView adapter에 Group 데이터 넣기
                         // 그룹 정보 recycler view
-                        viewAdapter = GroupRecruitingInfoAdapter(
+                        val mAdapter = GroupRecruitingInfoAdapter(
                             groupList!!, this@GroupRecruitingActivity
                         )
-                        viewAdapter.notifyDataSetChanged()
-                        recyclerView = gr_rcv_recruiting_info.apply {
-                            setHasFixedSize(true)
-                            adapter = viewAdapter
+                        gr_rcv_recruiting_info.adapter = mAdapter
+                        mAdapter.itemClick = object : GroupRecruitingInfoAdapter.ItemClick {
+                            override fun onClick(view: View, position: Int) {
+                                val groupId = groupList!![position].id
+
+                                val intent = Intent(baseContext, GroupInfoActivity::class.java)
+                                intent.putExtra("groupId", groupId)
+                                startActivity(intent)
+                            }
                         }
+                        mAdapter.notifyDataSetChanged()
+                        gr_rcv_recruiting_info.setHasFixedSize(true)
 
                         //recruit에 Group 데이터 넣기
                         gr_tv_recruiting_groupNum.setText(it.data.group_list.size.toString() + "건")
@@ -197,16 +146,5 @@ class GroupRecruitingActivity : AppCompatActivity() {
         val ob = JSONObject(e.string())
         Toast.makeText(this, ob.getString("message"), Toast.LENGTH_SHORT).show()
     }
-
-//private fun setGroupAdapter(groupList: List<ResponseGroupRecruit.Data.Group>) {
-//    gr_rcv_recruiting_info.layoutManager = LinearLayoutManager(
-//        this,
-//        LinearLayoutManager.VERTICAL,
-//        false
-//    )
-//    val mAdapter = GroupRecruitingInfoAdapter(groupList, this)
-//    gr_rcv_recruiting_info.adapter = mAdapter
-//    gr_rcv_recruiting_info.setHasFixedSize(true)
-//}
 
 }

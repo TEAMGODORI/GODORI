@@ -10,20 +10,16 @@ import com.example.godori.R
 import com.example.godori.adapter.TabBarViewPagerAdapter
 import com.example.godori.data.ResponseGroupAfterTab
 import kotlinx.android.synthetic.main.activity_tab_bar.*
-import kotlinx.android.synthetic.main.fragment_certif_tab.*
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.properties.Delegates
 
 
 class TabBarActivity : AppCompatActivity() {
     private lateinit var viewpagerAdapter: TabBarViewPagerAdapter
-//    private lateinit var certifAdapter: CertifTabAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,10 +52,6 @@ class TabBarActivity : AppCompatActivity() {
                     } ?: showError(response.errorBody())
             }
         })
-
-
-//        certifAdapter = CertifTabAdapter(supportFragmentManager)
-//        tabbar_viewpager.adapter = certifAdapter
 
         tabbar_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}

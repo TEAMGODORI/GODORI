@@ -2,6 +2,7 @@ package com.example.godori
 
 import com.example.godori.Interface.*
 import com.example.godori.data.CertiUploadImage
+import com.example.godori.fragment.GroupTabFragment
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

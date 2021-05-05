@@ -6,6 +6,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.*
 import android.net.Uri
@@ -31,6 +32,8 @@ import kotlinx.android.synthetic.main.activity_certif_tab_upload4.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload4.view.*
 import okhttp3.MultipartBody
 import java.io.*
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 import java.text.SimpleDateFormat
 import java.util.*
 

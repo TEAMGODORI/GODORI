@@ -80,7 +80,7 @@ class CertifDateAdapter(
 
         if(itemClick != null)
         {
-            holder?.itemView?.setOnClickListener { v ->
+            holder?.certifImg?.setOnClickListener { v ->
                 itemClick?.onClick(v, position)
             }
         }

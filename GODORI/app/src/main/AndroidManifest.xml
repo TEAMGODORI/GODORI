@@ -10,20 +10,15 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 카메라기능이 무조건적으로 필요하지 않을 경우 -->
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_ood"
         android:label="오늘은 운동해야지"
         android:roundIcon="@mipmap/ic_ood_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic = "true"
-        android:theme="@style/Theme.GODORI">
-        <activity android:name=".activity.GroupInfoAfterActivity"></activity>
+        android:theme="@style/Theme.GODORI"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activity.GroupInfoAfterActivity"/>
         <activity android:name=".activity.TasteSettingActivity" />
         <activity android:name=".activity.GroupSearchActivity" />
         <activity android:name=".activity.GroupCreation4Activity" />
@@ -43,7 +38,6 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -53,10 +47,10 @@
         <activity android:name=".activity.CertifTabUpload3Activity" />
         <activity android:name=".activity.CertifTabUpload4Activity" />
         <activity android:name=".activity.CertifTabDetailActivity" />
-        <activity android:name=".activity.TabBarActivity" /> <!-- 카메라를 위함 -->
+        <activity android:name=".activity.TabBarActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat" />
+            android:theme="@style/Base.Theme.AppCompat" /> <!-- 카메라를 위함 -->
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -65,8 +59,21 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/file_paths"/>
         </provider>
-    </application>
 
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="oauth"
+                    android:scheme="kakaoe200b5b18d93a80365a294b563febe4b"/>
+            </intent-filter>
+        </activity>
+
+    </application>
 </manifest>

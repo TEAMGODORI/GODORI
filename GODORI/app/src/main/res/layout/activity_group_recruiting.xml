@@ -254,14 +254,6 @@
             </LinearLayout>
         </HorizontalScrollView>
 
-        <!--            <androidx.recyclerview.widget.RecyclerView-->
-        <!--                android:id="@+id/gr_rcv_recruiting_taste"-->
-        <!--                android:layout_height="match_parent"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:paddingVertical="18dp"-->
-        <!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">-->
-        <!--            </androidx.recyclerview.widget.RecyclerView>-->
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="42dp"

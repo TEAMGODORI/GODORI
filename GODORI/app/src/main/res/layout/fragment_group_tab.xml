@@ -47,7 +47,7 @@
                 android:text="바빠요?\n그래도\n운동은 해야죠"
                 android:textColor="#000000"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:fontFamily="@font/notosanskr_bold" />
 
             <ImageView
                 android:layout_width="152dp"
@@ -72,6 +72,7 @@
             android:layout_marginTop="22dp"
             android:includeFontPadding="false"
             android:text="찾는 그룹이 있나요?"
+            android:fontFamily="@font/notosanskr_medium"
             android:textColor="#000000"
             android:textSize="18sp" />
 
@@ -79,17 +80,18 @@
             android:id="@+id/gr_btn_main_search"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="22dp"
-            android:scaleType="fitCenter"
+            android:layout_marginTop="14dp"
+            android:scaleType="fitXY"
             android:background="@color/transparent"
             android:src="@drawable/gr_img_main_search"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="32dp"
             android:includeFontPadding="false"
             android:text="그룹 만들래요!"
+            android:fontFamily="@font/notosanskr_medium"
             android:textColor="#000000"
             android:textSize="18sp" />
 
@@ -97,16 +99,16 @@
             android:id="@+id/gr_btn_main_creation"
             android:layout_width="match_parent"
             android:layout_height="124dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="14dp"
             android:elevation="4dp"
-            android:padding="0sp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/gr_img_main_creation" />
+            android:scaleType="fitXY"
+            android:src="@drawable/gr_btn_go_to_create"
+            android:background="@color/transparent"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp">
+            android:layout_marginTop="32dp">
 
             <TextView
                 android:id="@+id/gr_btn_main_more"
@@ -114,6 +116,7 @@
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
                 android:text="이런 그룹은 어때요?"
+                android:fontFamily="@font/notosanskr_medium"
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
@@ -130,7 +133,7 @@
                 android:textSize="14dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="14dp"
                 android:layout_below="@+id/btnMoreGroup"
                 android:id="@+id/gr_rcv_main_more"
                 android:layout_width="match_parent"

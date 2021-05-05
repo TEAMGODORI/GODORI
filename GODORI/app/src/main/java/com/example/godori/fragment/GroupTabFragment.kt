@@ -1,19 +1,36 @@
 package com.example.godori.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.godori.*
 import com.example.godori.activity.GroupCreation1Activity
+import com.example.godori.activity.GroupInfoActivity
 import com.example.godori.activity.GroupRecruitingActivity
 import com.example.godori.activity.GroupSearchActivity
 import com.example.godori.adapter.GroupMoreAdapter
+import com.example.godori.adapter.GroupRecruitingInfoAdapter
+import com.example.godori.adapter.GroupTodayCertiAdapter
+import com.example.godori.data.ResponseGroupAfterTab
+import com.example.godori.data.ResponseGroupRecruit
+import kotlinx.android.synthetic.main.activity_group_recruiting.*
+import kotlinx.android.synthetic.main.fragment_group_after_tab.*
 import kotlinx.android.synthetic.main.fragment_group_tab.*
+import okhttp3.ResponseBody
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 
@@ -22,6 +39,9 @@ class GroupTabFragment : Fragment() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
+    var dataList: ResponseGroupRecruit? = null
+    var groupList: List<ResponseGroupRecruit.Data.Group>? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +49,7 @@ class GroupTabFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_group_tab, container, false)
 
+        loadData()
         return view
     }
 
@@ -54,7 +75,7 @@ class GroupTabFragment : Fragment() {
 
         // 모집 중인 그룹 - 리사이클러 뷰
         viewManager = GridLayoutManager(activity, 2)
-        viewAdapter = GroupMoreAdapter()
+        viewAdapter = GroupMoreAdapter(groupList, context)
         recyclerView = gr_rcv_main_more.apply {
             setHasFixedSize(true)
             // use a linear layout manager
@@ -78,4 +99,58 @@ class GroupTabFragment : Fragment() {
             startActivity(intent)
         }
     }
+
+    private fun loadData() {
+        //Callback 등록하여 통신 요청
+        val call: Call<ResponseGroupRecruit> =
+            GroupRetrofitServiceImpl.service_gr_recruit.requestList(
+                userName = "김지현" //수정하기
+            )
+        call.enqueue(object : Callback<ResponseGroupRecruit> {
+            override fun onFailure(call: Call<ResponseGroupRecruit>, t: Throwable) {
+                // 통신 실패 로직
+            }
+
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(
+                call: Call<ResponseGroupRecruit>,
+                response: Response<ResponseGroupRecruit>
+            ) {
+                response.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let { it ->
+                        // do something
+                        dataList = response.body()
+                        groupList = dataList!!.data.group_list
+                        Log.d("GroupTabFragment", groupList.toString())
+
+                        //어댑터에 데이터 넣기
+                        setGroupMoreAdapter(groupList!!)
+
+                    } ?: showError(response.errorBody())
+            }
+        })
+    }
+
+    private fun showError(error: ResponseBody?) {
+        val e = error ?: return
+        val ob = JSONObject(e.string())
+        Toast.makeText(context, ob.getString("message"), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setGroupMoreAdapter(groupList: List<ResponseGroupRecruit.Data.Group>) {
+        val mAdapter = GroupMoreAdapter(groupList, context)
+        gr_rcv_main_more.adapter = mAdapter
+        mAdapter.itemClick = object : GroupMoreAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                val groupId = groupList!![position].id
+                val intent = Intent(activity, GroupInfoActivity::class.java)
+                intent.putExtra("groupId", groupId)
+                startActivity(intent)
+            }
+        }
+        mAdapter.notifyDataSetChanged()
+        gr_rcv_main_more.setHasFixedSize(true)
+    }
+
 }

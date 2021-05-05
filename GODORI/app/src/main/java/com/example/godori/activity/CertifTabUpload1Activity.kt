@@ -4,9 +4,9 @@ import android.Manifest.permission.CAMERA
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.*
 import android.net.Uri
@@ -14,18 +14,14 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import java.io.IOException
-import java.nio.file.Files
-import java.util.Arrays
+import android.util.Base64
 import android.util.Log
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.godori.R
@@ -35,12 +31,10 @@ import kotlinx.android.synthetic.main.activity_certif_tab_upload1.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload2.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload4.*
 import kotlinx.android.synthetic.main.activity_certif_tab_upload4.view.*
-import okhttp3.MediaType
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import java.io.*
-import java.net.URI
-import java.nio.file.Paths
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -422,16 +416,17 @@ class CertifTabUpload1Activity : AppCompatActivity() {
             CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
                 //그후, 이곳으로 들어와 RESULT_OK 상태라면 이미지 Uri를 결과 Uri로 저장!
                 val result = CropImage.getActivityResult(data)
-                if(resultCode == Activity.RESULT_OK){
+                if (resultCode == Activity.RESULT_OK) {
                     result.uri?.let {
                         Img_Upload1.setImageBitmap(result.bitmap)
                         Img_Upload1.setImageURI(result.uri)
                         photoURI = result.uri
 
                     }
-                }else if(resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE){
+                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                     val error = result.error
-                    Toast.makeText(this@CertifTabUpload1Activity, error.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@CertifTabUpload1Activity, error.message, Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
             else ->{finish()}

@@ -1,34 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="254dp"
-    android:clickable="true"
-    android:focusable="true"
-    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     card_view:cardElevation="0dp"
+    android:background="@color/white"
     card_view:cardPreventCornerOverlap="false">
 
     <RelativeLayout
-        android:layout_width="230dp"
-        android:layout_height="254dp"
-        android:orientation="vertical">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/certifImg"
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:src="@drawable/certif_un"/>
+            android:scaleType="centerCrop"/>
 
         <ImageView
             android:id="@+id/my_iv_profile"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_below="@id/certifImg"
-            android:layout_marginTop="9dp"
             android:layout_marginLeft="5dp"
-            android:background="@drawable/my_ly_iv_profile" />
+            android:layout_marginTop="9dp" />
 
         <TextView
             android:id="@+id/personName"
@@ -39,7 +35,7 @@
             android:layout_marginTop="13dp"
             android:includeFontPadding="false"
             android:text="사용자명"
-            android:textSize="14dp"
-            android:textColor="#3c3c3c"/>
+            android:textColor="#3c3c3c"
+            android:textSize="14dp" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

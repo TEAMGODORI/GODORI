@@ -5,62 +5,87 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
+    android:focusable="true"
+    card_view:cardBackgroundColor="@color/transparent"
     card_view:cardCornerRadius="0dp"
     card_view:cardElevation="0dp"
-    card_view:cardPreventCornerOverlap="false"
-    android:focusable="true"
-    card_view:cardBackgroundColor="@color/transparent">
+    card_view:cardPreventCornerOverlap="false">
 
     <LinearLayout
-        android:layout_marginBottom="42dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="42dp"
         android:orientation="vertical">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/gr_iv_more_title"
             android:layout_width="173dp"
             android:layout_height="173dp"
-            card_view:riv_corner_radius="8dp"
             android:background="@drawable/gr_ly_iv_more_title"
             android:scaleType="centerCrop"
-            android:src="@drawable/gr_img_info_title" />
+            android:src="@drawable/gr_img_info_title"
+            card_view:riv_corner_radius="8dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp">
+            android:layout_marginLeft="7dp">
+
+            <ImageView
+                android:id="@+id/gr_iv_more_member"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/gr_img_member_num" />
+
+
+            <TextView
+                android:id="@+id/gr_tv_more_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@+id/gr_iv_more_member"
+                android:includeFontPadding="false"
+                android:text="13명"
+                android:textColor="@color/main"
+                android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/gr_tv_more_groupName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_below="@+id/gr_tv_more_num"
+                android:layout_marginTop="6dp"
                 android:layout_toRightOf="@+id/gr_iv_creation_title"
                 android:includeFontPadding="false"
+                android:text="고도리"
                 android:textColor="#494949"
                 android:textSize="18sp"
-                android:text="고도리" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/gr_tv_more_groupLine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/gr_tv_more_groupName"
+                android:layout_marginTop="6dp"
                 android:includeFontPadding="false"
+                android:text="우리 건강하자 ....!"
                 android:textColor="#797979"
-                android:layout_marginTop="4dp"
                 android:textSize="14sp"
-                android:textStyle="normal"
-                android:text="헬린이들 집합" />
+                android:textStyle="normal" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/gr_tv_more_groupLine"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/gr_tv_more_exercise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -69,12 +94,13 @@
                     android:letterSpacing="-0.02"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="3dp"
+                    android:text="필테/요가"
                     android:textColor="#797979"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:text="주4회" />
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
 
                 <TextView
+                    android:id="@+id/gr_tv_more_cycle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -84,12 +110,13 @@
                     android:letterSpacing="-0.02"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="3dp"
+                    android:text="주4회"
                     android:textColor="#797979"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:text="중" />
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
 
                 <TextView
+                    android:id="@+id/gr_tv_more_intensity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -99,10 +126,10 @@
                     android:letterSpacing="-0.02"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="3dp"
+                    android:text="중"
                     android:textColor="#797979"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:text="13명" />
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
 
             </LinearLayout>
         </RelativeLayout>

@@ -40,6 +40,9 @@ object GroupRetrofitServiceImpl {
     //그룹 - 가입후 그룹
     val service_gr_after : GroupAfterRetrofitService = retrofit.create(GroupAfterRetrofitService::class.java)
 
+    //그룹 - 가입후 그룹
+    val service_gr_search : GroupSearch = retrofit.create(GroupSearch::class.java)
+
     //그룹 - 가입 전 상세보기
     val service_gr__info : GroupInfoRetrofitService = retrofit.create(GroupInfoRetrofitService::class.java)
 

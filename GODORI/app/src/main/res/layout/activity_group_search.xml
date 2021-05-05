@@ -49,6 +49,7 @@
             android:theme="@style/customTextViewFontStyle"
             android:inputType="text"
             android:maxLines="1"
+            android:backgroundTint="@color/main"
             android:textColorHint="#c1c1c1"
             android:textCursorDrawable="@drawable/gr_ly_creation_cur"
             android:textSize="18dp" />

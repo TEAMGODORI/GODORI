@@ -17,6 +17,7 @@ data class ResponseGroupRecruit(
             val group_name: String,
             val group_sport: String,
             val id: Int,
+            val group_image: String,
             val intro_comment: String,
             val parse_date: String,
             val recruit_num: Int,

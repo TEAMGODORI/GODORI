@@ -21,9 +21,10 @@ allprojects {
 
 //    커스텀 캘린더뷰를 위해 추가 1
         maven { url 'https://jitpack.io' }
+//      카카오톡 로그인을 위해 추가
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
     }
 }
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

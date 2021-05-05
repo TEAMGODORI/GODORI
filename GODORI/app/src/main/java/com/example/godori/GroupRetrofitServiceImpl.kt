@@ -41,6 +41,9 @@ object GroupRetrofitServiceImpl {
     //그룹 - 가입후 그룹
     val service_gr_after : GroupAfterRetrofitService = retrofit.create(GroupAfterRetrofitService::class.java)
 
+    //그룹 - 가입후 그룹
+    val service_gr_search : GroupSearch = retrofit.create(GroupSearch::class.java)
+
     //그룹 - 가입 전 상세보기
     val service_gr__info : GroupInfoRetrofitService = retrofit.create(GroupInfoRetrofitService::class.java)
 
@@ -52,6 +55,9 @@ object GroupRetrofitServiceImpl {
 
     //인증 - 상세보기
     val service_ct_detail : CertifDetail = retrofit.create(CertifDetail::class.java)
+
+    //인증 - 좋아요, 좋아요 취소
+    val service_ct_like : CertiLike = retrofit.create(CertiLike::class.java)
 
     // 마이페이지
     val service_mypage : MyPage = retrofit.create(MyPage::class.java)

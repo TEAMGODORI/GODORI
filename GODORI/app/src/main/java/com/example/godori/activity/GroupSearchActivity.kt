@@ -1,114 +1,116 @@
 package com.example.godori.activity
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import android.speech.RecognizerIntent
-import android.view.View
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.widget.doOnTextChanged
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
+import com.example.godori.adapter.GroupRecruitingInfoAdapter
 import com.example.godori.adapter.GroupSearchFileListAdapter
+import com.example.godori.data.RequestGroupCreationData
+import com.example.godori.data.ResponseGroupCreationData
+import com.example.godori.data.ResponseGroupSearch
+import kotlinx.android.synthetic.main.activity_certif_tab_upload4.*
+import kotlinx.android.synthetic.main.activity_group_search.*
+import okhttp3.ResponseBody
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class GroupSearchActivity : AppCompatActivity() {
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var searchAdapter: GroupSearchFileListAdapter
-    private lateinit var editText: AppCompatEditText
-    private lateinit var noSearchResultsFoundText: TextView
-    private lateinit var sportsList: List<String>
-    private lateinit var clearQueryImageView: ImageView
+
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mAdapter: RecyclerView.Adapter<*>
+    private lateinit var mLayoutManager: RecyclerView.LayoutManager
+
+    lateinit var group_list: List<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_search)
 
-        recyclerView = findViewById(R.id.gr_rcv_search)
-        editText = findViewById(R.id.gr_et_search)
-        noSearchResultsFoundText = findViewById(R.id.no_search_results_found_text)
-        clearQueryImageView = findViewById(R.id.gr_btn_search)
+        // 1. 검색할 리스트
+        group_list = listOf("고도리", "고도오리", "고동스", "고목나무", "박지니", "godori")
 
-        val list: List<String> = listOf("고도리", "고도오리", "고동스", "고목나무", "박지니")
-        attachAdapter(list)
+        val call: Call<ResponseGroupSearch> =
+            GroupRetrofitServiceImpl.service_gr_search.postGroupCreation(
+                "김지현"
+            )
+        call.enqueue(object : Callback<ResponseGroupSearch> {
+            override fun onFailure(call: Call<ResponseGroupSearch>, t: Throwable) {
+                // 통신 실패 로직
+            }
 
-        editText.doOnTextChanged { text, _, _, _ ->
-            val query = text.toString().toLowerCase(Locale.getDefault())
-            filterWithQuery(query)
-            toggleImageButton(query)
+            override fun onResponse(
+                call: Call<ResponseGroupSearch>,
+                response: Response<ResponseGroupSearch>
+            ) {
+                response.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let { it ->
+                        Log.v("그룹 검색: ", "성공!")
+//                        group_list = it.data.group_list
+                    } ?: showError(response.errorBody())
+            }
+        })
+
+        // 2. 리사이클러뷰 build
+        mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        mAdapter = GroupSearchFileListAdapter(group_list, this)
+        mRecyclerView = findViewById<RecyclerView>(R.id.gr_rcv_search).apply {
+            // use this setting to improve performance if you know that changes
+            // in content do not change the layout size of the RecyclerView
+            setHasFixedSize(true)
+            // use a linear layout manager
+            layoutManager = mLayoutManager
+
+            // specify an viewAdapter (see also next example)
+            adapter = mAdapter
         }
 
-        clearQueryImageView.setOnClickListener {
-            editText.setText("")
-        }
-    }
+        // 검색 edittext
+        val textWatcher = object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
 
-    private fun attachAdapter(list: List<String>) {
-        searchAdapter = GroupSearchFileListAdapter(list, this)
-        recyclerView.adapter = searchAdapter
-    }
+            }
 
-    private fun filterWithQuery(query: String) {
-        if (query.isNotEmpty()) {
-            val filteredList: List<String> = onFilterChanged(query)
-            attachAdapter(filteredList)
-            toggleRecyclerView(filteredList)
-        } else if (query.isEmpty()) {
-            attachAdapter(sportsList)
-        }
-    }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
-    private fun onFilterChanged(filterQuery: String): List<String> {
-        val filteredList = ArrayList<String>()
-        for (currentSport in sportsList) {
-            if (filterQuery.toLowerCase(Locale.getDefault()).contains(filterQuery)) {
-                filteredList.add(currentSport)
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                (mAdapter as GroupSearchFileListAdapter)?.filter?.filter(s)
             }
         }
-        return filteredList
+        gr_et_search.addTextChangedListener(textWatcher)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == SPEECH_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val spokenText: String? =
-                data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).let { results ->
-                    results?.get(0)
-                }
-            // Do something with spokenText
-            editText.setText(spokenText)
+    fun filter(text: String) {
+        val filteredList: ArrayList<String> = ArrayList()
+        for (item in group_list) {
+            if (item.contains(text)) {
+                filteredList.add(item)
+            }
         }
-        super.onActivityResult(requestCode, resultCode, data)
+//        mAdapter.filterList(filteredList)
     }
 
-    private fun toggleRecyclerView(sportsList: List<String>) {
-        if (sportsList.isEmpty()) {
-            recyclerView.visibility = View.INVISIBLE
-            noSearchResultsFoundText.visibility = View.VISIBLE
-        } else {
-            recyclerView.visibility = View.VISIBLE
-            noSearchResultsFoundText.visibility = View.INVISIBLE
-        }
-    }
-
-    private fun toggleImageButton(query: String) {
-        if (query.isNotEmpty()) {
-            clearQueryImageView.visibility = View.VISIBLE
-        } else if (query.isEmpty()) {
-            clearQueryImageView.visibility = View.INVISIBLE
-        }
-    }
-
-    fun onSportSelected(string: String?) {
-        val intent = Intent(applicationContext, GroupInfoActivity::class.java)
-        intent.putExtra("DETAIL_SPORTS_DATA", string)
-        startActivity(intent)
-    }
-
-    companion object {
-        const val SPEECH_REQUEST_CODE = 0
+    // 서버 연동관련 에러 함수
+    private fun showError(error: ResponseBody?) {
+        val e = error ?: return
+        val ob = JSONObject(e.string())
+        Toast.makeText(this, ob.getString("message"), Toast.LENGTH_SHORT).show()
     }
 }

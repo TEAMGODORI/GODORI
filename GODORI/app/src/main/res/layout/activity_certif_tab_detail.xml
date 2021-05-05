@@ -299,20 +299,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="59dp">
 
-                <ImageView
-                    android:id="@+id/img_heart"
+                <CheckBox
+                    android:id="@+id/btn_heart"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:button="@null"
+                    android:scaleType="centerCrop"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="18dp"
-                    android:src="@drawable/ct_btn_heart" />
+                    android:background="@drawable/ct_ly_btn_like" />
 
                 <TextView
                     android:id="@+id/text_heart_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="6dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:includeFontPadding="false"
                     android:text="0"
                     android:textColor="#000000"

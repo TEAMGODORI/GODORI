@@ -14,7 +14,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Base64
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -82,41 +81,25 @@ class CertifTabUpload1Activity : AppCompatActivity() {
 
         //다음 화면으로 넘어가기
         next1Btn.setOnClickListener {
-            val intent = Intent(this, CertifTabUpload2Activity::class.java)
-
             // 이미지 파일이 저장
             var bitmap = viewToBitmap(save_img1)
 
-            try {
-                val output = FileOutputStream(
-                    Environment.getExternalStorageDirectory().toString() + "/path/to/file.png"
-                )
-                if(bitmap != null) {
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, output)
-                }
-                // 경로에 있는 사진 저장
-                images = File("/path/to/file.png", "images.png")
-
-//                // file -> byteArray
-//                val path = System.getProperty("user.dir") + "/path/to/file.png"
-//                try {
-//                    imagesByte = images.readBytes()
-//                } catch (e: IOException) {
-//
-//                }
-
-                output.close()
-            } catch (e: FileNotFoundException) {
-                e.printStackTrace()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-
+            val bytes = ByteArrayOutputStream()
+            bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+            val path: String = MediaStore.Images.Media.insertImage(
+                contentResolver,
+                bitmap,
+                "TimeStamp",
+                null
+            )
+            val timestampURI = Uri.parse(path)
+            Log.v("timestampURI", timestampURI.toString())
 
             // 데이터 전달
-            // 사진 (아직 타임스탬프 미적용)
-            intent.putExtra("imageURI", photoURI.toString())
+            val intent = Intent(this, CertifTabUpload2Activity::class.java)
+            intent.putExtra("imageURI", timestampURI.toString())
             Log.v("certi1", photoURI.toString())
+
             // 액티비티 시작
             startActivity(intent)
         }
@@ -338,26 +321,6 @@ class CertifTabUpload1Activity : AppCompatActivity() {
 //                            images = albumFile // images를 다음 인텐트트로 넘김
                             photoURI = data.data
                             albumURI = Uri.fromFile(albumFile)
-
-                            imagesURI = photoURI
-                            Log.v("imageURI", photoURI.toString())
-
-                            // 연주언니 코드 참고
-//                            val options = BitmapFactory.Options()
-//                                val inputStream = contentResolver.openInputStream(albumURI!!)
-//                            val bitmap = BitmapFactory.decodeStream(inputStream, null, options)
-//                            val byteArrayOutputStream =  ByteArrayOutputStream()
-//                            bitmap!!.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream)
-//                            val photoBody =
-//                                RequestBody.create(
-//                                    MediaType.parse("image/jpg"),
-//                                    byteArrayOutputStream.toByteArray()
-//                                )
-//                            part = MultipartBody.Part.createFormData(
-//                                    "image",
-//                                File(albumURI.toString()).name,
-//                                photoBody
-//                            )
 
                             Img_Upload1.setImageURI(photoURI)
                             TimeStampBtn()

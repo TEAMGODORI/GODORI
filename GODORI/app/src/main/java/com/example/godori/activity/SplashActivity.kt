@@ -10,7 +10,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         try {
             Thread.sleep(2000)
-            val intent = Intent(this, TabBarActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -18,6 +18,4 @@ class SplashActivity : AppCompatActivity() {
             return;
         }
     }
-
-
 }

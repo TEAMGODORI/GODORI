@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
 import com.example.godori.data.RequestGroupJoin
@@ -108,6 +109,14 @@ class GroupInfoActivity : AppCompatActivity() {
                         gr_tv_info_percent_num.setText(dataD!!.achive_rate.toString() + "%")
                         //group_sport
                         gr_tv_info_exercise_num.setText(dataD!!.group_sport)
+                        //group_image
+                        if (it.data.group_image != null) {
+                            if (it.data.group_image.isNotEmpty()) {
+                                Glide.with(gr_ll_info.context)
+                                    .load(it.data.group_image)
+                                    .error(android.R.drawable.stat_notify_error)
+                            }
+                        }
 
                     } ?: showError(response.errorBody())
             }

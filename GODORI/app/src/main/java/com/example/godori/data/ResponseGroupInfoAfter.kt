@@ -18,6 +18,7 @@ data class ResponseGroupInfoAfter(
             val group_maker: String,
             val group_name: String,
             val group_sport: String,
+            val group_image: String,
             val id: Int,
             val intro_comment: String,
             val recruit_num: Int,

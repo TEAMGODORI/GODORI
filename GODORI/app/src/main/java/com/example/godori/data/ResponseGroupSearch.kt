@@ -7,28 +7,11 @@ data class ResponseGroupSearch(
     val success: Boolean
 ) {
     data class Data(
-        val user: List<User>,
-        val group_list: List<Group>
+        val group_list: List<searchResult>
     ) {
-        data class Group(
-            val created_at: String,
-            val ex_cycle: Int,
-            val ex_intensity: String,
+        data class searchResult(
             val group_name: String,
-            val group_sport: String,
-            val id: Int,
-            val intro_comment: String,
-            val parse_date: String,
-            val recruit_num: Int,
-            val recruited_num: Int
-        )
-
-        data class User(
-            val ex_cycle: Int,
-            val ex_intensity: String,
-            val id: Int,
-            val name: String,
-            val sports: String
+            val id: Int
         )
     }
 }

@@ -14,6 +14,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/gr_ll_info"
             android:layout_width="match_parent"
             android:layout_height="269dp"
             android:background="@drawable/gr_img_info_title">

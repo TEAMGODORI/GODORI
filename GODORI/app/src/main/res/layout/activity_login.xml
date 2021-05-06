@@ -40,28 +40,19 @@
 <!--        android:background="@drawable/login_rectangle" />-->
 
     <Button
-        android:id="@+id/kakaologinBtn"
+        android:id="@+id/kakao_login_button"
         android:layout_width="284dp"
         android:layout_height="46dp"
-        android:gravity="center"
-        android:text="카카오톡 로그인"
-        android:textSize="16dp"
-        android:textColor="#381f1f"
-        android:background="@drawable/button_login_rectangle"
+        android:background="@drawable/lg_btn_login_kakao"
         android:layout_marginTop="575dp"
         android:layout_centerHorizontal="true"/>
 
     <Button
-        android:id="@+id/googleloginBtn"
+        android:id="@+id/google_login_button"
         android:layout_width="284dp"
         android:layout_height="46dp"
-        android:gravity="center"
-        android:text="카카오톡 로그인"
-        android:textSize="16dp"
-        android:textColor="#381f1f"
-        android:drawableLeft="@drawable/lg_btn_login_kakao"
-        android:background="@drawable/button_login_rectangle"
-        android:layout_below="@+id/kakaologinBtn"
+        android:background="@drawable/lg_btn_login_google"
+        android:layout_below="@+id/kakao_login_button"
         android:layout_marginTop="12dp"
         android:layout_centerHorizontal="true"/>
 

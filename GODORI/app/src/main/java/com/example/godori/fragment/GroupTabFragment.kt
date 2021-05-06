@@ -22,6 +22,7 @@ import com.example.godori.adapter.GroupMoreAdapter
 import com.example.godori.adapter.GroupRecruitingInfoAdapter
 import com.example.godori.adapter.GroupTodayCertiAdapter
 import com.example.godori.data.ResponseGroupAfterTab
+import com.example.godori.data.ResponseGroupBeforeTab
 import com.example.godori.data.ResponseGroupRecruit
 import kotlinx.android.synthetic.main.activity_group_recruiting.*
 import kotlinx.android.synthetic.main.fragment_group_after_tab.*
@@ -39,8 +40,8 @@ class GroupTabFragment : Fragment() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
-    var dataList: ResponseGroupRecruit? = null
-    var groupList: List<ResponseGroupRecruit.Data.Group>? = null
+    var dataList: ResponseGroupBeforeTab? = null
+    var groupList: List<ResponseGroupBeforeTab.Data>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -102,26 +103,26 @@ class GroupTabFragment : Fragment() {
 
     private fun loadData() {
         //Callback 등록하여 통신 요청
-        val call: Call<ResponseGroupRecruit> =
-            GroupRetrofitServiceImpl.service_gr_recruit.requestList(
-                userName = "김지현" //수정하기
+        val call: Call<ResponseGroupBeforeTab> =
+            GroupRetrofitServiceImpl.service_gr_before_list.requestList(
+
             )
-        call.enqueue(object : Callback<ResponseGroupRecruit> {
-            override fun onFailure(call: Call<ResponseGroupRecruit>, t: Throwable) {
+        call.enqueue(object : Callback<ResponseGroupBeforeTab> {
+            override fun onFailure(call: Call<ResponseGroupBeforeTab>, t: Throwable) {
                 // 통신 실패 로직
             }
 
             @SuppressLint("SetTextI18n")
             override fun onResponse(
-                call: Call<ResponseGroupRecruit>,
-                response: Response<ResponseGroupRecruit>
+                call: Call<ResponseGroupBeforeTab>,
+                response: Response<ResponseGroupBeforeTab>
             ) {
                 response.takeIf { it.isSuccessful }
                     ?.body()
                     ?.let { it ->
                         // do something
                         dataList = response.body()
-                        groupList = dataList!!.data.group_list
+                        groupList = dataList!!.data
                         Log.d("GroupTabFragment", groupList.toString())
 
                         //어댑터에 데이터 넣기
@@ -138,7 +139,7 @@ class GroupTabFragment : Fragment() {
         Toast.makeText(context, ob.getString("message"), Toast.LENGTH_SHORT).show()
     }
 
-    private fun setGroupMoreAdapter(groupList: List<ResponseGroupRecruit.Data.Group>) {
+    private fun setGroupMoreAdapter(groupList: List<ResponseGroupBeforeTab.Data>) {
         val mAdapter = GroupMoreAdapter(groupList, context)
         gr_rcv_main_more.adapter = mAdapter
         mAdapter.itemClick = object : GroupMoreAdapter.ItemClick {
@@ -152,5 +153,4 @@ class GroupTabFragment : Fragment() {
         mAdapter.notifyDataSetChanged()
         gr_rcv_main_more.setHasFixedSize(true)
     }
-
 }

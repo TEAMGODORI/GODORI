@@ -23,6 +23,9 @@ object GroupRetrofitServiceImpl {
     // 그룹 - 가입
     val service_gr_join: GroupJoin = retrofit.create(GroupJoin::class.java)
 
+    // 그룹 - 가입 전 취향설정 x 목록
+    val service_gr_before_list: GroupBeforeList = retrofit.create(GroupBeforeList::class.java)
+
     // 그룹 - 그룹후 화면
     val service_gr_after_tab: GroupAfter = retrofit.create(GroupAfter::class.java)
 

@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.godori.R
 import com.example.godori.data.ResponseCertiTab
+import com.example.godori.data.ResponseGroupBeforeTab
 import com.example.godori.data.ResponseGroupRecruit
 import com.makeramen.roundedimageview.RoundedImageView
 
 class GroupMoreAdapter(
-    var groupList: List<ResponseGroupRecruit.Data.Group>?,
+    var groupList: List<ResponseGroupBeforeTab.Data>?,
     val context: Context?
 ) :
     RecyclerView.Adapter<GroupMoreAdapter.MyViewHolder>() {
@@ -57,12 +58,18 @@ class GroupMoreAdapter(
         val groupImgUrl: String? = groupList?.get(position)?.group_image
         holder.groupName.setText(groupList?.get(position)?.group_name)
         if (groupImgUrl != null) {
-            if (groupImgUrl.length > 0) {
+            if (groupImgUrl.isNotEmpty()) {
                 Glide.with(holder.groupPicture.context)
                     .load(groupImgUrl)
                     .error(android.R.drawable.stat_notify_error)
                     .into(holder.groupPicture)
             }
+        }
+        else{
+            Glide.with(holder.groupPicture.context)
+                .load(R.drawable.gr_img_info_title)
+                .error(android.R.drawable.stat_notify_error)
+                .into(holder.groupPicture)
         }
 //        holder.groupPicture.setImageResource(R.drawable.gr_img_info_title)
         holder.num.text = groupList?.get(position)?.recruit_num.toString()

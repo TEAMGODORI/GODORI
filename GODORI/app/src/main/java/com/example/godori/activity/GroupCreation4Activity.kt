@@ -8,7 +8,9 @@ import android.widget.Toast
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
 import com.example.godori.data.RequestGroupCreationData
+import com.example.godori.data.ResponseCertiTab
 import com.example.godori.data.ResponseGroupCreationData
+import kotlinx.android.synthetic.main.activity_certif_tab_detail.*
 import kotlinx.android.synthetic.main.activity_group_creation4.*
 import okhttp3.ResponseBody
 import org.json.JSONObject
@@ -29,6 +31,8 @@ class GroupCreation4Activity : AppCompatActivity() {
     var ex_intensity: String = ""
     var group_sport: String = ""
     var group_maker: String = "김지현"
+
+    var data: ResponseGroupCreationData? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -131,23 +135,29 @@ class GroupCreation4Activity : AppCompatActivity() {
                     response.takeIf { it.isSuccessful }
                         ?.body()
                         ?.let { it ->
+                            data = response.body()
+                            val group_image = data!!.data
+                            //3-1. 데이터 이미지 string 넘기기
+                            val intent = Intent(this@GroupCreation4Activity, GroupCreationCompleteActivity::class.java)
+                            intent.putExtra("group_image", group_image)
+                            Log.d("4Activity", group_image)
+
+                            // 3-2. 데이터 전달 하기
+                            intent.putExtra("group_name", secondIntent.getStringExtra("group_name"))
+                            intent.putExtra("recruit_num", secondIntent.getIntExtra("recruit_num", 0))
+                            intent.putExtra("is_public", secondIntent.getBooleanExtra("is_public", false))
+                            intent.putExtra("intro_comment", secondIntent.getStringExtra("intro_comment"))
+                            intent.putExtra("ex_cycle", ex_cycle)
+                            intent.putExtra("ex_intensity", ex_intensity)
+                            intent.putExtra("group_sport", group_sport)
+
+                            // 4. 다음 액티비티 불러오기
+                            startActivity(intent)
+
                             Log.v("group_creation", "성공!")
                         } ?: showError(response.errorBody())
                 }
             })
-
-            // 3. 데이터 전달 하기
-            val intent = Intent(this, GroupCreationCompleteActivity::class.java)
-            intent.putExtra("group_name", secondIntent.getStringExtra("group_name"))
-            intent.putExtra("recruit_num", secondIntent.getIntExtra("recruit_num", 0))
-            intent.putExtra("is_public", secondIntent.getBooleanExtra("is_public", false))
-            intent.putExtra("intro_comment", secondIntent.getStringExtra("intro_comment"))
-            intent.putExtra("ex_cycle", ex_cycle)
-            intent.putExtra("ex_intensity", ex_intensity)
-            intent.putExtra("group_sport", group_sport)
-
-            // 4. 다음 액티비티 불러오기
-            startActivity(intent)
         }
     }
 

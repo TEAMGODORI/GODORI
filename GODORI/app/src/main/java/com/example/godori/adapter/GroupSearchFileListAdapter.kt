@@ -11,9 +11,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.godori.R
 import com.example.godori.activity.GroupSearchActivity
+import com.example.godori.data.ResponseGroupSearch
 
 class GroupSearchFileListAdapter internal constructor(
-    private var list: List<String>,
+    private var list: List<ResponseGroupSearch.Data.searchResult>,
     private val listener: GroupSearchActivity
 ) : RecyclerView.Adapter<GroupSearchFileListAdapter.SearchViewHolder>(), Filterable {
 
@@ -45,23 +46,6 @@ class GroupSearchFileListAdapter internal constructor(
     override fun getFilter(): Filter {
         return object : Filter() {
             private val filterResults = FilterResults()
-
-            //            override fun performFiltering(constraint: CharSequence?): FilterResults {
-//                searchableList.clear()
-//                if (constraint.isNullOrBlank()) {
-//                    searchableList.addAll(list)
-//                } else {
-//                    val filterPattern = constraint.toString().toLowerCase().trim { it <= ' ' }
-//                    for (item in 0..list.size) {
-//                        if (list[item].toLowerCase().contains(filterPattern)) {
-//                            searchableList.add(list[item])
-//                        }
-//                    }
-//                }
-//                return filterResults.also {
-//                    it.values = searchableList
-//                }
-//            }
             override fun performFiltering(constraint: CharSequence): FilterResults {
                 val charString = constraint.toString()
                 Log.v("charString", charString)
@@ -73,8 +57,8 @@ class GroupSearchFileListAdapter internal constructor(
                 } else {
                     val filteredList = ArrayList<String>()
                     for (name in list) {
-                        if (name.toLowerCase().contains(charString.toLowerCase())) {
-                            filteredList.add(name)
+                        if (name.group_name.toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(name.group_name)
                         }
                     }
                     searchableList = filteredList

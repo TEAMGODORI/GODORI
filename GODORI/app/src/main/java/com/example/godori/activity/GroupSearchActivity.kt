@@ -35,18 +35,17 @@ class GroupSearchActivity : AppCompatActivity() {
     private lateinit var mAdapter: RecyclerView.Adapter<*>
     private lateinit var mLayoutManager: RecyclerView.LayoutManager
 
-    lateinit var group_list: List<String>
+    lateinit var group_list: List<ResponseGroupSearch.Data.searchResult>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_search)
 
         // 1. 검색할 리스트
-        group_list = listOf("고도리", "고도오리", "고동스", "고목나무", "박지니", "godori")
+//        group_list = listOf("고도리", "고도오리", "고동스", "고목나무", "박지니", "godori")
 
         val call: Call<ResponseGroupSearch> =
-            GroupRetrofitServiceImpl.service_gr_search.postGroupCreation(
-                "김지현"
+            GroupRetrofitServiceImpl.service_gr_search.groupSearch(
             )
         call.enqueue(object : Callback<ResponseGroupSearch> {
             override fun onFailure(call: Call<ResponseGroupSearch>, t: Throwable) {
@@ -60,8 +59,10 @@ class GroupSearchActivity : AppCompatActivity() {
                 response.takeIf { it.isSuccessful }
                     ?.body()
                     ?.let { it ->
+                        Log.v("그룹 목록: ", it.data.group_list.toString())
                         Log.v("그룹 검색: ", "성공!")
-//                        group_list = it.data.group_list
+                        group_list = it.data.group_list
+                        recycler()
                     } ?: showError(response.errorBody())
             }
         })
@@ -75,19 +76,18 @@ class GroupSearchActivity : AppCompatActivity() {
             setHasFixedSize(true)
             // use a linear layout manager
             layoutManager = mLayoutManager
-
             // specify an viewAdapter (see also next example)
             adapter = mAdapter
         }
 
-        // 검색 edittext
+        // 검색 edit text
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
+                
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -100,8 +100,8 @@ class GroupSearchActivity : AppCompatActivity() {
     fun filter(text: String) {
         val filteredList: ArrayList<String> = ArrayList()
         for (item in group_list) {
-            if (item.contains(text)) {
-                filteredList.add(item)
+            if (item.group_name.contains(text)) {
+                filteredList.add(item.group_name)
             }
         }
 //        mAdapter.filterList(filteredList)
@@ -111,6 +111,23 @@ class GroupSearchActivity : AppCompatActivity() {
     private fun showError(error: ResponseBody?) {
         val e = error ?: return
         val ob = JSONObject(e.string())
+        Log.v("에러발생", ob.toString())
         Toast.makeText(this, ob.getString("message"), Toast.LENGTH_SHORT).show()
+    }
+
+    // 리사이클러 build
+    private fun recycler(){
+        mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        mAdapter = GroupSearchFileListAdapter(group_list, this)
+        mRecyclerView = findViewById<RecyclerView>(R.id.gr_rcv_search).apply {
+            // use this setting to improve performance if you know that changes
+            // in content do not change the layout size of the RecyclerView
+            setHasFixedSize(true)
+            // use a linear layout manager
+            layoutManager = mLayoutManager
+
+            // specify an viewAdapter (see also next example)
+            adapter = mAdapter
+        }
     }
 }

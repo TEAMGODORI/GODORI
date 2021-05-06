@@ -4,14 +4,10 @@ import com.example.godori.data.RequestGroupCreationData
 import com.example.godori.data.ResponseGroupCreationData
 import com.example.godori.data.ResponseGroupSearch
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface GroupSearch {
-    @POST("/group/join/{userName}")
-    fun postGroupCreation(
-        @Path("userName") userName: String
+    @GET("/group")
+    fun groupSearch(
     ): Call<ResponseGroupSearch>
 }

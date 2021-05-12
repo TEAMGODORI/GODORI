@@ -13,7 +13,7 @@
         android:layout_height="64dp">
 
         <ImageView
-            android:id="@+id/backBtn1"
+            android:id="@+id/setting_btn_back"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:src="@drawable/gr_btn_back_black" />

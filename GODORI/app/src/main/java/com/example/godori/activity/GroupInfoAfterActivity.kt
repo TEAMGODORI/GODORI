@@ -2,15 +2,21 @@ package com.example.godori.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
 import com.example.godori.data.ResponseGroupCreationData
 import com.example.godori.data.ResponseGroupInfoAfter
 import com.example.godori.fragment.GroupInfo1Flagment
 import com.example.godori.fragment.GroupInfo2Fragment
+import kotlinx.android.synthetic.main.activity_group_info.*
 import kotlinx.android.synthetic.main.activity_group_info_after.*
 import kotlinx.android.synthetic.main.fragment_group_info1.*
 import okhttp3.ResponseBody
@@ -31,6 +37,11 @@ class GroupInfoAfterActivity : AppCompatActivity() {
 
         val extras = intent.extras
         val groupId = extras!!.getInt("groupId")
+
+        // 이전
+        gr_btn_info_after_back.setOnClickListener {
+            onBackPressed()
+        }
 
         // 그룹, 그룹원 정보 - FrameLayout
         supportFragmentManager.beginTransaction()
@@ -116,6 +127,23 @@ class GroupInfoAfterActivity : AppCompatActivity() {
                         gr_tv_info_after_title_startdate.setText(groupData!!.created_at)
                         gr_tv_info_after_group_maker.setText(groupData!!.group_maker)
 
+                        //group_image
+                        val group_image = it.data.group_detail.group_image
+                        @GlideModule
+                        if (group_image != null) {
+                            if (group_image.isNotEmpty()) {
+                                Glide.with(this@GroupInfoAfterActivity)
+                                    .load(group_image)
+                                    .error(android.R.drawable.stat_notify_error)
+                                    .into(gr_iv_info_img_after)
+
+                            } else {
+                                Glide.with(this@GroupInfoAfterActivity)
+                                    .load(R.drawable.gr_img_info_title)
+                                    .error(android.R.drawable.stat_notify_error)
+                                    .into(gr_iv_info_img)
+                            }
+                        }
                     } ?: showError(response.errorBody())
             }
         })

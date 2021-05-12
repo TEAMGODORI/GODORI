@@ -22,6 +22,11 @@ class GroupCreation3Activity : AppCompatActivity() {
         val line: EditText = findViewById(R.id.gr_et_creation3_line)
         var lineS = line.text.toString()
 
+        // 이전
+        back.setOnClickListener {
+            onBackPressed()
+        }
+
         // editText 글자수 세기 (num 변경 & 다음 버튼 색 변경)
         var textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {

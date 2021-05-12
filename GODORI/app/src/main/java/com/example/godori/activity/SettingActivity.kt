@@ -15,6 +15,10 @@ class SettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
 
+        setting_btn_back.setOnClickListener {
+            onBackPressed()
+        }
+
         logout_layout.setOnClickListener {
             UserApiClient.instance.logout { error ->
                 if (error != null) {

@@ -2,38 +2,51 @@ package com.example.godori.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.annotation.GlideModule
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
-import com.example.godori.data.RequestGroupJoin
 import com.example.godori.data.ResponseGroupCreationData
 import com.example.godori.data.ResponseGroupInfo
+import kotlinx.android.synthetic.main.activity_group_creation_complete.*
 import kotlinx.android.synthetic.main.activity_group_info.*
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.IOException
+import java.net.URL
+
 
 class GroupInfoActivity : AppCompatActivity() {
 
-    var data : ResponseGroupInfo? = null
-    var dataD : ResponseGroupInfo.Data? = null
+    var data: ResponseGroupInfo? = null
+    var dataD: ResponseGroupInfo.Data? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_info)
 
-        var group_id : Int
+        var group_id: Int
         val extras = intent.extras
         group_id = extras!!.getInt("groupId")
 
+        // 이전
+        gr_btn_info_back.setOnClickListener {
+            onBackPressed()
+        }
+
         // 참여하기 버튼
-        gr_btn_join_recruiting.setOnClickListener{
+        gr_btn_join_recruiting.setOnClickListener {
             val call: Call<ResponseGroupCreationData> =
                 GroupRetrofitServiceImpl.service_gr_join.requestList(
                     userName = "김지현", // 수정하기
@@ -84,7 +97,6 @@ class GroupInfoActivity : AppCompatActivity() {
                         data = response.body()
                         Log.d("GroupRecruitingActivity", data.toString())
                         dataD = data!!.data
-                        Log.d("GroupRecruitingActivity", dataD.toString())
 
                         //group_sport
                         gr_tv_info_title_exercise.setText(dataD!!.group_sport)
@@ -110,18 +122,25 @@ class GroupInfoActivity : AppCompatActivity() {
                         //group_sport
                         gr_tv_info_exercise_num.setText(dataD!!.group_sport)
                         //group_image
-                        if (it.data.group_image != null) {
-                            if (it.data.group_image.isNotEmpty()) {
-                                Glide.with(gr_ll_info.context)
-                                    .load(it.data.group_image)
+                        val group_image = it.data.group_image
+                        @GlideModule
+                        if (group_image != null) {
+                            if (group_image.isNotEmpty()) {
+                                Glide.with(this@GroupInfoActivity)
+                                    .load(group_image)
                                     .error(android.R.drawable.stat_notify_error)
+                                    .into(gr_iv_info_img)
+
+                            } else {
+                                Glide.with(this@GroupInfoActivity)
+                                    .load(R.drawable.gr_img_info_title)
+                                    .error(android.R.drawable.stat_notify_error)
+                                    .into(gr_iv_info_img)
                             }
                         }
-
-                    } ?: showError(response.errorBody())
+                    }
             }
         })
-
     }
 
     private fun showError(error: ResponseBody?) {

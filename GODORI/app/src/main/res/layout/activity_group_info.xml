@@ -13,11 +13,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/gr_ll_info"
             android:layout_width="match_parent"
-            android:layout_height="269dp"
-            android:background="@drawable/gr_img_info_title">
+            android:layout_height="269dp">
+
+            <ImageView
+                android:id="@+id/gr_iv_info_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/gr_img_info_title" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/btnRecruitingBack"
@@ -25,13 +31,14 @@
                 android:layout_height="54dp">
 
                 <ImageButton
+                    android:id="@+id/gr_btn_info_back"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="15dp"
                     android:background="@drawable/gr_btn_back"
                     android:gravity="center" />
             </androidx.appcompat.widget.Toolbar>
-        </LinearLayout>
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

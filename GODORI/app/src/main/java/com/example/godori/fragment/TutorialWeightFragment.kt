@@ -9,8 +9,6 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatRadioButton
 import com.example.godori.R
 import kotlinx.android.synthetic.main.activity_certif_tab_upload2.*
-import kotlinx.android.synthetic.main.fragment_tutorial_height.*
-import kotlinx.android.synthetic.main.fragment_tutorial_height.backBtn1
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,20 +59,5 @@ class TutorialWeightFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
-    }
-
-    //라디오 버튼 글자 색상
-    fun onRadioButtonClicked(view: View) {
-        val isSelected = (view as AppCompatRadioButton).isChecked
-        when (view.id) {
-            R.id.openRbtn -> if (isSelected) {
-                openRbtn.setTextColor(Color.WHITE)
-                unopenRbtn.setTextColor(Color.parseColor("#677BF0"))
-            }
-            R.id.unopenRbtn -> if (isSelected) {
-                unopenRbtn.setTextColor(Color.WHITE)
-                openRbtn.setTextColor(Color.parseColor("#677BF0"))
-            }
-        }
     }
 }

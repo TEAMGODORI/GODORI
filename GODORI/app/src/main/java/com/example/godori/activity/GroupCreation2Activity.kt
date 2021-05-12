@@ -24,6 +24,11 @@ class GroupCreation2Activity : AppCompatActivity() {
         val num: TextView = findViewById(R.id.gr_et_creation2_num)
         var numS = num.text.toString()
 
+        // 이전
+        back.setOnClickListener {
+            onBackPressed()
+        }
+
         // switch on/off
         switch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
@@ -43,9 +48,11 @@ class GroupCreation2Activity : AppCompatActivity() {
                 next.isEnabled = true
                 recruit_num = Integer.parseInt(num.text.toString())
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 next.isEnabled = true
             }
@@ -57,10 +64,9 @@ class GroupCreation2Activity : AppCompatActivity() {
             // 이름 2글자 이상 filter
             numS = num.text.toString()
             var numI = Integer.parseInt(numS)
-            if (numI>20){
+            if (numI > 20) {
                 Toast.makeText(this, "그룹 인원은 20인 이하 가능합니다.", Toast.LENGTH_SHORT).show()
-            }
-            else if (numI<2){
+            } else if (numI < 2) {
                 Toast.makeText(this, "그룹 인원은 2인 이상 가능합니다.", Toast.LENGTH_SHORT).show()
             } else {
                 val intent = Intent(this, GroupCreation3Activity::class.java)

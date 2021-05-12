@@ -36,9 +36,9 @@ class CertifTabUpload3Activity : AppCompatActivity() {
         setContentView(R.layout.activity_certif_tab_upload3)
 
         //백버튼 눌렀을 때
-//        backBtn3.setOnClickListener {
-//            onBackPressed()
-//        }
+        backBtn3.setOnClickListener {
+            onBackPressed()
+        }
 
         // 운동 종목
         exercise_Btn1.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -168,13 +168,6 @@ class CertifTabUpload3Activity : AppCompatActivity() {
             }
         }
 
-
-        // 이전
-//        backBtn3.setOnClickListener {
-//            //백버튼 눌렀을 때
-//            onBackPressed()
-//        }
-
         // 다음
         next3Btn.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, CertifTabUpload4Activity::class.java)
@@ -191,10 +184,4 @@ class CertifTabUpload3Activity : AppCompatActivity() {
             startActivity(intent)
         })
     }
-
-    // 뒤로가기 함수
-//    override fun onBackPressed() {
-//        startActivity(Intent(this, CertifTabUpload2Activity::class.java))
-//        finish()
-//    }
 }

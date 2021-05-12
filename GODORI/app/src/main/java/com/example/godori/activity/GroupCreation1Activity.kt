@@ -71,9 +71,4 @@ class GroupCreation1Activity : AppCompatActivity() {
             onBackPressed()
         }
     }
-    // 뒤로가기 함수
-    override fun onBackPressed() {
-        startActivity(Intent(this, TabBarActivity::class.java))
-        finish()
-    }
 }

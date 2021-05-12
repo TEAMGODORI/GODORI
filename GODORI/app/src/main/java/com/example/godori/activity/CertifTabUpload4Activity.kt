@@ -50,9 +50,9 @@ class CertifTabUpload4Activity : AppCompatActivity() {
         setContentView(R.layout.activity_certif_tab_upload4)
 
         //백 버튼 눌렀을 때
-//        backBtn3.setOnClickListener {
-//            onBackPressed()
-//        }
+        backBtn4.setOnClickListener {
+            onBackPressed()
+        }
 
         // 코멘트에 textWatcher
         val textWatcher = object : TextWatcher {
@@ -202,10 +202,4 @@ class CertifTabUpload4Activity : AppCompatActivity() {
 //        val ob = JSONObject(e.string())
 //        Toast.makeText(this, ob.getString("message"), Toast.LENGTH_SHORT).show()
     }
-
-    // 뒤로가기 함수
-//    override fun onBackPressed() {
-//        startActivity(Intent(this, CertifTabUpload4Activity::class.java))
-//        finish()
-//    }
 }

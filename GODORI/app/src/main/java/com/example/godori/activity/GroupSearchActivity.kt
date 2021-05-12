@@ -1,9 +1,11 @@
 package com.example.godori.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -35,15 +37,18 @@ class GroupSearchActivity : AppCompatActivity() {
     private lateinit var mAdapter: RecyclerView.Adapter<*>
     private lateinit var mLayoutManager: RecyclerView.LayoutManager
 
-    lateinit var group_list: List<ResponseGroupSearch.Data.searchResult>
+    lateinit var group_list: List<ResponseGroupSearch.Data>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_search)
 
-        // 1. 검색할 리스트
-//        group_list = listOf("고도리", "고도오리", "고동스", "고목나무", "박지니", "godori")
+        // 이전
+        gr_btn_search_back.setOnClickListener {
+            onBackPressed()
+        }
 
+        // 검색 기능
         val call: Call<ResponseGroupSearch> =
             GroupRetrofitServiceImpl.service_gr_search.groupSearch(
             )
@@ -59,26 +64,13 @@ class GroupSearchActivity : AppCompatActivity() {
                 response.takeIf { it.isSuccessful }
                     ?.body()
                     ?.let { it ->
-                        Log.v("그룹 목록: ", it.data.group_list.toString())
+                        Log.v("그룹 목록: ", it.data.toString())
                         Log.v("그룹 검색: ", "성공!")
-                        group_list = it.data.group_list
+                        group_list = it.data
                         recycler()
                     } ?: showError(response.errorBody())
             }
         })
-
-        // 2. 리사이클러뷰 build
-        mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        mAdapter = GroupSearchFileListAdapter(group_list, this)
-        mRecyclerView = findViewById<RecyclerView>(R.id.gr_rcv_search).apply {
-            // use this setting to improve performance if you know that changes
-            // in content do not change the layout size of the RecyclerView
-            setHasFixedSize(true)
-            // use a linear layout manager
-            layoutManager = mLayoutManager
-            // specify an viewAdapter (see also next example)
-            adapter = mAdapter
-        }
 
         // 검색 edit text
         val textWatcher = object : TextWatcher {
@@ -97,21 +89,10 @@ class GroupSearchActivity : AppCompatActivity() {
         gr_et_search.addTextChangedListener(textWatcher)
     }
 
-    fun filter(text: String) {
-        val filteredList: ArrayList<String> = ArrayList()
-        for (item in group_list) {
-            if (item.group_name.contains(text)) {
-                filteredList.add(item.group_name)
-            }
-        }
-//        mAdapter.filterList(filteredList)
-    }
-
     // 서버 연동관련 에러 함수
     private fun showError(error: ResponseBody?) {
         val e = error ?: return
         val ob = JSONObject(e.string())
-        Log.v("에러발생", ob.toString())
         Toast.makeText(this, ob.getString("message"), Toast.LENGTH_SHORT).show()
     }
 
@@ -128,6 +109,16 @@ class GroupSearchActivity : AppCompatActivity() {
 
             // specify an viewAdapter (see also next example)
             adapter = mAdapter
+        }
+
+        (mAdapter as GroupSearchFileListAdapter).itemClick = object : GroupRecruitingInfoAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                val groupId = group_list[position].id
+
+                val intent = Intent(baseContext, GroupInfoActivity::class.java)
+                intent.putExtra("groupId", groupId)
+                startActivity(intent)
+            }
         }
     }
 }

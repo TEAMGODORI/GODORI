@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:includeFontPadding="false"
-                    android:text="운동 주기"
+                    android:text="일주일에 몇 번 운동할건가요?"
                     android:textColor="@color/white"
                     android:textSize="14dp"
                     android:textStyle="bold" />
@@ -280,7 +280,7 @@
                         android:button="@null"
                         android:gravity="center"
                         android:includeFontPadding="false"
-                        android:text="요가"
+                        android:text="요가/필테"
                         android:textColor="@drawable/gr_text_color" />
 
                     <CheckBox
@@ -293,7 +293,7 @@
                         android:button="@null"
                         android:gravity="center"
                         android:includeFontPadding="false"
-                        android:text="필라테스"
+                        android:text="등산"
                         android:textColor="@drawable/gr_text_color" />
 
                     <CheckBox

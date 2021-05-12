@@ -261,27 +261,27 @@
                     android:id="@+id/taste_btn_exercise2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="26dp"
+                    android:paddingHorizontal="30dp"
                     android:paddingVertical="18dp"
                     android:background="@drawable/taste_ly_btn_exercise"
                     android:button="@null"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:layout_marginRight="8dp"
-                    android:text="필라테스"
+                    android:text="요가/필테"
                     android:textColor="#494949" />
 
                 <CheckBox
                     android:id="@+id/taste_btn_exercise3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="42dp"
+                    android:paddingHorizontal="35dp"
                     android:paddingVertical="18dp"
                     android:background="@drawable/taste_ly_btn_exercise"
                     android:button="@null"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:text="요가"
+                    android:text="등산"
                     android:textColor="#494949" />
 
             </LinearLayout>

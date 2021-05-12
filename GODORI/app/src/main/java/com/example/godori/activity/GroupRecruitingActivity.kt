@@ -42,6 +42,11 @@ class GroupRecruitingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_recruiting)
 
+        // 이전
+        gr_btn_recruiting_back.setOnClickListener {
+            onBackPressed()
+        }
+
         // 그룹 정보 recycler view 초기화
         viewManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         viewAdapter = GroupRecruitingInfoAdapter(groupList, this)

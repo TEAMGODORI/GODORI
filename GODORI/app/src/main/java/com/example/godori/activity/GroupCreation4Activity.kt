@@ -38,6 +38,11 @@ class GroupCreation4Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_creation4)
 
+        // 이전
+        gr_btn_creation4_back.setOnClickListener {
+            onBackPressed()
+        }
+
         // 운동 주기
         gr_rg_creation4_cycle.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
@@ -76,13 +81,13 @@ class GroupCreation4Activity : AppCompatActivity() {
         gr_cb_creation4_exercise3.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 gr_btn_creation4_next.isEnabled = true
-                group_sport = "요가"
+                group_sport = "요가/필테"
             }
         }
         gr_cb_creation4_exercise4.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 gr_btn_creation4_next.isEnabled = true
-                group_sport = "필라테스"
+                group_sport = "등산"
             }
         }
         gr_cb_creation4_exercise5.setOnCheckedChangeListener { buttonView, isChecked ->

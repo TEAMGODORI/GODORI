@@ -14,13 +14,19 @@ import com.example.godori.activity.GroupSearchActivity
 import com.example.godori.data.ResponseGroupSearch
 
 class GroupSearchFileListAdapter internal constructor(
-    private var list: List<ResponseGroupSearch.Data.searchResult>,
+    private var list: List<ResponseGroupSearch.Data>,
     private val listener: GroupSearchActivity
 ) : RecyclerView.Adapter<GroupSearchFileListAdapter.SearchViewHolder>(), Filterable {
+    interface ItemClick
+    {
+        fun onClick(view: View, position: Int)
+    }
+    var itemClick: GroupRecruitingInfoAdapter.ItemClick? = null
 
     class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.gr_tv_search_result)
         val iconImageView: ImageButton = itemView.findViewById(R.id.gr_btn_search_result)
+
         init {
             itemView.setOnClickListener {
             }
@@ -39,6 +45,13 @@ class GroupSearchFileListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         holder.titleTextView.text = searchableList[position]
+
+        if(itemClick != null)
+        {
+            holder.iconImageView.setOnClickListener { v ->
+                itemClick?.onClick(v, position)
+            }
+        }
     }
 
     override fun getItemCount() = searchableList.size
@@ -48,32 +61,25 @@ class GroupSearchFileListAdapter internal constructor(
             private val filterResults = FilterResults()
             override fun performFiltering(constraint: CharSequence): FilterResults {
                 val charString = constraint.toString()
-                Log.v("charString", charString)
-                Log.v("list", list.toString())
 
+                val filteredList = ArrayList<String>()
                 if (charString.isEmpty()) {
                     searchableList = list as ArrayList<String>
-                    Log.v("empty", "들어온 글자가 없슘")
                 } else {
-                    val filteredList = ArrayList<String>()
                     for (name in list) {
                         if (name.group_name.toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(name.group_name)
                         }
                     }
-                    searchableList = filteredList
-                    Log.v("filteredList", searchableList.toString())
                 }
 
                 val filterResults = FilterResults()
-                filterResults.values = searchableList
-                Log.v("filter result", filterResults.values.toString())
+                filterResults.values = filteredList
                 return filterResults
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 searchableList = results?.values as ArrayList<String>
-                Log.v("result", results?.values.toString())
                 notifyDataSetChanged()
             }
         }

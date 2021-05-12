@@ -27,9 +27,9 @@ class CertifTabUpload2Activity : AppCompatActivity() {
         setContentView(R.layout.activity_certif_tab_upload2)
 
         //백버튼 눌렀을 때
-//        backBtn2.setOnClickListener {
-//            onBackPressed()
-//        }
+        backBtn2.setOnClickListener {
+            onBackPressed()
+        }
 
         // 다음
         next2Btn.setOnClickListener {
@@ -167,10 +167,4 @@ class CertifTabUpload2Activity : AppCompatActivity() {
             resources.displayMetrics
         )
     }
-
-    // 뒤로가기 함수
-//    override fun onBackPressed() {
-//        startActivity(Intent(this, CertifTabUpload1Activity::class.java))
-//        finish()
-//    }
 }

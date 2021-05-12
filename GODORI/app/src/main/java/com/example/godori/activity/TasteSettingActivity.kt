@@ -65,7 +65,6 @@ class TasteSettingActivity : AppCompatActivity() {
             })
         }
 
-
         // 이전
         taste_back.setOnClickListener {
             onBackPressed()
@@ -114,11 +113,11 @@ class TasteSettingActivity : AppCompatActivity() {
                 taste_btn_complete.isEnabled = true
                 when (sports_count) {
                     0 -> {
-                        sports = "필라테스"
+                        sports = "요가/필테"
                         sports_count += 1
                     }
                     else -> {
-                        sports = sports.plus(",필라테스")
+                        sports = sports.plus(",요가/필테")
                     }
                 }
             }
@@ -128,11 +127,11 @@ class TasteSettingActivity : AppCompatActivity() {
                 taste_btn_complete.isEnabled = true
                 when (sports_count) {
                     0 -> {
-                        sports = "요가"
+                        sports = "등산"
                         sports_count += 1
                     }
                     else -> {
-                        sports = sports.plus(",요가")
+                        sports = sports.plus(",등산")
                     }
                 }
             }
@@ -179,15 +178,6 @@ class TasteSettingActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-
-    // 뒤로가기 함수
-    override fun onBackPressed() {
-        val intent = Intent(application, GroupRecruitingActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(intent)
-        finish()
     }
 
     // 서버 연동관련 에러 함수

@@ -10,6 +10,7 @@
                 android:height="98dp"/>
         </shape>
     </item>
+
     <item android:state_checked="false"
         android:drawable="@drawable/on_boarding_yoga">
         <shape android:shape="oval">

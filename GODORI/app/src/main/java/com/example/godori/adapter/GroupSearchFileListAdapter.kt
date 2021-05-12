@@ -17,6 +17,11 @@ class GroupSearchFileListAdapter internal constructor(
     private var list: List<ResponseGroupSearch.Data>,
     private val listener: GroupSearchActivity
 ) : RecyclerView.Adapter<GroupSearchFileListAdapter.SearchViewHolder>(), Filterable {
+    interface ItemClick
+    {
+        fun onClick(view: View, position: Int)
+    }
+    var itemClick: GroupRecruitingInfoAdapter.ItemClick? = null
 
     class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.gr_tv_search_result)
@@ -40,6 +45,13 @@ class GroupSearchFileListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         holder.titleTextView.text = searchableList[position]
+
+        if(itemClick != null)
+        {
+            holder.iconImageView.setOnClickListener { v ->
+                itemClick?.onClick(v, position)
+            }
+        }
     }
 
     override fun getItemCount() = searchableList.size

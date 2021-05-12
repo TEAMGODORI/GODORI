@@ -1,9 +1,11 @@
 package com.example.godori.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -107,6 +109,16 @@ class GroupSearchActivity : AppCompatActivity() {
 
             // specify an viewAdapter (see also next example)
             adapter = mAdapter
+        }
+
+        (mAdapter as GroupSearchFileListAdapter).itemClick = object : GroupRecruitingInfoAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                val groupId = group_list[position].id
+
+                val intent = Intent(baseContext, GroupInfoActivity::class.java)
+                intent.putExtra("groupId", groupId)
+                startActivity(intent)
+            }
         }
     }
 }

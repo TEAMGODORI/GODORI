@@ -17,5 +17,9 @@ class OnBoarding2Activity : AppCompatActivity() {
             val intent = Intent(this, OnBoarding3Activity::class.java)
             startActivity(intent)
         }
+
+        ob_btn_back2.setOnClickListener {
+            onBackPressed()
+        }
     }
 }

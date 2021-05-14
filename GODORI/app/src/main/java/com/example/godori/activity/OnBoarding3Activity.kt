@@ -17,5 +17,9 @@ class OnBoarding3Activity : AppCompatActivity() {
             val intent = Intent(this, TabBarActivity::class.java)
             startActivity(intent)
         }
+
+        ob_btn_back3.setOnClickListener {
+            onBackPressed()
+        }
     }
 }

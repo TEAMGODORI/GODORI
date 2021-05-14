@@ -17,7 +17,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="278dp"
-            android:background="@drawable/gr_ly_gradation"
+            android:background="@drawable/gr_img_recruiting_background"
             android:paddingHorizontal="28dp">
 
             <ImageButton

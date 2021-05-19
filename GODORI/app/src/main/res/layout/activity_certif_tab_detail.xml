@@ -23,10 +23,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:includeFontPadding="false"
             android:text="오늘의 운동 남기기"
+            android:letterSpacing="-0.02"
+            android:fontFamily="@font/notosanskr_bold"
             android:textColor="#000000"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:textSize="18dp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -70,9 +72,10 @@
                         android:layout_marginTop="33dp"
                         android:includeFontPadding="false"
                         android:text="호떡주세요"
+                        android:letterSpacing="-0.02"
+                        android:fontFamily="@font/notosanskr_bold"
                         android:textColor="#161c49"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textSize="16dp" />
 
                     <ImageView
                         android:id="@+id/certiImg"
@@ -100,7 +103,8 @@
                     android:layout_marginTop="26dp"
                     android:includeFontPadding="false"
                     android:text="얼마나 운동 했어요?"
-                    android:textAppearance="@style/customMediumFontStyle"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="@font/notosanskr_medium"
                     android:textColor="#2c2c2d"
                     android:textSize="18dp" />
 
@@ -109,6 +113,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:layout_marginLeft="2dp"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="@font/notosanskr_medium"
                     android:layout_marginTop="69dp"
                     android:background="@drawable/ct_btn_detail_post"
                     android:includeFontPadding="false"
@@ -125,7 +131,8 @@
                     android:layout_marginTop="38dp"
                     android:includeFontPadding="false"
                     android:text="어떤 운동 했어요?"
-                    android:textAppearance="@style/customMediumFontStyle"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="@font/notosanskr_medium"
                     android:textColor="#2c2c2d"
                     android:textSize="18dp" />
 
@@ -142,6 +149,8 @@
                         android:layout_height="32dp"
                         android:layout_marginLeft="2dp"
                         android:includeFontPadding="false"
+                        android:letterSpacing="-0.02"
+                        android:fontFamily="@font/notosanskr_medium"
                         android:background="@drawable/ct_btn_detail_post"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
@@ -222,7 +231,8 @@
                     android:layout_marginTop="38dp"
                     android:includeFontPadding="false"
                     android:text="운동 강도는 어땠나요?"
-                    android:textAppearance="@style/customMediumFontStyle"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="@font/notosanskr_medium"
                     android:textColor="#2c2c2d"
                     android:textSize="18dp" />
 
@@ -233,6 +243,8 @@
                     android:layout_below="@+id/inte"
                     android:layout_marginLeft="2dp"
                     android:layout_marginTop="16dp"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="@font/notosanskr_medium"
                     android:background="@drawable/ct_btn_detail_post"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
@@ -247,7 +259,8 @@
                     android:layout_marginTop="38dp"
                     android:includeFontPadding="false"
                     android:text="오늘 운동은 말이죠"
-                    android:textAppearance="@style/customMediumFontStyle"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="@font/notosanskr_medium"
                     android:textColor="#2c2c2d"
                     android:textSize="18dp" />
 
@@ -261,6 +274,8 @@
                     android:background="@drawable/ct_btn_detail_post"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="@font/notosanskr_medium"
                     android:includeFontPadding="false"
                     android:textColor="#5c6cf3"
                     android:gravity="center"/>
@@ -272,7 +287,8 @@
                     android:layout_marginTop="38dp"
                     android:includeFontPadding="false"
                     android:text="오늘 운동에 대한 코멘트는?"
-                    android:textAppearance="@style/customMediumFontStyle"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="@font/notosanskr_medium"
                     android:textColor="#2c2c2d"
                     android:textSize="18dp" />
 
@@ -284,6 +300,8 @@
                     android:layout_marginTop="518dp"
                     android:background="@drawable/edittext_rounded_corner_rectangle"
                     android:includeFontPadding="false"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="@font/notosanskr_medium"
                     android:padding="14dp"
                     android:textSize="16dp"
                     android:gravity="top"/>
@@ -317,6 +335,8 @@
                     android:layout_marginTop="8dp"
                     android:includeFontPadding="false"
                     android:text="0"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="@font/notosanskr_medium"
                     android:textColor="#000000"
                     android:textSize="16dp" />
             </LinearLayout>

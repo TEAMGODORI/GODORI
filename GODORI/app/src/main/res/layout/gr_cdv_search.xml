@@ -26,6 +26,8 @@
                 android:layout_centerVertical="true"
                 android:includeFontPadding="false"
                 android:text="고도리"
+                android:fontFamily="@font/notosanskr_medium"
+                android:letterSpacing="-0.02"
                 android:textColor="#494949"
                 android:textSize="16sp" />
 

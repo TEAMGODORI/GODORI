@@ -7,27 +7,23 @@
     android:layout_height="match_parent"
     tools:context=".activity.GroupCreation3Activity"
     android:background="@drawable/gr_bg_create">
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/btnRecruitingBack"
-                android:layout_width="match_parent"
-                android:layout_height="54dp">
-                <ImageButton
-                    android:id="@+id/gr_btn_creation3_back"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/gr_btn_back"
-                    android:gravity="center" />
-            </androidx.appcompat.widget.Toolbar>
+            <ImageButton
+                android:id="@+id/gr_btn_creation3_back"
+                android:background="@drawable/gr_btn_back_white"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="fitStart"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="28dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -41,11 +37,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:includeFontPadding="false"
                     android:layout_marginTop="14dp"
+                    android:includeFontPadding="false"
                     android:text="그룹 만들기"
+                    android:letterSpacing="-0.02"
                     android:textColor="#b3ffffff"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -53,9 +50,10 @@
                     android:layout_marginTop="8dp"
                     android:includeFontPadding="false"
                     android:text="그룹 한 줄 소개"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:letterSpacing="-0.02"
                     android:textColor="#ffffff"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,6 +66,7 @@
                     android:layout_width="350dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="20dp"
+                    android:letterSpacing="-0.02"
                     android:hint="예시)헬린이들 모여라, 거북목에서 벗어납시다!"
                     android:textColorHint="@color/white"
                     android:backgroundTint="@color/main"
@@ -78,7 +77,7 @@
                     android:textSize="14dp" />
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

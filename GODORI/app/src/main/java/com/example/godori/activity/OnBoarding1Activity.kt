@@ -57,5 +57,8 @@ class OnBoarding1Activity : AppCompatActivity() {
                 }
             }
         })
+        ob_btn_back1.setOnClickListener {
+            onBackPressed()
+        }
     }
 }

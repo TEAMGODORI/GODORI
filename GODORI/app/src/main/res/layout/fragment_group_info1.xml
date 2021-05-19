@@ -8,9 +8,9 @@
     <RelativeLayout
         android:layout_width="376dp"
         android:layout_height="wrap_content"
-        android:layout_margin="18dp"
+        android:layout_margin="16dp"
         android:background="@drawable/gr_ly_rl_info2"
-        android:padding="16dp">
+        android:padding="18dp">
 
         <TextView
             android:id="@+id/gr_tv_info_info"
@@ -18,8 +18,10 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:text="그룹 정보"
+            android:fontFamily="@font/notosanskr_bold"
+            android:letterSpacing="-0.02"
             android:textColor="#494949"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <View
             android:id="@+id/gr_view_line"
@@ -48,11 +50,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="11dp"
+                android:fontFamily="@font/notosanskr_medium"
+                android:letterSpacing="-0.02"
                 android:layout_toRightOf="@id/gr_iv_info_info"
                 android:includeFontPadding="false"
                 android:text="모집 인원"
-                android:textColor="#6280f2"
-                android:textStyle="bold" />
+                android:textColor="#6280f2" />
 
             <TextView
                 android:id="@+id/gr_tv_info_after_member_total_num"
@@ -61,6 +64,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:gravity="end"
+                android:fontFamily="@font/notosanskr_medium"
+                android:letterSpacing="-0.02"
                 android:includeFontPadding="false"
                 android:text="13"
                 android:textAlignment="textEnd"
@@ -73,6 +78,8 @@
                 android:layout_centerVertical="true"
                 android:gravity="end"
                 android:includeFontPadding="false"
+                android:fontFamily="@font/notosanskr_medium"
+                android:letterSpacing="-0.02"
                 android:text="5/"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black" />
@@ -97,11 +104,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="11dp"
+                android:fontFamily="@font/notosanskr_medium"
+                android:letterSpacing="-0.02"
                 android:layout_toRightOf="@id/gr_iv_info_cycle"
                 android:includeFontPadding="false"
                 android:text="운동 주기"
-                android:textColor="#6280f2"
-                android:textStyle="bold" />
+                android:textColor="#6280f2" />
 
             <TextView
                 android:id="@+id/gr_tv_info_after_cycle_num"
@@ -110,6 +118,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:gravity="end"
+                android:fontFamily="@font/notosanskr_medium"
+                android:letterSpacing="-0.02"
                 android:includeFontPadding="false"
                 android:text="주4회"
                 android:textAlignment="textEnd"
@@ -138,8 +148,9 @@
                 android:layout_toRightOf="@id/gr_iv_info_level"
                 android:includeFontPadding="false"
                 android:text="운동 강도"
-                android:textColor="#6280f2"
-                android:textStyle="bold" />
+                android:fontFamily="@font/notosanskr_medium"
+                android:letterSpacing="-0.02"
+                android:textColor="#6280f2" />
 
             <TextView
                 android:id="@+id/gr_tv_info_after_level_num"
@@ -150,6 +161,8 @@
                 android:gravity="end"
                 android:includeFontPadding="false"
                 android:text="중"
+                android:fontFamily="@font/notosanskr_medium"
+                android:letterSpacing="-0.02"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black" />
         </RelativeLayout>
@@ -177,7 +190,8 @@
                 android:includeFontPadding="false"
                 android:text="달성률"
                 android:textColor="#6280f2"
-                android:textStyle="bold" />
+                android:fontFamily="@font/notosanskr_bold"
+                android:letterSpacing="-0.02" />
 
             <TextView
                 android:id="@+id/gr_tv_info_after_percent_num"
@@ -187,6 +201,8 @@
                 android:layout_centerVertical="true"
                 android:gravity="end"
                 android:includeFontPadding="false"
+                android:fontFamily="@font/notosanskr_medium"
+                android:letterSpacing="-0.02"
                 android:text="100%"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black" />
@@ -215,7 +231,8 @@
                 android:includeFontPadding="false"
                 android:text="선호하는 운동"
                 android:textColor="#6280f2"
-                android:textStyle="bold" />
+                android:fontFamily="@font/notosanskr_bold"
+                android:letterSpacing="-0.02" />
 
             <TextView
                 android:id="@+id/gr_tv_info_after_exercise_num"
@@ -225,6 +242,8 @@
                 android:layout_centerVertical="true"
                 android:gravity="end"
                 android:includeFontPadding="false"
+                android:fontFamily="@font/notosanskr_medium"
+                android:letterSpacing="-0.02"
                 android:text="헬스"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black" />

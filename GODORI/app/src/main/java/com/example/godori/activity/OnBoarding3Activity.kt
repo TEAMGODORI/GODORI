@@ -84,6 +84,10 @@ class OnBoarding3Activity : AppCompatActivity() {
                 })
             }
         }
+
+        ob_btn_back3.setOnClickListener {
+            onBackPressed()
+        }
     }
     // 서버 연동관련 에러 함수
     private fun showError(error: ResponseBody?) {

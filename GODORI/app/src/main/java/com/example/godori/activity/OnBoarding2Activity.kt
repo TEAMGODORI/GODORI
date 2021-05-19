@@ -114,5 +114,9 @@ class OnBoarding2Activity : AppCompatActivity() {
             intent.putExtra("user_sport", sports)
             startActivity(intent)
         }
+
+        ob_btn_back2.setOnClickListener {
+            onBackPressed()
+        }
     }
 }

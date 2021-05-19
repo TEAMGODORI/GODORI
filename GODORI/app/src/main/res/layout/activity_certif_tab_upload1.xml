@@ -24,10 +24,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/notosanskr_medium"
             android:gravity="center"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.02"
             android:text="오늘의 운동 남기기"
             android:textColor="#000000"
-            android:textSize="16dp"
+            android:textSize="18dp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
@@ -58,8 +61,8 @@
                     android:layout_width="274dp"
                     android:layout_height="274dp"
                     android:background="@drawable/ct_btn_photo"
-                    android:src="@drawable/ct_img_add_photo"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ct_img_add_photo" />
 
                 <!--        <ImageView-->
                 <!--            android:layout_width="251dp"-->
@@ -91,8 +94,8 @@
                     android:layout_width="274dp"
                     android:layout_height="274dp"
                     android:background="@drawable/ct_btn_photo"
-                    android:src="@drawable/ct_btn_add_upload"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ct_btn_add_upload" />
 
                 <TextView
                     android:id="@+id/TimeText2"
@@ -151,8 +154,10 @@
                 android:layout_marginLeft="16dp"
                 android:background="@drawable/button_time_check"
                 android:button="@null"
+                android:fontFamily="@font/notosanskr_medium"
                 android:gravity="center"
                 android:includeFontPadding="false"
+                android:letterSpacing="-0.02"
                 android:padding="5dp"
                 android:textColor="@color/ct_text_color" />
 
@@ -165,8 +170,10 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/button_time_check"
                 android:button="@null"
+                android:fontFamily="@font/notosanskr_medium"
                 android:gravity="bottom|center"
                 android:includeFontPadding="false"
+                android:letterSpacing="-0.02"
                 android:padding="5dp"
                 android:textColor="@color/ct_text_color" />
 
@@ -178,8 +185,10 @@
                 android:layout_marginLeft="16dp"
                 android:background="@drawable/button_time_check"
                 android:button="@null"
+                android:fontFamily="@font/notosanskr_medium"
                 android:gravity="top|center"
                 android:includeFontPadding="false"
+                android:letterSpacing="-0.02"
                 android:padding="5dp"
                 android:textColor="@color/ct_text_color" />
         </RadioGroup>
@@ -199,8 +208,10 @@
                 android:layout_marginLeft="16dp"
                 android:background="@drawable/button_time_check"
                 android:button="@null"
+                android:fontFamily="@font/notosanskr_medium"
                 android:gravity="bottom"
                 android:includeFontPadding="false"
+                android:letterSpacing="-0.02"
                 android:padding="5dp"
                 android:textColor="@color/ct_text_color" />
 
@@ -212,8 +223,10 @@
                 android:layout_marginLeft="16dp"
                 android:background="@drawable/button_time_check"
                 android:button="@null"
+                android:fontFamily="@font/notosanskr_medium"
                 android:gravity="bottom|right"
                 android:includeFontPadding="false"
+                android:letterSpacing="-0.02"
                 android:padding="5dp"
                 android:textColor="@color/ct_text_color" />
 
@@ -225,8 +238,10 @@
                 android:layout_marginLeft="16dp"
                 android:background="@drawable/button_time_check"
                 android:button="@null"
+                android:fontFamily="@font/notosanskr_medium"
                 android:gravity="center"
                 android:includeFontPadding="false"
+                android:letterSpacing="-0.02"
                 android:padding="5dp"
                 android:text="None"
                 android:textAllCaps="false"
@@ -237,11 +252,13 @@
             android:id="@+id/next1Btn"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
             android:layout_marginHorizontal="18dp"
             android:layout_marginTop="25dp"
-            android:background="@drawable/gr_ly_btn_next"
-            android:layout_alignParentBottom="true"
             android:layout_marginBottom="18dp"
+            android:background="@drawable/gr_ly_btn_next"
+            android:fontFamily="@font/notosanskr_medium"
+            android:letterSpacing="-0.02"
             android:text="다음"
             android:textColor="@color/white"
             android:textSize="18dp" />

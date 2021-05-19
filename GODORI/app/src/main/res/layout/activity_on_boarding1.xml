@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.OnBoarding1Activity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".activity.OnBoarding1Activity">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <ImageButton
-            android:id="@+id/gr_btn_creation1_back"
+            android:id="@+id/ob_btn_back1"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginLeft="16dp"
@@ -44,6 +45,7 @@
         android:layout_marginTop="48dp"
         android:fontFamily="@font/notosanskr_medium"
         android:includeFontPadding="false"
+        android:letterSpacing="-0.02"
         android:text="그룹원들에게 보여질 닉네임을\n입력해주세요"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -70,6 +72,7 @@
         android:background="@drawable/onboarding_edit_background"
         android:fontFamily="@font/notosanskr_medium"
         android:includeFontPadding="false"
+        android:letterSpacing="-0.02"
         android:textAlignment="center"
         android:textColor="@color/black" />
 
@@ -77,16 +80,16 @@
         android:id="@+id/btn1"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
-        android:layout_alignParentBottom="true"
         android:background="@drawable/gr_ly_btn_next"
         android:enabled="false"
         android:clickable="false"
+        android:fontFamily="@font/notosanskr_medium"
         android:gravity="center"
         android:text="다음"
         android:textColor="#FFFFFF"
-        android:fontFamily="@font/notosanskr_medium"
         android:textSize="16sp" />
 
 </RelativeLayout>

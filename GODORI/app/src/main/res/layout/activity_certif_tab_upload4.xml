@@ -29,7 +29,10 @@
             android:gravity="center"
             android:text="오늘의 운동 남기기"
             android:textColor="#000000"
-            android:textSize="16dp"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.02"
+            android:fontFamily="@font/notosanskr_bold"
+            android:textSize="18dp"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -51,7 +54,8 @@
             android:layout_marginLeft="32dp"
             android:includeFontPadding="false"
             android:text="오늘 운동에 대한 코멘트는?"
-            android:textStyle="bold"
+            android:letterSpacing="-0.02"
+            android:fontFamily="@font/notosanskr_bold"
             android:textColor="#000000"
             android:textSize="18dp" />
 
@@ -64,6 +68,7 @@
             android:layout_below="@+id/comment"
             android:background="@drawable/edittext_rounded_corner_rectangle"
             android:gravity="top"
+            android:letterSpacing="-0.02"
             android:hint="여기에 입력하세요"
             android:includeFontPadding="false"
             android:padding="12dp"

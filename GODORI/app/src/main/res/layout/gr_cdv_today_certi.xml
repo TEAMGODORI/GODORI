@@ -34,6 +34,8 @@
             android:layout_marginTop="12dp"
             android:includeFontPadding="false"
             android:text="지니박"
+            android:letterSpacing="-0.02"
+            android:fontFamily="@font/notosanskr_medium"
             android:textColor="#494949"
             android:textSize="14sp" />
 
@@ -48,22 +50,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:letterSpacing="-0.02"
+                android:fontFamily="@font/notosanskr_medium"
                 android:includeFontPadding="false"
                 android:text="3"
                 android:textColor="#c1c1c1"
-                android:textSize="14sp"
-                android:textStyle="normal" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/gr_tv_total_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:letterSpacing="-0.02"
+                android:fontFamily="@font/notosanskr_medium"
                 android:includeFontPadding="false"
                 android:text="/4"
                 android:textColor="#c1c1c1"
-                android:textSize="14sp"
-                android:textStyle="normal" />
+                android:textSize="14sp" />
         </LinearLayout>
 
     </LinearLayout>

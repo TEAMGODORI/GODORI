@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.OnBoarding2Activity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".activity.OnBoarding2Activity">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <ImageButton
-            android:id="@+id/gr_btn_creation1_back"
+            android:id="@+id/ob_btn_back2"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginLeft="16dp"
@@ -45,6 +46,7 @@
         android:layout_marginTop="48dp"
         android:fontFamily="@font/notosanskr_medium"
         android:includeFontPadding="false"
+        android:letterSpacing="-0.02"
         android:text="평소에 즐겨하는 운동이 무엇인가요?\n메이트와 함께 운동해요!"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -53,11 +55,11 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
         android:layout_below="@id/text2"
+        android:layout_marginHorizontal="32dp"
         android:layout_marginTop="54dp"
-        android:orientation="horizontal"
         android:columnCount="3"
+        android:orientation="horizontal"
         android:rowCount="4">
 
         <androidx.appcompat.widget.AppCompatCheckBox
@@ -65,33 +67,34 @@
             android:layout_width="98dp"
             android:layout_height="98dp"
             android:layout_gravity="center"
-            android:button="@null"
-            android:background="@drawable/on_boarding_yoga_background"/>
+            android:background="@drawable/on_boarding_yoga_background"
+            android:button="@null" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/health_img"
             android:layout_width="98dp"
             android:layout_height="98dp"
             android:layout_gravity="center"
-            android:button="@null"
-            android:background="@drawable/on_boarding_health_background"/>
+            android:background="@drawable/on_boarding_health_background"
+            android:button="@null" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/running_img"
             android:layout_width="98dp"
             android:layout_height="98dp"
-            android:button="@null"
-            android:background="@drawable/on_boarding_running_background" />
+            android:background="@drawable/on_boarding_running_background"
+            android:button="@null" />
 
         <TextView
             android:id="@+id/tv_yoga_plia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:includeFontPadding="false"
-            android:text="요가/필테"
             android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/notosanskr_medium"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.02"
+            android:text="요가/필테"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -99,22 +102,25 @@
             android:id="@+id/tv_health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:includeFontPadding="false"
-            android:text="헬스"
             android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/notosanskr_medium"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.02"
+            android:text="헬스"
             android:textColor="@color/black"
             android:textSize="16sp" />
+
         <TextView
             android:id="@+id/tv_running"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:includeFontPadding="false"
-            android:text="러닝"
             android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/notosanskr_medium"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.02"
+            android:text="러닝"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -123,9 +129,9 @@
             android:layout_width="98dp"
             android:layout_height="98dp"
             android:layout_gravity="center"
-            android:button="@null"
             android:layout_marginTop="24dp"
-            android:background="@drawable/on_boarding_climb_background"/>
+            android:background="@drawable/on_boarding_climb_background"
+            android:button="@null" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/bicycle_img"
@@ -133,26 +139,27 @@
             android:layout_height="98dp"
             android:layout_gravity="center"
             android:layout_marginTop="24dp"
-            android:button="@null"
-            android:background="@drawable/on_boarding_bicycle_background" />
+            android:background="@drawable/on_boarding_bicycle_background"
+            android:button="@null" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/swimming_img"
             android:layout_width="98dp"
             android:layout_height="98dp"
             android:layout_marginTop="24dp"
-            android:button="@null"
-            android:background="@drawable/on_boarding_swimming_background" />
+            android:background="@drawable/on_boarding_swimming_background"
+            android:button="@null" />
 
         <TextView
             android:id="@+id/tv_climb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:includeFontPadding="false"
-            android:text="등산"
             android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/notosanskr_medium"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.02"
+            android:text="등산"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -160,24 +167,27 @@
             android:id="@+id/tv_bicycle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:includeFontPadding="false"
-            android:text="자전거"
             android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/notosanskr_medium"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.02"
+            android:text="자전거"
             android:textColor="@color/black"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
+
         <TextView
             android:id="@+id/tv_swimming"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:includeFontPadding="false"
-            android:text="수영"
             android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/notosanskr_medium"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.02"
+            android:text="수영"
             android:textColor="@color/black"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
     </GridLayout>
 
     <Button

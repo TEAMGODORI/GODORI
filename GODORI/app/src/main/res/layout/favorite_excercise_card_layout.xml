@@ -35,6 +35,8 @@
             android:layout_below="@+id/favoriteExercise_img"
             android:layout_centerHorizontal="true"
             android:text="런닝"
+            android:letterSpacing="-0.02"
+            android:fontFamily="@font/notosanskr_medium"
             android:textColor="@color/black"
             android:textSize="8dp" />
 

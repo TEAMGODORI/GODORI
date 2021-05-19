@@ -26,34 +26,35 @@
                 android:layout_height="22dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginRight="4dp"
-                android:src="@drawable/gr_img_cal"/>
+                android:src="@drawable/gr_img_cal" />
 
             <TextView
                 android:id="@+id/gr_tv_main_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:includeFontPadding="false"
+                android:letterSpacing="-0.02"
                 android:layout_toRightOf="@+id/gr_iv_main_cal"
+                android:includeFontPadding="false"
                 android:text="3월 17일 수요일"
                 android:textColor="#8a8a8d" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="82dp"
-                android:includeFontPadding="false"
                 android:layout_marginLeft="3dp"
+                android:layout_marginTop="82dp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:includeFontPadding="false"
                 android:text="바빠요?\n그래도\n운동은 해야죠"
                 android:textColor="#000000"
-                android:textSize="20dp"
-                android:fontFamily="@font/notosanskr_bold" />
+                android:textSize="20dp" />
 
             <ImageView
                 android:layout_width="152dp"
                 android:layout_height="129dp"
-                android:layout_marginTop="52dp"
                 android:layout_alignParentRight="true"
+                android:layout_marginTop="52dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/img_ballet" />
@@ -70,9 +71,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
+            android:fontFamily="@font/notosanskr_bold"
             android:includeFontPadding="false"
+            android:letterSpacing="-0.02"
             android:text="찾는 그룹이 있나요?"
-            android:fontFamily="@font/notosanskr_medium"
             android:textColor="#000000"
             android:textSize="17dp" />
 
@@ -81,17 +83,18 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="14dp"
-            android:scaleType="fitXY"
             android:background="@color/transparent"
-            android:src="@drawable/gr_img_main_search"/>
+            android:scaleType="fitXY"
+            android:src="@drawable/gr_img_main_search" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:fontFamily="@font/notosanskr_bold"
             android:includeFontPadding="false"
+            android:letterSpacing="-0.02"
             android:text="그룹 만들래요!"
-            android:fontFamily="@font/notosanskr_medium"
             android:textColor="#000000"
             android:textSize="17dp" />
 
@@ -100,10 +103,10 @@
             android:layout_width="match_parent"
             android:layout_height="124dp"
             android:layout_marginTop="14dp"
+            android:background="@color/transparent"
             android:elevation="4dp"
             android:scaleType="fitXY"
-            android:src="@drawable/gr_btn_go_to_create"
-            android:background="@color/transparent"/>
+            android:src="@drawable/gr_btn_go_to_create" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -114,9 +117,10 @@
                 android:id="@+id/gr_btn_main_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/notosanskr_bold"
                 android:includeFontPadding="false"
+                android:letterSpacing="-0.02"
                 android:text="이런 그룹은 어때요?"
-                android:fontFamily="@font/notosanskr_medium"
                 android:textColor="#000000"
                 android:textSize="17dp" />
 
@@ -126,18 +130,19 @@
                 android:layout_height="29dp"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center_vertical"
-                android:includeFontPadding="false"
                 android:background="@drawable/gr_ly_btn_more"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.02"
                 android:text="더보기"
                 android:textColor="#8a8a8d"
                 android:textSize="14dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="14dp"
-                android:layout_below="@+id/btnMoreGroup"
                 android:id="@+id/gr_rcv_main_more"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/btnMoreGroup"
+                android:layout_marginTop="14dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
         </RelativeLayout>
 

@@ -20,24 +20,25 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="172dp"
             android:includeFontPadding="false"
-            android:letterSpacing="-0.03"
+            android:letterSpacing="-0.02"
+            android:fontFamily="@font/notosanskr_bold"
             android:text="개설 되었습니다."
             android:textColor="#000000"
-            android:textSize="26sp"
-            android:textStyle="bold" />
+            android:textSize="26sp" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="21dp"
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
-            android:letterSpacing="-0.03"
+            android:letterSpacing="-0.02"
+            android:fontFamily="@font/notosanskr_medium"
             android:textColor="#797979"
             android:textSize="16sp"
             android:textStyle="normal"
-            android:text="그룹 페이지에서\n운동 인증을 시작해 보세요." />
+            android:text="그룹에서 운동 인증을 시작해보세요!" />
 
         <View
             android:layout_width="292dp"

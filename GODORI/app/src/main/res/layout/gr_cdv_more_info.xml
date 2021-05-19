@@ -23,6 +23,8 @@
             android:layout_height="173dp"
             android:background="@drawable/gr_ly_iv_more_title"
             android:scaleType="centerCrop"
+            android:letterSpacing="-0.02"
+             android:fontFamily="@font/notosanskr_medium"
             android:src="@drawable/gr_img_info_title"
             card_view:riv_corner_radius="8dp" />
 
@@ -53,8 +55,9 @@
                 android:layout_height="wrap_content"
                 android:text="명"
                 android:textSize="12sp"
-                android:includeFontPadding="false"
+                android:letterSpacing="-0.02"
                 android:fontFamily="@font/notosanskr_medium"
+                android:includeFontPadding="false"
                 android:textColor="#6280f2"/>
         </LinearLayout>
 
@@ -70,9 +73,11 @@
                 android:layout_toRightOf="@+id/gr_iv_creation_title"
                 android:includeFontPadding="false"
                 android:text="고도리"
+                android:layout_marginTop="4dp"
+                android:letterSpacing="-0.02"
                 android:fontFamily="@font/notosanskr_medium"
                 android:textColor="#494949"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/gr_tv_more_groupLine"
@@ -82,6 +87,7 @@
                 android:layout_marginTop="4dp"
                 android:includeFontPadding="false"
                 android:text="헬린이들 집합"
+                android:letterSpacing="-0.02"
                 android:textColor="#797979"
                 android:textSize="14sp"
                 android:fontFamily="@font/notosanskr_medium"/>
@@ -90,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/gr_tv_more_groupLine"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -99,10 +105,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/gr_ly_tv_creation_title"
+                    android:fontFamily="@font/notosanskr_medium"
                     android:includeFontPadding="false"
+                    android:letterSpacing="-0.02"
                     android:paddingHorizontal="8dp"
                     android:text="운동"
-                    android:fontFamily="@font/notosanskr_medium"
                     android:textColor="#797979"
                     android:textSize="14sp"
                     android:textStyle="normal" />
@@ -117,6 +124,7 @@
                     android:includeFontPadding="false"
                     android:paddingHorizontal="8dp"
                     android:fontFamily="@font/notosanskr_medium"
+                    android:letterSpacing="-0.02"
                     android:text="주4회"
                     android:textColor="#797979"
                     android:textSize="14sp"
@@ -133,6 +141,7 @@
                     android:paddingHorizontal="8dp"
                     android:fontFamily="@font/notosanskr_medium"
                     android:text="중"
+                    android:letterSpacing="-0.02"
                     android:textColor="#797979"
                     android:textSize="14sp"
                     android:textStyle="normal" />

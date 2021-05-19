@@ -8,17 +8,17 @@
     tools:context=".activity.GroupSearchActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content">
 
         <ImageButton
             android:id="@+id/gr_btn_search_back"
             android:layout_width="42dp"
             android:layout_height="42dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="42dp"
             android:background="@color/transparent"
-            android:scaleType="fitCenter"
+            android:scaleType="fitStart"
             android:src="@drawable/gr_btn_back_black" />
     </androidx.appcompat.widget.Toolbar>
 
@@ -36,6 +36,8 @@
             android:includeFontPadding="false"
             android:text="찾는 그룹이 있나요?"
             android:textColor="#000000"
+            android:fontFamily="@font/notosanskr_bold"
+            android:letterSpacing="-0.02"
             android:textSize="24sp"
             android:textStyle="normal" />
 
@@ -47,6 +49,8 @@
             android:layout_marginTop="59dp"
             android:hint="그룹 검색하기"
             android:theme="@style/customTextViewFontStyle"
+            android:fontFamily="@font/notosanskr_medium"
+            android:letterSpacing="-0.02"
             android:inputType="text"
             android:maxLines="1"
             android:backgroundTint="@color/main"

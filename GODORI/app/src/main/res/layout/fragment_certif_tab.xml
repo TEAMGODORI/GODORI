@@ -21,17 +21,20 @@
             android:layout_marginTop="48dp"
             android:includeFontPadding="false"
             android:text="운동 인증하기"
+            android:letterSpacing="-0.02"
+            android:fontFamily="@font/notosanskr_bold"
             android:textColor="#ffffff"
-            android:textSize="24dp"
-            android:textStyle="bold" />
+            android:textSize="24dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="88dp"
+            android:layout_marginTop="90dp"
             android:includeFontPadding="false"
             android:text="오늘의 운동을 간편하게 공유해보세요!"
             android:textColor="#ffffff"
+            android:letterSpacing="-0.02"
+            android:fontFamily="@font/notosanskr_medium"
             android:textSize="12dp" />
 
         <Button
@@ -82,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="22dp"
                 android:layout_marginTop="20dp"
+                android:letterSpacing="-0.02"
                 android:layout_marginBottom="10dp"
                 android:includeFontPadding="false"
                 android:text="date"

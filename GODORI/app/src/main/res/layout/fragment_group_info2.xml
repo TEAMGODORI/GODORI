@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="376dp"
         android:layout_height="wrap_content"
-        android:layout_margin="18dp"
+        android:layout_margin="16dp"
         android:background="@drawable/gr_ly_rl_info2"
         android:paddingLeft="21dp"
         android:paddingTop="24dp">
@@ -20,8 +20,10 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:text="그룹원 정보"
+            android:fontFamily="@font/notosanskr_bold"
+            android:letterSpacing="-0.02"
             android:textColor="#494949"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <View
             android:id="@+id/gr_view_line_2"

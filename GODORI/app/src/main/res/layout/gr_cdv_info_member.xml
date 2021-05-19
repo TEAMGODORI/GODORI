@@ -31,6 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:letterSpacing="-0.02"
+            android:fontFamily="@font/notosanskr_medium"
             android:includeFontPadding="false"
             android:text="지니박"
             android:textColor="#494949"

@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.annotation.GlideModule
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
 import com.example.godori.activity.*
@@ -17,6 +19,7 @@ import com.example.godori.adapter.GroupInfoMemberAdapter
 import com.example.godori.adapter.MyInfoPictureAdapter
 import com.example.godori.data.ResponseGroupInfoAfter
 import com.example.godori.data.ResponseMypage
+import kotlinx.android.synthetic.main.activity_on_boarding1.*
 import kotlinx.android.synthetic.main.fragment_group_info2.*
 import kotlinx.android.synthetic.main.fragment_my_info_tab.*
 import okhttp3.ResponseBody
@@ -61,12 +64,6 @@ class MyInfoTabFragment : Fragment() {
             // specify an viewAdapter (see also next example)
             adapter = viewAdapter
         }
-
-        // 사용자 이름
-        my_iv_profile.setImageResource(R.drawable.gr_img_profile_basic)
-
-        // 사용자 프로필 사진
-        my_tv_userName.text = "김지현"
 
         // 설정 버튼
         my_btn_setting.setOnClickListener {
@@ -117,9 +114,31 @@ class MyInfoTabFragment : Fragment() {
                                 var count = it.data.certi_list.size
                                 my_tv_week_count.setText("${count}회")
 
+                                // 사용자 프로필 닉네임 - 수정 된 건지?
+                                var nickName = it.data.profile.name
+                                my_tv_userName.text = nickName
+
+                                // 사용자 프로필 이미지 - 수정 된 건지?
+                                var userImg = it.data.profile.image
+                                @GlideModule
+                                if (userImg != null) {
+                                    Glide.with(this@MyInfoTabFragment)
+                                        .load(userImg)
+                                        .circleCrop()
+                                        .error(android.R.drawable.stat_notify_error)
+                                        .into(my_iv_profile)
+
+                                } else {
+                                    Glide.with(this@MyInfoTabFragment)
+                                        .load(R.drawable.gr_img_profile_basic)
+                                        .circleCrop()
+                                        .error(android.R.drawable.stat_notify_error)
+                                        .into(my_iv_profile)
+                                }
+
+
                                 // 사진 어댑터에 데이터 전달
                                 setMyPageAdapter(it.data.certi_list)
-
                             }
                             else -> {
                                 my_tv_percent.setText("-%")
@@ -142,7 +161,7 @@ class MyInfoTabFragment : Fragment() {
         val mAdapter = MyInfoPictureAdapter(certiList, context)
         my_rcv_picture.adapter = mAdapter
         mAdapter.notifyDataSetChanged()
-        mAdapter.itemClick = object: MyInfoPictureAdapter.ItemClick {
+        mAdapter.itemClick = object : MyInfoPictureAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
                 val intent = Intent(activity, CertifTabDetailActivity::class.java)
                 //인증탭의 인증 이미지의 id 넘겨주기

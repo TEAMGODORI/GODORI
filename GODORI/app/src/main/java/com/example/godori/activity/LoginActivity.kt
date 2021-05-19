@@ -145,19 +145,6 @@ class LoginActivity : AppCompatActivity() {
                                             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                                         }
                                     }
-//
-//                                    todayMemberList = dataList!!.data.today_member
-//                                    Log.d("GroupAfterTabFragment", todayMemberList.toString())
-//                                    unTodayMemberList = dataList!!.data.not_today_member
-//                                    Log.d("GroupAfterTabFragment", unTodayMemberList.toString())
-//
-//                                    //어댑터에 데이터 넣기
-//                                    setGroupCertiedAdapter(todayMemberList!!)
-//                                    setGroupCertiAdapter(unTodayMemberList!!)
-//
-//                                    group_name.setText(it.data.group_name)
-//                                    left_count.setText(it.data.left_count.toString())
-
                                 } ?: showError(response.errorBody())
                         }
                     })

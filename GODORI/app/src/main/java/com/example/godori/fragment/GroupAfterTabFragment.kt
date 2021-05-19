@@ -114,7 +114,7 @@ class GroupAfterTabFragment : Fragment() {
         //Callback 등록하여 통신 요청
         val call: Call<ResponseGroupAfterTab> =
             GroupRetrofitServiceImpl.service_gr_after.requestList(
-                userName = "김지현" //수정하기
+                kakaoId = 1111111111 //수정하기
             )
         call.enqueue(object : Callback<ResponseGroupAfterTab> {
             override fun onFailure(call: Call<ResponseGroupAfterTab>, t: Throwable) {

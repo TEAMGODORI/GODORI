@@ -3,13 +3,13 @@ package com.example.godori.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.example.godori.GroupRetrofitServiceImpl
 import com.example.godori.R
 import com.example.godori.adapter.TabBarViewPagerAdapter
 import com.example.godori.data.ResponseGroupAfterTab
-import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_tab_bar.*
 import okhttp3.ResponseBody
 import org.json.JSONObject
@@ -26,17 +26,12 @@ class TabBarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tab_bar)
 
-        // 사용자 정보 요청 (기본)
-        UserApiClient.instance.me { user, error ->
-            Log.d("TabBarActivity", "회원번호: ${user?.id}")
-            Log.d("TabBarActivity", "닉네임: ${user?.kakaoAccount?.profile?.nickname}")
-            Log.d("TabBarActivity", "프로필 링크: ${user?.kakaoAccount?.profile?.profileImageUrl}")
-            Log.d("TabBarActivity", "썸네일 링크: ${user?.kakaoAccount?.profile?.thumbnailImageUrl}")
+        //LoginActivity에서 kakaoId 받기
+        val secondIntent = intent
+        var kakaoId = secondIntent.getLongExtra("kakaoId", 1111111111)
+        Log.d("TabBarActivity", kakaoId.toString())
 
-//            loadData(user?.kakaoAccount?.profile?.nickname, user?.kakaoAccount?.profile?.profileImageUrl)
-        }
-
-        loadData()
+        loadData(kakaoId)
         tabbar_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
             override fun onPageScrolled(
@@ -66,12 +61,13 @@ class TabBarActivity : AppCompatActivity() {
     private fun showError(error: ResponseBody?) {
         val e = error ?: return
         val ob = JSONObject(e.string())
+        Toast.makeText(this, ob.getString("message"), Toast.LENGTH_SHORT).show()
     }
 
-    fun loadData(){
+    fun loadData(kakaoId: Long){
         val call: Call<ResponseGroupAfterTab> =
             GroupRetrofitServiceImpl.service_gr_after_tab.requestList(
-                userName = "김지현"//수정하기
+                kakaoId = kakaoId
             )
         call.enqueue(object : Callback<ResponseGroupAfterTab> {
             override fun onFailure(call: Call<ResponseGroupAfterTab>, t: Throwable) {

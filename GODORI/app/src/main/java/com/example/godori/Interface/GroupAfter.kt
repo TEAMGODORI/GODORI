@@ -9,8 +9,8 @@ import retrofit2.http.Path
 
 interface GroupAfter {
     @Headers("Content-Type:application/json")
-    @GET("/group/member/{userName}")
+    @GET("/group/member/{kakaoId}")
     fun requestList(
-        @Path("userName") userName: String
+        @Path("kakaoId") kakaoId: Long
     ) : Call<ResponseGroupAfterTab>
 }

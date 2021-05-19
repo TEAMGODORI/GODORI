@@ -2,6 +2,7 @@ package com.example.godori
 
 import com.example.godori.Interface.*
 import com.example.godori.data.CertiUploadImage
+import com.example.godori.data.ResponseFirstLogin
 import com.example.godori.fragment.GroupTabFragment
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -64,4 +65,10 @@ object GroupRetrofitServiceImpl {
 
     // 마이페이지
     val service_mypage : MyPage = retrofit.create(MyPage::class.java)
+
+    // 온보딩뷰 - 사용자 정보 생성
+    val service_ob_user_creation: OnBoardingaUserInfo = retrofit.create(OnBoardingaUserInfo::class.java)
+
+    // 로그인 - 첫 로그인 판단
+    val service_lg_first: LoginFirst = retrofit.create(LoginFirst::class.java)
 }

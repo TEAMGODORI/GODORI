@@ -9,9 +9,14 @@ data class ResponseMypage(
     val success: Boolean
 ){
     data class Data(
+        val profile: Profile,
         val certi_list: List<Certi>,
         val join: Join
     ){
+        data class Profile(
+            val name : String,
+            val image: String
+        )
         data class Join(
             val achive_rate: Int,
             val week_count: Int
